@@ -36,6 +36,7 @@ group :test, :development do
   gem 'pry-debugger'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'dotenv-rails'     # Allow rails (console, etc) to access .env file for environment variables. 
 end
 
 # To use ActiveModel has_secure_password
