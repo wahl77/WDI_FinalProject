@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801202354) do
+ActiveRecord::Schema.define(:version => 20130808004410) do
 
   create_table "images", :force => true do |t|
     t.string   "url"
@@ -22,5 +22,19 @@ ActiveRecord::Schema.define(:version => 20130801202354) do
   end
 
   add_index "images", ["imageable_id", "imageable_type"], :name => "index_images_on_imageable_id_and_imageable_type"
+
+  create_table "users", :force => true do |t|
+    t.string   "username",                     :null => false
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
+  end
+
+  add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
 
 end
