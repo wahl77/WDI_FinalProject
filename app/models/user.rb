@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  attr_accessible :username, :first_name, :last_name, :password
+  attr_accessible :username, :first_name, :last_name, :password, :password_confirmation
 
   has_many :follows
 
@@ -30,13 +30,13 @@ class User < ActiveRecord::Base
   end
 
   # Get a list of all the people I am following
-  # This overwrites defaut getters
+  # This overwrites default getters
   def followers
     Follow.where("following = ?", self.id)
   end
 
   # Get a list of all the people that follow me
-  # This overwrites defaut getters
+  # This overwrites default getters
   def following
     Follow.where("follower = ?", self.id)
   end
