@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :username, :first_name, :last_name, :password
 
+  has_many :follows
+
   validates :username, 
     presence: true,
     uniqueness: true
@@ -26,4 +28,17 @@ class User < ActiveRecord::Base
   def last_name=(value)
     write_attribute :last_name, value.titleize
   end
+
+  # Get a list of all the people I am following
+  # This overwrites defaut getters
+  def followers
+    Follow.where("following = ?", self.id)
+  end
+
+  # Get a list of all the people that follow me
+  # This overwrites defaut getters
+  def following
+    Follow.where("follower = ?", self.id)
+  end
+
 end
