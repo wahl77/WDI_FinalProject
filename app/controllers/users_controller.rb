@@ -83,4 +83,9 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def add_follower
+    @follow = Follow.create(:follower_id => current_user.id, :following_id => params[:id])
+    @user = User.find(@follow.follower_id)
+  end
 end
