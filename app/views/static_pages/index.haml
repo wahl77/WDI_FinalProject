@@ -14,6 +14,7 @@ Bearing:
 #canvas
   .box{"data-bearing"=>"191"}
   .box{"data-bearing"=>"20", style:"background: green"}
+  .box{"data-bearing"=>"350", style:"background: blue"}
 
 :css
   #canvas {
@@ -53,7 +54,9 @@ Bearing:
       if (e.webkitCompassHeading != 0){
         bearing = e.webkitCompassHeading
         $('#bearing').text(bearing);
-        //bearing = 191;
+
+        // Focal Length is camera and orientation dependent
+        focal_length = ($('#orientation').text() == 0) ? 42 : 62 // Get the focal length               
 
         boxes = $('.box');
         
@@ -62,10 +65,18 @@ Bearing:
           current_box = $(boxes[i])
           box_bearing = current_box.data("bearing");
 
-          if (Math.abs(box_bearing - bearing) < 31){
+          if (Math.abs(box_bearing - bearing) < (focal_length / 2) || (box_bearing + bearing) % 360 < (focal_length / 2)){
             current_box.css("display", "");
 
-            position_from_left = 100 * (bearing - (box_bearing - 31)) / 61 // 61 is the angle of the camera
+            position_from_left = 100 * (bearing - (box_bearing - (focal_length / 2) )) / focal_length 
+
+            // Compensate for 360 mod
+            if (box_bearing < (focal_length/2) && bearing > (360 - focal_length / 2)) {
+              position_from_left = 100 - (100*((focal_length - box_bearing) / focal_length ) )
+            }
+            else if (box_bearing > 360 - focoal_length && bearing < focal_length / 2) { 
+            }
+            // End of 360 mod calculations
             
             current_box.css("left", 100-position_from_left.toString() + "%");
 
