@@ -1,0 +1,20 @@
+<div id = "user_profile_pic"><%= image_tag @user.get_image %></div>
+
+<div id = "user_basic_info">
+  <p><%= @user.first_name %> <%= @user.last_name %></p>
+  <p> User Name: <%= @user.username %> </p>
+</div>
+
+<div id = "user_following">
+  Your Followers: <% @user.followers.each do |follower| %>
+<!--     possibly make each of these names links to the
+ -->
+    <%= follower.first_name %> <%= follower.last_name %> </br>
+  <% end %>
+</div>
+
+<div id = "user_followers">
+  Who you're following: <%= @user.following %>
+</div>
+
+<a> Your Insights </p> <p> Friends' Insights </p> <p> All Insights </p>
