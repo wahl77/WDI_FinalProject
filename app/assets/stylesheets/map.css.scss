@@ -1,26 +1,56 @@
+$navbar_color: gray;
+
 #map_container {
-  margin-top: 1px;
   position:absolute;
   top:70px;
   bottom:0;
   width:100%;
+  z-index: -1;
 }
 
-#legend-content {
-  display: none;
+#map_filter_container {
+  position: absolute;
+  top: 80px;
+  left: 15px;
+  width: 200px;
+  height: 152px;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: white;
+  border: 3px solid $navbar_color;
+  z-index: 1;
+  .filter_containers {
+    height: 49px;
+    width: 90%;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .filter_containers:first-child,
+  .filter_containers:nth-child(2) {
+    -moz-box-shadow: 0 1px 1px -1px #000;
+    -webkit-box-shadow: 0 1px 1px -1px #000;
+    box-shadow: 0 1px 1px -1px #000;
+  }
+  .filter_buttons {
+    width: 20px;
+    height: 20px;
+    border: 5px solid $navbar_color;
+    margin-top: 10px;
+    border-radius: 3px;
+    float: left;
+    display: inline-block;
+  }
+  .filter_buttons:hover {
+    background-color: rgba(189, 195, 199,1.0);
+    border: 5px solid rgba(149, 165, 166,1.0);
+  }
+  .filter_texts {
+    height: 49px;
+    display: inline-block;
+    margin: 17px;
+    p {
+      margin: 0;
+    }
+  }
 }
 
-.my-legend .legend-title {
- text-align: left;
- margin-bottom: 8px;
- font-weight: bold;
- font-size: 90%;
- height: 60px;
- width: 150px;
-}
-
-.my-legend .legend-source {
- font-size: 70%;
- color: #999;
- clear: both;
-}
