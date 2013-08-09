@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
     if profile_pic
       return profile_pic.url.thumb.to_s
     else
-      return "/assets/default.jpeg"
+      return "/assets/default.jpg"
     end
   end
 
