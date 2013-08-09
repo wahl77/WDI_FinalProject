@@ -6,4 +6,9 @@ RailsProject::Application.routes.draw do
   root :to => 'static_pages#index'
 
   resources :sessions, only:[:new, :create, :destroy]
+  resources :users
+
+  match 'login' => 'sessions#new', :as => :login
+  match 'logout' => 'sessions#destroy', :as => :logout
+
 end
