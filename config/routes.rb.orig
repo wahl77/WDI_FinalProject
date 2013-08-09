@@ -1,15 +1,16 @@
 RailsProject::Application.routes.draw do
+<<<<<<< HEAD
   post "images/new" => 'images#new', :as => "new_image"
+=======
 
   match "oauth/callback" => "oauths#callback"
   match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+>>>>>>> 3e06c720a14741194e7306ba2bf0e178a324e2d6
 
   root :to => 'static_pages#index'
 
   resources :sessions, only:[:new, :create, :destroy]
 
   get "profile/:id" => 'users#show', :as => "profile"
-
-  get "follow/:id" => 'users#add_follower', :as => "follow"
 
 end

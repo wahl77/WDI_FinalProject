@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809051836) do
+ActiveRecord::Schema.define(:version => 20130809220200) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20130809051836) do
     t.string   "caption"
     t.decimal  "lat"
     t.decimal  "long"
+    t.integer  "user_id"
   end
 
   add_index "images", ["imageable_id", "imageable_type"], :name => "index_images_on_imageable_id_and_imageable_type"

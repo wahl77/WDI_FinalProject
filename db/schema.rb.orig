@@ -12,10 +12,18 @@
 # It's strongly recommended to check this file into your version control system.
 
 <<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130808011425) do
+ActiveRecord::Schema.define(:version => 20130809051836) do
 =======
-ActiveRecord::Schema.define(:version => 20130809005534) do
->>>>>>> a43fee51c75edfa9746b7e9b9405b7e7d9b8f665
+ActiveRecord::Schema.define(:version => 20130809043820) do
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "provider",   :null => false
+    t.string   "uid",        :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+>>>>>>> 3e06c720a14741194e7306ba2bf0e178a324e2d6
 
   create_table "follows", :force => true do |t|
     t.integer  "follower_id"
@@ -50,8 +58,13 @@ ActiveRecord::Schema.define(:version => 20130809005534) do
     t.datetime "updated_at",                   :null => false
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.datetime "last_login_at"
+    t.datetime "last_logout_at"
+    t.datetime "last_activity_at"
+    t.string   "last_login_from_ip_address"
   end
 
+  add_index "users", ["last_logout_at", "last_activity_at"], :name => "index_users_on_last_logout_at_and_last_activity_at"
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
 
 end
