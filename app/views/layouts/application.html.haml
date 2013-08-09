@@ -11,7 +11,8 @@
     %link{:href => "//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css", :rel => "stylesheet"}/
     %link{:href => "//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css", :rel => "stylesheet"}/
 
-
+    = stylesheet_link_tag "Control.MiniMap.css"
+    = javascript_include_tag "Control.MiniMap.js"
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -25,6 +26,8 @@
       %p Sign Up
     #nav_login
       %p Log In
+    #nav_twitter
+      %p=link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter)
     #nav_logout
       %p Log Out
 

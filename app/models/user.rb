@@ -1,12 +1,16 @@
 class User < ActiveRecord::Base
-  authenticates_with_sorcery!
+  authenticates_with_sorcery! do |config|
+    config.authentications_class = Authentication
+  end
 
-  attr_accessible :username, :first_name, :last_name, :password, :password_confirmation
+  attr_accessible :username, :first_name, :last_name, :password, :password_confirmation, :authentications_attributes
 
   has_many :follows
 
+  has_many :authentications, :dependent => :destroy
+
   has_one :profile_pic, as: :imageable, :class_name => 'Image', dependent: :destroy
-  accepts_nested_attributes_for :profile_pic
+  accepts_nested_attributes_for :profile_pic, :authentications
   attr_accessible :profile_pic_attributes
 
   has_many :images, dependent: :destroy
