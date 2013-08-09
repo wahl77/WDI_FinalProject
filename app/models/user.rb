@@ -35,16 +35,25 @@ class User < ActiveRecord::Base
     write_attribute :last_name, value.titleize
   end
 
-  # Get a list of all the people I am following
+
+  # Get a list of all the people that follow me
   # This overwrites default getters
   def followers
     Follow.where("following_id = ?", self.id)
   end
 
-  # Get a list of all the people that follow me
-  # This overwrites default getters
+  # Get a list of all the people I am following
+  # This overwrites default getter
   def following
     Follow.where("follower_id = ?", self.id)
+  end
+
+  def followingUsers
+    User.find(self.following.pluck(:following_id))
+  end
+
+  def followerUsers
+    User.find(self.followers.pluck(:follower_id))
   end
 
   # This return their profile picture. Or a default in none are set.
