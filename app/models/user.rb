@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 
   attr_accessible :username, :first_name, :last_name, :password, :password_confirmation, :authentications_attributes
 
+  validates_length_of :password, :minimum => 3, :message => "password must be at least 3 characters long", :if => :password
+  validates_confirmation_of :password, :message => "should match confirmation", :if => :password
+
   has_many :follows
 
   has_many :authentications, :dependent => :destroy
@@ -39,16 +42,25 @@ class User < ActiveRecord::Base
     write_attribute :last_name, value.titleize
   end
 
-  # Get a list of all the people I am following
-  # This overwrites default getters
-  def followers
-    Follow.where("following = ?", self.id)
-  end
 
   # Get a list of all the people that follow me
   # This overwrites default getters
+  def followers
+    Follow.where("following_id = ?", self.id)
+  end
+
+  # Get a list of all the people I am following
+  # This overwrites default getter
   def following
-    Follow.where("follower = ?", self.id)
+    Follow.where("follower_id = ?", self.id)
+  end
+
+  def followingUsers
+    User.find(self.following.pluck(:following_id))
+  end
+
+  def followerUsers
+    User.find(self.followers.pluck(:follower_id))
   end
 
   # This return their profile picture. Or a default in none are set.
@@ -56,7 +68,7 @@ class User < ActiveRecord::Base
     if profile_pic
       return profile_pic.url.thumb.to_s
     else
-      return "/assets/default.jpeg"
+      return "/assets/default.jpg"
     end
   end
 
