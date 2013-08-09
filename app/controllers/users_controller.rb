@@ -8,4 +8,9 @@ class UsersController < ApplicationController
     # @users.delete(current_user.followingUsers)
     # @users.delete(current_user)
   end
+
+  def add_follower
+    @follow = Follow.create(:follower_id => current_user.id, :following_id => params[:id])
+    @user = User.find(@follow.follower_id)
+  end
 end
