@@ -9,27 +9,32 @@ Bearing:
 %span#longitude
 #br
 %span#orientation
+%br
+Percent: 
+%span#percent
 
 %br
 #canvas
   .box{"data-bearing"=>"191"}
-  .box{"data-bearing"=>"20", style:"background: green"}
-  .box{"data-bearing"=>"350", style:"background: blue"}
+  .box{"data-bearing"=>"10", style:"background: green"}
+  /.box{"data-bearing"=>"350", style:"background: blue"}
 
 :css
   #canvas {
     border: 1px solid black;
-    height: 500px;
+    height: 250px;
     margin: 10px;
     background: gray;
     position: relative;
   }
 
   .box{
-    width: 30px;
-    height: 30px;
-    background: red;
-    top: 50%;
+    width: 200px;
+    height: 100%;
+    background-color: red;
+    background-image: url('http://frankywahl.com/Images/Franky.png');
+    background-size: cover;
+    top: 0%;
     left: 30%;
     position: absolute;
   }
@@ -70,15 +75,16 @@ Bearing:
 
             position_from_left = 100 * (bearing - (box_bearing - (focal_length / 2) )) / focal_length 
 
-            // Compensate for 360 mod
+            //Compensate for 360 mod
             if (box_bearing < (focal_length/2) && bearing > (360 - focal_length / 2)) {
-              position_from_left = 100 - (100*((focal_length - box_bearing) / focal_length ) )
+              position_from_left = (100 * ((((360 - (360 + bearing + focal_length / 2)) % 360) - bearing) / focal_length))
             }
-            else if (box_bearing > 360 - focoal_length && bearing < focal_length / 2) { 
-            }
+            //else if (box_bearing > 360 - focoal_length && bearing < focal_length / 2) { 
+            //}
             // End of 360 mod calculations
             
             current_box.css("left", 100-position_from_left.toString() + "%");
+            $('#percent').text(100-position_from_left.toString())
 
           } else {
             current_box.css("display", "none");
