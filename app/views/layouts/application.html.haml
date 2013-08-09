@@ -20,14 +20,16 @@
       %p This is where...
     #nav_about
       %p About
-    #nav_signup
-      %p Sign Up
-    #nav_login
-      %p Log In
-    #nav_twitter
-      %p=link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter)
-    #nav_logout
-      %p Log Out
+    - if current_user
+      #nav_logout
+        %p=link_to 'Logout', :logout
+    - else
+      #nav_signup
+        %p=link_to 'Sign Up', new_user_path
+      #nav_login
+        %p=link_to 'Login', :login
+      #nav_twitter
+        %p=link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter)
 
 
   = yield
