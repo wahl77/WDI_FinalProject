@@ -12,7 +12,8 @@ Bearing:
 
 %br
 #canvas
-  .box{"data-bearing"=>"30"}
+  .box{"data-bearing"=>"191"}
+  .box{"data-bearing"=>"20", style:"background: green"}
 
 :css
   #canvas {
@@ -20,12 +21,16 @@ Bearing:
     height: 500px;
     margin: 10px;
     background: gray;
+    position: relative;
   }
 
   .box{
     width: 30px;
     height: 30px;
     background: red;
+    top: 50%;
+    left: 30%;
+    position: absolute;
   }
 
 
@@ -46,7 +51,31 @@ Bearing:
     // This informs on bearing (based on compass)
     window.addEventListener('deviceorientation', function(e) {
       if (e.webkitCompassHeading != 0){
-        $('#bearing').text(e.webkitCompassHeading);
+        bearing = e.webkitCompassHeading
+        $('#bearing').text(bearing);
+        //bearing = 191;
+
+        boxes = $('.box');
+        
+        // Loop over each box
+        for (var i = 0; i < boxes.length; ++i){
+          current_box = $(boxes[i])
+          box_bearing = current_box.data("bearing");
+
+          if (Math.abs(box_bearing - bearing) < 31){
+            current_box.css("display", "");
+
+            position_from_left = 100 * (bearing - (box_bearing - 31)) / 61 // 61 is the angle of the camera
+            
+            current_box.css("left", 100-position_from_left.toString() + "%");
+
+          } else {
+            current_box.css("display", "none");
+          }
+
+        }
+
+
       }
     }, false);
     
