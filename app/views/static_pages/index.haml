@@ -1,0 +1,68 @@
+%h1 
+  This is the static_pages
+
+Bearing: 
+%span#bearing
+%br
+%span#latitude
+%br
+%span#longitude
+#br
+%span#orientation
+
+%br
+#canvas
+
+:css
+  #canvas {
+    border: 1px solid black;
+    height: 500px;
+    margin: 10px;
+  }
+
+
+:javascript
+  $(document).ready(function(){
+
+    // Get orientation and position form start
+    inform_orientation();
+    get_position();
+
+    window.addEventListener('orientationchange', inform_orientation);
+    
+    // This appends orientation
+    function inform_orientation(){
+      $('#orientation').text(window.orientation);
+    }
+
+    // This informs on bearing (based on compass)
+    window.addEventListener('deviceorientation', function(e) {
+      if (e.webkitCompassHeading != 0){
+        $('#bearing').text(e.webkitCompassHeading);
+      }
+    }, false);
+    
+    
+
+    // Get HTML5 Geolocation information
+    function get_position(event){
+      // Try HTML5 geolocation
+      if(navigator.geolocation) {
+        console.log(navigator.geolocation)
+        navigator.geolocation.getCurrentPosition(show_pos, show_error);
+      } else {
+        alert("Sorry, your browser does not suport GeoLocation");
+      }
+    }
+
+    // This will get latitude and longitude
+    function show_pos(position) {
+      var latitude = position.coords.latitude
+      var longitude = position.coords.longitude
+      $('#latitude').text(latitude);
+      $('#longitude').text(longitude);
+    };
+
+    function show_error(){};
+
+  });
