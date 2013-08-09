@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   has_many :images, dependent: :destroy
 
-  validates :username, 
+  validates :username,
     presence: true,
     uniqueness: true
 
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
     Follow.where("follower = ?", self.id)
   end
 
-  # This return their profile picture. Or a default in none are set. 
+  # This return their profile picture. Or a default in none are set.
   def get_image
     if profile_pic
       return profile_pic.url.thumb.to_s

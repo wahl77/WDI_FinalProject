@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130808004410) do
+ActiveRecord::Schema.define(:version => 20130809005534) do
+
+  create_table "follows", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "following_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "follows", ["follower_id"], :name => "index_follows_on_follower_id"
+  add_index "follows", ["following_id"], :name => "index_follows_on_following_id"
 
   create_table "images", :force => true do |t|
     t.string   "url"
@@ -19,6 +29,9 @@ ActiveRecord::Schema.define(:version => 20130808004410) do
     t.string   "imageable_type"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "caption"
+    t.decimal  "lat"
+    t.decimal  "long"
   end
 
   add_index "images", ["imageable_id", "imageable_type"], :name => "index_images_on_imageable_id_and_imageable_type"
