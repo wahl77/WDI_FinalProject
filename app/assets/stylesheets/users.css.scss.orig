@@ -1,0 +1,72 @@
+<<<<<<< HEAD
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#main_user_profile_div{
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 490px;
+  border: 1px solid;
+  border-radius: 4px;
+  height: 400px;
+}
+
+#user_profile_pic{
+  width: 190px;
+  height: 200px;
+/*  border: 1px solid;
+*/  float: left;
+}
+
+#user_profile_pic>img{
+  height: 90%;
+  margin-left: 30px;
+  margin-top: 35px;
+}
+
+#user_info_on_right{
+/*  border: 1px solid;
+*/  width: 295px;
+  float: right;
+  height: 200px;
+}
+
+#user_basic_info>p:first-child{
+  font-size: 30px;
+}
+
+#who_to_follow{
+  width: 100%;
+/*  border: 1px solid;
+*/  margin-top: 30px;
+}
+
+#bottom_links{
+  clear: all;
+  text-align: center;
+  margin-left: -205px;
+  margin-top: 100px;
+}
+
+#suggested_follow_names{
+  margin-left: 40px;
+}
+
+#add_an_image{
+  width: 450px;
+/*  border: 1px solid;
+*/  margin-left: -150px;
+  margin-top: 40px;
+}
+
+form#new_image input:last-child{
+  margin-left: 50px;
+  margin-top: 5px;
+}
+=======
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+>>>>>>> oauth
