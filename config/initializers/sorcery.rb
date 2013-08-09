@@ -2,7 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:remember_me, :activity_logging]
+Rails.application.config.sorcery.submodules = [:remember_me, :external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -70,7 +70,7 @@ Rails.application.config.sorcery.configure do |config|
   # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid] .
   # Default: `[]`
   #
-  # config.external_providers =
+  config.external_providers = [:twitter]
 
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
@@ -104,10 +104,10 @@ Rails.application.config.sorcery.configure do |config|
   # Twitter wil not accept any requests nor redirect uri containing localhost,
   # make sure you use 0.0.0.0:3000 to access your app in development
   #
-  # config.twitter.key = ""
-  # config.twitter.secret = ""
-  # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
-  # config.twitter.user_info_mapping = {:email => "screen_name"}
+  config.twitter.key = ENV['TWITTER_KEY']
+  config.twitter.secret = ENV['TWITTER_SECRET']
+  config.twitter.callback_url = "http://0.0.0.0:5000/oauth/callback?provider=twitter"
+  config.twitter.user_info_mapping = {:username => 'screen_name'}
   #
   # config.facebook.key = ""
   # config.facebook.secret = ""
@@ -410,7 +410,7 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    # user.authentications_class =
+    user.authentications_class = Authentication
 
 
     # User's identifier in authentications class.
