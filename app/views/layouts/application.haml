@@ -2,9 +2,22 @@
 %html
   %head
     %title
-      Awesome Rails Project
+      This is where I....
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
 
-  = yield 
+  #navbar
+    #nav_title
+      %p This is where...
+    #nav_about
+      %p About
+    #nav_signup
+      %p Sign Up
+    #nav_login
+      %p Log In
+    #nav_logout
+      %p Log Out
+
+
+  = yield
