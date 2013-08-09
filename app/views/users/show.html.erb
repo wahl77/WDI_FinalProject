@@ -1,5 +1,6 @@
 
 <div id = "main_user_profile_div">
+
   <div id = "user_profile_pic"><%= image_tag @user.get_image %></div>
 
   <div id = "user_info_on_right">
@@ -27,7 +28,7 @@
       <div id= "suggested_follow_names">
         <% @users.each do |user| %>
           <div class= "person_to_follow" id= "<%= user.id %>">
-            <%= user.username %>
+            <%= link_to user.username, follow_url(user.id), :remote => true  %>
           </div>
           </br>
         <% end %>
@@ -37,7 +38,7 @@
   </div>
 
   <div id ="add_an_image">
-    <%= form_for(@image, :url => new_image_url, :html_options => {:multipart => true}) do |f| %>
+    <%= form_for(@image, :remote => true, :url => new_image_url, :html_options => {:multipart => true}) do |f| %>
 
       <%= f.label "Any New Insights?" %>
       <%= f.file_field :url %>

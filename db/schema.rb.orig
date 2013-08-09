@@ -11,7 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809220200) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20130809051836) do
+=======
+ActiveRecord::Schema.define(:version => 20130809043820) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -20,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20130809220200) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+>>>>>>> 3e06c720a14741194e7306ba2bf0e178a324e2d6
 
   create_table "follows", :force => true do |t|
     t.integer  "follower_id"
@@ -40,7 +44,6 @@ ActiveRecord::Schema.define(:version => 20130809220200) do
     t.string   "caption"
     t.decimal  "lat"
     t.decimal  "long"
-    t.integer  "user_id"
   end
 
   add_index "images", ["imageable_id", "imageable_type"], :name => "index_images_on_imageable_id_and_imageable_type"
