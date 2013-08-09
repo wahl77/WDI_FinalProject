@@ -30,7 +30,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'rack-mini-profiler'
+  # gem 'rack-mini-profiler'
 end
 
 group :test, :development do
@@ -39,7 +39,7 @@ group :test, :development do
   gem 'pry-debugger'
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'dotenv-rails'     # Allow rails (console, etc) to access .env file for environment variables. 
+  gem 'dotenv-rails'     # Allow rails (console, etc) to access .env file for environment variables.
 end
 
 # To use ActiveModel has_secure_password
