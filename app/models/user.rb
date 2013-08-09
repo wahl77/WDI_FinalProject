@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   has_many :images, dependent: :destroy
 
-  validates :username, 
+  validates :username,
     presence: true,
     uniqueness: true
 
@@ -38,16 +38,16 @@ class User < ActiveRecord::Base
   # Get a list of all the people I am following
   # This overwrites default getters
   def followers
-    Follow.where("following = ?", self.id)
+    Follow.where("following_id = ?", self.id)
   end
 
   # Get a list of all the people that follow me
   # This overwrites default getters
   def following
-    Follow.where("follower = ?", self.id)
+    Follow.where("follower_id = ?", self.id)
   end
 
-  # This return their profile picture. Or a default in none are set. 
+  # This return their profile picture. Or a default in none are set.
   def get_image
     if profile_pic
       return profile_pic.url.thumb.to_s
