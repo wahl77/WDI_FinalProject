@@ -4,6 +4,10 @@ $(document).ready(function() {
 
   // moves the zoon controls the right side; defaults to 'topleft' if this line is left off.
   new L.Control.Zoom({ position: 'topright' }).addTo(map);
+
+  // add filters div to the map
+  map.legendControl.addLegend(document.getElementById('legend-content').innerHTML);
+
 });
 
 
