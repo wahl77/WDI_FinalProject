@@ -32,7 +32,6 @@ class UsersController < ApplicationController
     @user = User.new
 
     respond_to do |format|
-      format.html # new.html.erb
       format.js
     end
   end
