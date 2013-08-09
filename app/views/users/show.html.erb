@@ -2,24 +2,53 @@
 <div id = "main_user_profile_div">
   <div id = "user_profile_pic"><%= image_tag @user.get_image %></div>
 
-  <div id = "user_basic_info">
-    <p><%= @user.first_name %> <%= @user.last_name %></p>
-    <p> Username: <%= @user.username %> </p>
+  <div id = "user_info_on_right">
+    <div id = "user_basic_info">
+      <p><%= @user.first_name %> <%= @user.last_name %></p>
+      <p> Username: <%= @user.username %> </p>
+    </div>
+
+    <div id = "user_following">
+      Your Followers: <% @user.followerUsers.each do |follower| %>
+    <!--     possibly make each of these names links to the
+     -->
+        <%= follower.username %> </br>
+      <% end %>
+    </div>
+
+    <div id = "user_followers">
+      Who you're following: <% @user.followingUsers.each do |following| %>
+        <%= following.username %> </br>
+      <% end %>
+    </div>
+
+    <div id= "who_to_follow">
+      Click to follow:
+      <div id= "suggested_follow_names">
+        <% @users.each do |user| %>
+          <div class= "person_to_follow" id= "<%= user.id %>">
+            <%= user.username %>
+          </div>
+          </br>
+        <% end %>
+      </div>
+    <div>
+
   </div>
 
-  <div id = "user_following">
-    Your Followers: <% @user.followerUsers.each do |follower| %>
-  <!--     possibly make each of these names links to the
-   -->
-      <%= follower.first_name %> <%= follower.last_name %> </br>
+  <div id ="add_an_image">
+    <%= form_for(@image, :url => new_image_url, :html_options => {:multipart => true}) do |f| %>
+
+      <%= f.label "Any New Insights?" %>
+      <%= f.file_field :url %>
+      <%= f.submit "Add Your Image" %>
     <% end %>
   </div>
 
-  <div id = "user_followers">
-    Who you're following: <% @user.followingUsers.each do |following| %>
-      <%= following.first_name %> <%= following.last_name %> </br>
-    <% end %>
-  </div>
+  <div id= "bottom_links"> Your Insights | Friends' Insights | All Insights </div>
 
-  <p> Your Insights | Friends' Insights | All Insights </p>
+
 </div>
+
+
+
