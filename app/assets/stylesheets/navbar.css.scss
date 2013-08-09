@@ -29,7 +29,11 @@ $navbar_font_size: 30px;
     display: inline-block;
   }
 
-  #nav_twitter p a {
+  #nav_twitter p a,
+  #nav_login p a,
+  #nav_logout p a,
+  #nav_signup p a
+   {
     color: white;
     text-decoration: none;
   }

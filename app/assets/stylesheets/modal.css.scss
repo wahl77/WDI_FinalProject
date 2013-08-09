@@ -1,0 +1,44 @@
+// shows/hides
+.modal_wrap {
+  display:none; /* starts out hidden */
+  z-index:40001;
+}
+
+// Shades out background when selector is active
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 120%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 10;
+}
+
+.vertical-offset {
+  position: fixed;
+  top: 10%;
+  width: 100%;
+  z-index: 40002;
+}
+
+.modal_box {
+  width: 700px;
+  height: 300px;
+  position: relative;
+  margin: 0 auto;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid black;
+  margin-top: 30px;
+  border-radius: 10px;
+  z-index: 12;
+}
+
+#close_modal {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  z-index: 50;
+}
