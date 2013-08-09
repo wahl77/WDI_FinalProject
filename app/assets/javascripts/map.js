@@ -7,13 +7,16 @@ $(document).ready(function() {
 
   //show about-page modal box
   $('#nav_about').click(function() {
-    $('.modal_wrap').show();
+    $('.modal_wrap').fadeIn('fast');
   });
 
-  $('#close_modal').click(function() {
-    $('.modal_wrap').hide();
+  $('#close_modal, .modal_overlay').click(function() {
+    $('.modal_wrap').fadeOut('fast');
   });
 
+  // $('body').click(function() {
+  //   $('.modal_wrap').hide();
+  // });
 
 });
 
