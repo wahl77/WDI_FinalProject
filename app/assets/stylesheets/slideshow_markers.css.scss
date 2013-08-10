@@ -1,32 +1,59 @@
+// css for custom markers
+
+  .leaflet-marker-icon {
+    border-radius: 30px;
+    padding: 4px;
+    // creates a gradient for the marker border
+    background-image: linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
+    background-image: -o-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
+    background-image: -moz-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
+    background-image: -webkit-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
+    background-image: -ms-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
+
+    background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.23, rgb(77,81,87)),
+      color-stop(0.7, rgb(195,198,201))
+    );
+  }
+
+
+
 // css for slideshow on markers
 .popup {
-    text-align: center;
+  text-align: center;
 }
 .popup .slideshow {
-    width: 100%;
+  width: 100%;
 }
 .popup .slideshow .image {
-    display: none;
+  display: none;
 }
 .popup .slideshow .active {
-    display: block;
+  display: block;
 }
 .popup .slideshow img {
-    width: 100%;
+  width: 100%;
 }
 .popup .slideshow .caption {
-    background: #eee;
-    padding: 8px;
+  background: #eee;
+   padding: 8px;
 }
 .popup .cycle {
-    height: 30px;
-    margin-top: 5px;
-    padding-top: 5px;
+  height: 30px;
+  margin-top: 5px;
+  padding-top: 5px;
 }
 .popup .cycle a.prev {
-    float: left;
+  float: left;
 }
 .popup .cycle a.next {
-    float: right;
+  float: right;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 5px;
 }
 
