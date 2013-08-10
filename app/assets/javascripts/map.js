@@ -21,7 +21,7 @@ $(document).ready(function() {
   geolocate();
 
   function geolocate() {
-    if (navigator.geolocation) {
+    if (!navigator.geolocation) {
       console.log(navigator.geolocation);
       map.locate();
     };
