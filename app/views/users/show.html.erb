@@ -38,7 +38,7 @@
   </div>
 
   <div id ="add_an_image">
-    <%= form_for(@image, :remote => true, :url => new_image_url, :html_options => {:multipart => true}) do |f| %>
+    <%= form_for(@image, :url => new_image_url, :html_options => {:multipart => true}) do |f| %>
 
       <%= f.label "Any New Insights?" %>
       <%= f.file_field :url %>
