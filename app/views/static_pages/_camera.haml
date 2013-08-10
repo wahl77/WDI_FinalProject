@@ -16,13 +16,9 @@ Percent:
 %span#percent
 
 %br
-%span#in_cond
+%span#special_case
 
 %br
-#canvas
-  .box{"data-bearing"=>"191"}
-  .box{"data-bearing"=>"10", style:"background: green"}
-  .box{"data-bearing"=>"350", style:"background: blue"}
 
 :css
   #canvas {
@@ -89,14 +85,13 @@ Percent:
 
         # Find their bearing
         bearing = e.webkitCompassHeading
+        #bearing = 10;
 
         # Append it to the text
         $("#bearing").text bearing
 
-
         # Get lens angle (based on portrait/landscape mode of an iPhone)
-        lens_angle = (if ($("#orientation").text() is 0) then 42 else 62)
-
+        lens_angle = (if ($("#orientation").text() is 0) then 40 else 60)
 
         # Get all boxes
         boxes = $(".box")
@@ -124,16 +119,17 @@ Percent:
             position_from_left = 100 * (bearing - (box_bearing - (lens_angle / 2))) / lens_angle
 
             # Got for the edge cases (overwrite the value of position left
-            unless Math.abs(box_bearing - bearing) < (lens_angle / 2)
-              constant = lens_angle / 2 + box_bearing - bearing
-              value = 0
-              if box_bearing < 180
-                value = constant - 360
-              else
-                value = constant + 360
-              position_from_left = 100 * value / lens_angle
+            if (bearing < lens_angle && box_bearing > (360 - lens_angle))
+              position_from_left = box_bearing - Math.abs(360 - bearing - lens_angle/2)
+              position_from_left = position_from_left*(100/60) # Make it a percentage
+              position_from_left += (lens_angle / 2)
+            else if (box_bearing < lens_angle && bearing > (360 - lens_angle))
+              position_from_left = bearing - Math.abs(360 - box_bearing - lens_angle/2)
+              position_from_left = position_from_left*(100/60)
+              position_from_left -= (lens_angle / 2)
+
             current_box.css "left", 100 - position_from_left.toString() + "%"
-            $("#percent").text 100 - position_from_left.toString()
+            $("#percent").text position_from_left.toString()
           else
 
             # Hide it if not in our field of vision
@@ -144,3 +140,7 @@ Percent:
           ++i
     ), false
     
+#canvas
+  .box{"data-bearing"=>"191"}
+  .box{"data-bearing"=>"10", style:"background: green"}
+  .box{"data-bearing"=>"350", style:"background: blue"}
