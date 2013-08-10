@@ -5,19 +5,6 @@ $(document).ready(function() {
   // moves the zoon controls the right side; defaults to 'topleft' if this line is left off.
   new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
-  //show about-page modal box
-  $('#nav_about').click(function() {
-    $('.modal_wrap').fadeIn('fast');
-  });
-
-  $('#close_modal, .modal_overlay').click(function() {
-    $('.modal_wrap').fadeOut('fast');
-  });
-
-  // $('body').click(function() {
-  //   $('.modal_wrap').hide();
-  // });
-
 });
 
 

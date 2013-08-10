@@ -1,6 +1,8 @@
-signup_window = $("#modal_window");
+$('.modal_wrap').fadeIn('fast');
+signup_window = $(".modal_box");
+signup_window.append("<%= j render 'form' %>");
 
-signup_window.html("<%= j render 'form' %>");
+
 
 
 

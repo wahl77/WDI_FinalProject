@@ -1,4 +1,5 @@
-<%= form_for @user, :remote => true do |f| %>
+<%= image_tag 'modal_close.png', :id=> 'close_modal' %>
+<%= form_for @user, root_path, :remote => true do |f| %>
   <div class="field">
     <%= f.label :username %><br/>
     <%= f.text_field :username %>
@@ -11,7 +12,19 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class="actions">
-    <%= submit_tag "Submit" %>
+  <div class="actions" id='signup_submit'>
+    <%= submit_tag "Submit"%>
   </div>
 <% end %>
+
+<script>
+  $('#close_modal, .modal_overlay').click(function() {
+    alert('closing')
+    $('.model_box').empty();
+    $('.modal_wrap').fadeOut('fast');
+  });
+  $('#signup_submit').click(function(){
+    $('.model_box').empty();
+    $('.modal_wrap').fadeOut('fast');
+  })
+</script>

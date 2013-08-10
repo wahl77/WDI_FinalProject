@@ -24,7 +24,8 @@ $navbar_font_size: 30px;
   #nav_signup,
   #nav_login,
   #nav_logout,
-  #nav_twitter {
+  #nav_twitter,
+  #nav_about {
     height: $navbar_height;
     display: inline-block;
   }
@@ -32,7 +33,8 @@ $navbar_font_size: 30px;
   #nav_twitter p a,
   #nav_login p a,
   #nav_logout p a,
-  #nav_signup p a
+  #nav_signup p a,
+  #nav_about p a
    {
     color: white;
     text-decoration: none;
@@ -43,7 +45,8 @@ $navbar_font_size: 30px;
   #nav_signup:hover,
   #nav_login:hover,
   #nav_logout:hover,
-  #nav_twitter:hover {
+  #nav_twitter:hover,
+  #nav_about:hover {
     -moz-box-shadow: inset 0 2px 11px -3px #000;
     -webkit-box-shadow: inset 0 2px 11px -3px #000;
     box-shadow: inset 0 2px 11px -3px #000;

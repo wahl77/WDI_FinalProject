@@ -1,4 +1,7 @@
-<%= form_tag sessions_path, :method => :post do %>
+<h1>Login</h1>
+
+<%= image_tag 'modal_close.png', :id=> 'close_modal' %>
+<%= form_tag sessions_path, :remote => true, :method => :post do %>
   <div class="field">
     <%= label_tag :username %><br />
     <%= text_field_tag :username %>
@@ -7,7 +10,17 @@
     <%= label_tag :password %><br />
     <%= password_field_tag :password %>
   </div>
-  <div class="actions">
+  <div class="actions" id='login_submit'>
     <%= submit_tag "Login" %>
   </div>
 <% end %>
+
+<script>
+  $('#close_modal, .modal_overlay').click(function() {
+    $('.modal_wrap').fadeOut('fast');
+  });
+  $('#login_submit').click(function(){
+    $('.model_box').empty();
+    $('.modal_wrap').fadeOut('fast');
+  })
+</script>
