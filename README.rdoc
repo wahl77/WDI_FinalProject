@@ -7,9 +7,9 @@ The whole point is to associate an image with a thought and put yourself there.
 
 == Installation:
 
-1) Clone this repo
-2) Register app with a twitter api
-3) Create variables DB_USER, DB_PASS, TWITTER_KEY, TWITTER_SECRET in Procfile
-4) Run rake:db create && rake db:migrate
-5) Start server with foreman start
+1. Clone this repo
+2. Register app with a twitter api
+3. Create variables DB_USER, DB_PASS, TWITTER_KEY, TWITTER_SECRET in Procfile
+4. Run rake:db create && rake db:migrate
+5. Start server with foreman start
   
