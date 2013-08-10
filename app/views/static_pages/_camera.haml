@@ -1,3 +1,5 @@
+/ Make sure jQuery is in
+%script{src:"http://code.jquery.com/jquery-1.10.1.min.js"}
 %h1 
   This is the static_pages
 
@@ -43,7 +45,7 @@ Percent:
   }
 
 :coffee
-  jQuery -> 
+  jQuery ->  
 
     # This appends orientation
     inform_orientation = ->
