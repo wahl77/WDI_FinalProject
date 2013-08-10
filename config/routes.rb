@@ -8,6 +8,7 @@ RailsProject::Application.routes.draw do
   match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
   root :to => 'static_pages#index'
+  get "/camera" => 'static_pages#camera' 
 
   match 'static_pages/about' => "static_pages#about", :as => 'static_pages_about'
 
