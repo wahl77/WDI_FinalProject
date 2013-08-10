@@ -14,10 +14,13 @@ Percent:
 %span#percent
 
 %br
+%span#in_cond
+
+%br
 #canvas
   .box{"data-bearing"=>"191"}
   .box{"data-bearing"=>"10", style:"background: green"}
-  /.box{"data-bearing"=>"350", style:"background: blue"}
+  .box{"data-bearing"=>"350", style:"background: blue"}
 
 :css
   #canvas {
@@ -61,25 +64,38 @@ Percent:
         $('#bearing').text(bearing);
 
         // Focal Length is camera and orientation dependent
-        focal_length = ($('#orientation').text() == 0) ? 42 : 62 // Get the focal length               
+        lens_angle = ($('#orientation').text() == 0) ? 42 : 62 // Get the focal length               
 
         boxes = $('.box');
         
         // Loop over each box
         for (var i = 0; i < boxes.length; ++i){
-          current_box = $(boxes[i])
-          box_bearing = current_box.data("bearing");
+          var current_box = $(boxes[i])
+          var box_bearing = current_box.data("bearing");
 
-          if (Math.abs(box_bearing - bearing) < (focal_length / 2) || (box_bearing + bearing) % 360 < (focal_length / 2)){
+          if (Math.abs(box_bearing - bearing) < (lens_angle / 2) || (360 - Math.abs(box_bearing - bearing) ) < (lens_angle / 2)){
             current_box.css("display", "");
 
-            position_from_left = 100 * (bearing - (box_bearing - (focal_length / 2) )) / focal_length 
+            position_from_left = 100 * (bearing - (box_bearing - (lens_angle / 2) )) / lens_angle 
+
+            //$('#in_cond').text("False");
+
+            if (!(Math.abs(box_bearing - bearing) < (lens_angle/2))){
+              // Where we have to overwrit
+              var constant = lens_angle / 2 + box_bearing - bearing;
+              var value = 0;
+              if (box_bearing < 180){
+                value  = constant - 360;
+              } else { 
+                value  = constant + 360;
+              }
+
+              position_from_left = 100 * value / lens_angle;
+              
+            }
 
             //Compensate for 360 mod
-            if (box_bearing < (focal_length/2) && bearing > (360 - focal_length / 2)) {
-              position_from_left = (100 * ((((360 - (360 + bearing + focal_length / 2)) % 360) - bearing) / focal_length))
-            }
-            //else if (box_bearing > 360 - focoal_length && bearing < focal_length / 2) { 
+            //else if (box_bearing > 360 - focoal_length && bearing < lens_angle / 2) { 
             //}
             // End of 360 mod calculations
             
