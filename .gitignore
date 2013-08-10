@@ -14,8 +14,4 @@
 /log/*.log
 /tmp
 /public/uploads
-<<<<<<< HEAD
-
-=======
->>>>>>> 3e06c720a14741194e7306ba2bf0e178a324e2d6
 .env
