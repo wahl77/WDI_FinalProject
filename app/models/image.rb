@@ -6,7 +6,18 @@ class Image < ActiveRecord::Base
   mount_uploader :url, ImageUploader
 
   after_create :extract_exif_info
+
+
+  searchable do
+    text :caption
+  end
   
+  def self.cool_search(query)
+    self.search do 
+      fulltext query
+    end
+  end
+
   def extract_exif_info
     img = Magick::Image.read(File.join(Rails.root, "public", self.url.url))[0]
     return unless img
