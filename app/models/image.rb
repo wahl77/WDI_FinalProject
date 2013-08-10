@@ -8,20 +8,28 @@ class Image < ActiveRecord::Base
   after_create :extract_exif_info
 
 
+  # Define what in a picture is searchable. For the time being,
+  # only caption is searchable. Future versions may want to include 
+  # a range of some sort. 
   searchable do
     text :caption
   end
   
-  def self.cool_search(query)
+  # This methods allows to search for other photos with a similar caption. 
+  def self.caption_search(query)
     self.search do 
       fulltext query
     end
   end
 
+
+  # The following method gets the GPS data from the picture if any and stores it alongside
+  # the picture for any furter usage. This happens only after the picture saved as not
+  # all pictures contain the information. 
   def extract_exif_info
     img = Magick::Image.read(File.join(Rails.root, "public", self.url.url))[0]
-    return unless img
 
+    return unless img
 
     img_lat = img.get_exif_by_entry('GPSLatitude')[0][1].split(', ') rescue nil
     img_lng = img.get_exif_by_entry('GPSLongitude')[0][1].split(', ') rescue nil
@@ -41,7 +49,6 @@ class Image < ActiveRecord::Base
     self.lat = latitude
     self.long = longitude
     
-
     self.save
   end 
 
