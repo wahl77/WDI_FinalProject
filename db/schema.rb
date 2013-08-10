@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(:version => 20130809220200) do
 
   add_index "images", ["imageable_id", "imageable_type"], :name => "index_images_on_imageable_id_and_imageable_type"
 
+  create_table "some_tests", :force => true do |t|
+    t.integer  "i"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tests", :force => true do |t|
+    t.integer  "i"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username",                     :null => false
     t.string   "crypted_password"
