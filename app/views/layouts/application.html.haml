@@ -25,7 +25,7 @@
       #nav_search
         = form_tag search_path, class:"navbar-form pull-right" do
           = text_field_tag :search, nil, placeholder:"Search"
-          = submit_tag :Go 
+          = submit_tag :Go
       #nav_logout
         %p=link_to 'Logout', :logout
     - else

@@ -1,7 +1,7 @@
 <h1>Login</h1>
 
 <%= image_tag 'modal_close.png', :id=> 'close_modal' %>
-<%= form_tag sessions_path, :remote => true, :method => :post do %>
+<%= form_tag sessions_path, :method => :post do %>
   <div class="field">
     <%= label_tag :username %><br />
     <%= text_field_tag :username %>
