@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+
  *= require_tree .
- * The following line broke the website from rendering - Tom, this might go instead in the JS assets
- * pipeline. Don't know what you need it for but feel free to move it = require jquery.ui.all
  */
