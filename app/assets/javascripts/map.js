@@ -65,7 +65,7 @@ $(document).ready(function() {
         // These are the images for the photo display
         // Store the image url and caption in an array
         'images': [
-          ['http://i.imgur.com/O6QEpBs.jpg','The U.S. Capitol after the burning of Washington during the War of 1812'],
+          ['http://i.imgur.com/O6QEpBs.jpg','Baby The U.S. Capitol after the burning of Washington during the War of 1812'],
           ['http://i.imgur.com/xND1MND.jpg','Ford\'s Theatre in the 19th century, site of the 1865 assassination of President Lincoln'],
           ['http://i.imgur.com/EKJmqui.jpg','The National Cherry Blossom Festival is celebrated around the city each spring.']
         ]
@@ -104,10 +104,9 @@ $(document).ready(function() {
           '<a href="#" class="prev" >&laquo; Previous</a>' +
           '<a href="#" class="next" >Next &raquo;</a>' +
         '</div>' +
-        '<div id = "search_similar_insights">' +
-          '<form action= "/search" method= "post"> <input type="hidden" id= "search" name= "search" value="' + $('.slideshow .image.active .caption').text() + '"> <input type="submit" value= "Search Similar Insights"></form>'
-        '</div>'
+        '<button id="search_insights"> Search Similar Insights </button>'
       '</div>';
+
 
 
     // http://leafletjs.com/reference.html#popup

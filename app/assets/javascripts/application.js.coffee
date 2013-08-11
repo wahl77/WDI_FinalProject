@@ -12,4 +12,5 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require images.js
 #= require_tree .
