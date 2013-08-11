@@ -131,7 +131,7 @@ $(document).ready(function() {
           geometry: {
               type: "Point",
               coordinates: [e.latlng.lng, e.latlng.lat]
-          },
+          }
           // properties: {
           //     'marker-color': '#000',
           //     'marker-symbol': 'star-stroked'
@@ -139,6 +139,7 @@ $(document).ready(function() {
       });
 
   });
+
 
 });
 
