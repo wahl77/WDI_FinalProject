@@ -15,5 +15,10 @@ class ImagesController < ApplicationController
 
   def search
     @images = Image.caption_search(params[:search]).results
+    @images.each do |image|
+      if image.lat == nil
+        @images.delete(image)
+      end
+    end
   end
 end

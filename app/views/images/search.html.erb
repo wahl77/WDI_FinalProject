@@ -1,0 +1,18 @@
+<!-- Guys- ignore this page for now. Got it to work where the user gets to Franky's page with the proper pictures when the text to search is hard-coded. Tried various attempts to get what they search to show up on the map, but for some reason, search form wouldnt let me add "Data-remote: True " to it. Ideally, we can find a way to ajax the form, with the "data" attribute as
+the caption of the image they searched, to the controller which performs the search for that image, to a .js.erb view page
+which inputs a bunch of map markers onto the map using the properties of each of the images we searched. Need to get the
+ajax call working in order to do this. Ie: step for tomorrow. But it is 3:17 am and I am falling asleep! -->
+
+
+
+<!--  <div class = "url" data= "<%= @images.first.url%>" > </div>
+ <div class = "lat" data= "<%= @images.first.lat%>" > </div>
+ <div class = "long" data= "<%= @images.first.long%>" > </div>
+ <div class = "caption" data= "<%= @images.first.caption%>" > </div>
+
+
+# --> <!-- // We found the following:
+# // - @images.each do |image
+# //   = image_tag image.url
+# //   = image.caption
+# //   %br -->

@@ -116,6 +116,7 @@ $(document).ready(function() {
     }
 
     // Create custom popup content
+    // Christina: attempting to set the value of the form to the caption of the picture, but not working for some reason. Form DOES submit a search properly when value is hard-coded, though.
     var popupContent =
       '<div id="' + feature.properties.id + '" class="popup">' +
         '<h2>' + feature.properties.title + '</h2>' +
@@ -124,14 +125,20 @@ $(document).ready(function() {
           '<a href="#" class="prev" >&laquo; Previous</a>' +
           '<a href="#" class="next" >Next &raquo;</a>' +
         '</div>' +
+        '<div id = "search_similar_insights">' +
+          '<form action= "/search" method= "post"> <input type="hidden" id= "search" name= "search" value="' + $('.slideshow .image.active .caption').text() + '"> <input type="submit" value= "Search Similar Insights"></form>'
+        '</div>'
       '</div>';
+
 
     // http://leafletjs.com/reference.html#popup
     marker.bindPopup(popupContent,{
       closeButton: false,
       minWidth: 320
     });
+
   });
+
 
   // Add features to the map
   map.markerLayer.setGeoJSON(geoJson);
@@ -139,7 +146,6 @@ $(document).ready(function() {
   // because 'prev' & 'next'/popup do not exist in the DOM yet, moveSlide doesn't work without a call on the body afterward.
   $('body').on('click', '.prev', moveSlide);
   $('body').on('click', '.next', moveSlide);
-
 
 });
 
