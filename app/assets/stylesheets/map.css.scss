@@ -52,4 +52,9 @@ $navbar_color: gray;
       margin: 0;
     }
   }
+
+  .active {
+    background-color: rgba(189, 195, 199,1.0);
+    border: 5px solid rgba(149, 165, 166,1.0);
+  }
 }

@@ -8,4 +8,17 @@ class StaticPagesController < ApplicationController
       format.js { render layout: false }
     end
   end
+
+  def you
+    binding.pry
+    @user = current_user
+  end
+
+#   def friends
+#     @images = @user.
+#   end
+
+#   def everyone
+#     @images = Image.all
+#   end
 end

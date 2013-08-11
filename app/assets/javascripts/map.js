@@ -1,5 +1,25 @@
 $(document).ready(function() {
 
+  var you_button = $('#you');
+  var friends_button = $('#friends');
+  var everyone_button = $('#everyone');
+  var filter_buttons = $('.filter_buttons');
+
+  you_button.click(function() {
+    filter_buttons.removeClass('active');
+    you_button.addClass('active');
+  });
+
+  friends_button.click(function() {
+    filter_buttons.removeClass('active');
+    friends_button.addClass('active');
+  });
+
+  everyone_button.click(function() {
+    filter_buttons.removeClass('active');
+    everyone_button.addClass('active');
+  });
+
   var moveSlide;
 
   // defines the map and the 'type' of map.  Here is where we can change the look of the map
@@ -45,7 +65,7 @@ $(document).ready(function() {
       },
       // This is for a custom marker on the map
       "properties": {
-        'title': 'little kitten',
+        'title': 'This is where I learned . . .',
         'icon': {
           "iconUrl": "http://placekitten.com/50/50",
           "iconSize": [50, 50], // size of the icon
