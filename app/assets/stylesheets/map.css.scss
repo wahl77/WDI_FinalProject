@@ -1,4 +1,6 @@
 $navbar_color: gray;
+$font: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
+$font_weight: 100;
 
 #map_container {
   position:absolute;
@@ -53,6 +55,8 @@ $navbar_color: gray;
     margin: 17px;
     p {
       margin: 0;
+      font-family: $font;
+      font-weight: $font_weight;
     }
   }
 }
