@@ -1,7 +1,4 @@
 $(document).ready(function() {
-
-  var moveSlide;
-
   // defines the map and the 'type' of map.  Here is where we can change the look of the map
   var map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false });
 
@@ -88,7 +85,7 @@ $(document).ready(function() {
     var popupContent =
       '<div id="' + feature.properties.id + '" class="popup">' +
         '<h2>' + feature.properties.title + '</h2>' +
-        '<div class="slideshow">' + slideshowContent + '</div>' +
+        '<div id="makeMeScrollable" class="slideshow">' + slideshowContent + '</div>' +
         '<div class="cycle">' +
           '<a href="#" class="prev" >&laquo; Previous</a>' +
           '<a href="#" class="next" >Next &raquo;</a>' +
@@ -109,7 +106,7 @@ $(document).ready(function() {
   $('body').on('click', '.prev', moveSlide);
   $('body').on('click', '.next', moveSlide);
 
-  geolocate();
+  // geolocate();
 
   function geolocate() {
     if (navigator.geolocation) {
@@ -140,6 +137,13 @@ $(document).ready(function() {
 
   });
 
+  // toggles the class on the filter buttons so that when they are clicked they look 'depressed', similarly when they are unclicked
+  var depress_button = function() {
+    $('.filter_buttons').click(function() {
+      $(this).toggleClass('clicked');
+    });
+  };
+  depress_button();
 
 });
 

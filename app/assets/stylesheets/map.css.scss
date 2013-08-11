@@ -34,15 +34,18 @@ $navbar_color: gray;
   .filter_buttons {
     width: 20px;
     height: 20px;
-    border: 5px solid $navbar_color;
+    background-color: #ecf0f1;
+    border: 3px solid $navbar_color;
     margin-top: 10px;
     border-radius: 3px;
     float: left;
     display: inline-block;
   }
+
+  .clicked,
   .filter_buttons:hover {
-    background-color: rgba(189, 195, 199,1.0);
-    border: 5px solid rgba(149, 165, 166,1.0);
+    background-color: #7f8c8d;
+    border: 3px solid #2c3e50;
   }
   .filter_texts {
     height: 49px;
