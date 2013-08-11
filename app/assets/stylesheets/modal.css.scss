@@ -2,6 +2,9 @@
 .modal_wrap {
   display:none; /* starts out hidden */
   z-index:40001;
+  position: absolute;
+  left:50%;
+  margin-left:-350px;
 }
 
 // Shades out background when selector is active
