@@ -1,7 +1,10 @@
+=image_tag 'modal_close.png', :id=> 'close_modal'
+
 %h2 About
 %p This is the about page
 
 :javascript
   $('#close_modal, .modal_overlay').click(function() {
+    $('.modal_box').empty();
     $('.modal_wrap').fadeOut('fast');
   });
