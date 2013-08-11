@@ -11,9 +11,15 @@ class Image < ActiveRecord::Base
   # Define what in a picture is searchable. For the time being,
   # only caption is searchable. Future versions may want to include
   # a range of some sort.
+<<<<<<< HEAD
   searchable do
     text :caption
   end
+=======
+  # searchable do
+  #   text :caption
+  # end
+>>>>>>> 64a5b8747ecc6741b3e47fac00b74cf5ab05e474
 
   # This methods allows to search for other photos with a similar caption.
   def self.caption_search(query)

@@ -4,11 +4,21 @@
     <%= image_tag @image.url %>
   </div>
 
-  <h3>Caption</h3>
-  <%= @image.caption %> 
+
+  **Figure out how to update edited image** </br>
 
 
-  <p class= "photo_editing_text"> Option to select where on the map it was taken IF Franky's doesnt work </p>
+  <div class ="photo_editing_text">
+    <%= form_tag(update_image_url) do |f| %>
+      <%= hidden_field_tag :image_id, @image.id %>
+      <%= label_tag "This is where" %> I realized...
+      <%= text_field_tag :caption %>
+      <%= submit_tag "Save Your Contribution" %>
+    <% end %>
+    </br>
+
+    LOCATION: Option to select where on the map it was taken IF Franky's doesnt work.
+  </div>
 
 </div>
 
