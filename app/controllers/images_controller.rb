@@ -6,4 +6,9 @@ class ImagesController < ApplicationController
     @image.user = User.find(1)
     @image.save
   end
+
+
+  def search 
+    @images = Image.caption_search(params[:search]).results
+  end
 end
