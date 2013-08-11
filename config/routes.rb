@@ -6,6 +6,8 @@ RailsProject::Application.routes.draw do
 
   root :to => 'static_pages#index'
 
+  match 'static_pages/about' => "static_pages#about", :as => 'static_pages_about'
+
   resources :sessions, only:[:new, :create, :destroy]
   resources :users
 
