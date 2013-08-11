@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-  var moveSlide;
 
   // defines the map and the 'type' of map.  Here is where we can change the look of the map
   var map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false });
@@ -10,6 +9,38 @@ $(document).ready(function() {
 
   // moves the zoom controls the right side; defaults to 'topleft' if this line is left off.
   new L.Control.Zoom({ position: 'topright' }).addTo(map);
+
+  // geolocate();
+
+  // function geolocate() {
+  //   if (navigator.geolocation) {
+  //     console.log(navigator.geolocation);
+  //     map.locate();
+  //   };
+  // };
+
+  // map.on('locationfound', function(e) {
+  //     map.fitBounds(e.bounds);
+
+  //     // var map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false })
+  //     //     .setView([37.7, -122.4183], 12);
+
+  //     map.setView([e.latlng.lat, e.latlng.lng], 12);
+
+  //     map.markerLayer.setGeoJSON({
+  //         type: "Feature",
+  //         geometry: {
+  //             type: "Point",
+  //             coordinates: [e.latlng.lng, e.latlng.lat]
+  //         }
+  //         // properties: {
+  //         //     'marker-color': '#000',
+  //         //     'marker-symbol': 'star-stroked'
+  //         // }
+  //     });
+  // });
+
+  var moveSlide;
 
   // This example uses jQuery to make selecting items in the slideshow easier.
   // Download it from http://jquery.com
@@ -108,37 +139,6 @@ $(document).ready(function() {
   // because 'prev' & 'next'/popup do not exist in the DOM yet, moveSlide doesn't work without a call on the body afterward.
   $('body').on('click', '.prev', moveSlide);
   $('body').on('click', '.next', moveSlide);
-
-  geolocate();
-
-  function geolocate() {
-    if (navigator.geolocation) {
-      console.log(navigator.geolocation);
-      map.locate();
-    };
-  };
-
-  map.on('locationfound', function(e) {
-      map.fitBounds(e.bounds);
-
-      // var map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false })
-      //     .setView([37.7, -122.4183], 12);
-
-      map.setView([e.latlng.lat, e.latlng.lng], 12);
-
-      map.markerLayer.setGeoJSON({
-          type: "Feature",
-          geometry: {
-              type: "Point",
-              coordinates: [e.latlng.lng, e.latlng.lat]
-          }
-          // properties: {
-          //     'marker-color': '#000',
-          //     'marker-symbol': 'star-stroked'
-          // }
-      });
-
-  });
 
 
 });

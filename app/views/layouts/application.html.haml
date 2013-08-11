@@ -18,7 +18,7 @@
 
   #navbar
     #nav_title
-      %p This is where...
+      %p=link_to 'This is where...', root_path
     #nav_about
       %p=link_to 'About', static_pages_about_path, :remote => true
     - if current_user

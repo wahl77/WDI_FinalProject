@@ -3,7 +3,7 @@ class ImagesController < ApplicationController
 
   def new
     @image = Image.new(params[:image])
-    @image.user = User.find(1)
+    @image.user = current_user
     @image.save
   end
 
