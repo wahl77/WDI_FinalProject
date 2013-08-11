@@ -39,11 +39,8 @@
 
   <div id ="add_an_image">
     <%= form_for(@image, :url => new_image_url, :html_options => {:multipart => true}) do |f| %>
-
-      <%= f.label :caption %> 
-      <%= f.text_field :caption %> 
-      <br>
       <%= f.label "Any New Insights?" %>
+      Click below to take or upload image.
       <%= f.file_field :url %>
       <%= f.submit "Add Your Image" %>
     <% end %>
