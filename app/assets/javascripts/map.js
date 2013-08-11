@@ -124,10 +124,9 @@ $(document).ready(function() {
           '<a href="#" class="prev" >&laquo; Previous</a>' +
           '<a href="#" class="next" >Next &raquo;</a>' +
         '</div>' +
-        '<div id = "search_similar_insights">' +
-          '<form action= "/search" method= "post"> <input type="hidden" id= "search" name= "search" value="' + $('.slideshow .image.active .caption').text() + '"> <input type="submit" value= "Search Similar Insights"></form>' +
-        '</div>' +
+        '<button id="search_insights"> Search Similar Insights </button>'
       '</div>';
+
 
 
     // http://leafletjs.com/reference.html#popup
