@@ -27,61 +27,73 @@ $(document).ready(function() {
       map.setView([e.latlng.lat, e.latlng.lng], 12);
   });
 
-  // // This example uses jQuery to make selecting items in the slideshow easier.
-  // // Download it from http://jquery.com
-  // var moveSlide = function(direction) {
-  //   var $slideshow = $('.slideshow'),
-  //     totalSlides = $slideshow.children().length;
+  //  This example uses jQuery to make selecting items in the slideshow easier.
+  //  Download it from http://jquery.com
+  var moveSlide = function(direction) {
+    var $slideshow = $('.slideshow'),
+      totalSlides = $slideshow.children().length;
 
-  //   if (direction === 'prev') {
-  //     var $newSlide = $slideshow.find('.active').prev();
-  //     if ($newSlide.index() < 0) {
-  //         $newSlide = $('.image').last();
-  //     }
-  //   } else {
-  //     var $newSlide = $slideshow.find('.active').next();
-  //     if ($newSlide.index() < 0) {
-  //         $newSlide = $('.image').first();
-  //     }
-  //   }
+    if (direction === 'prev') {
+      var $newSlide = $slideshow.find('.active').prev();
+      if ($newSlide.index() < 0) {
+          $newSlide = $('.image').last();
+      }
+    } else {
+      var $newSlide = $slideshow.find('.active').next();
+      if ($newSlide.index() < 0) {
+          $newSlide = $('.image').first();
+      }
+    }
 
-  //   $slideshow.find('.active').removeClass('active').hide();
-  //   $newSlide.addClass('active').show();
-  //   return false;
-  // }; // close moveSlide
+    $slideshow.find('.active').removeClass('active').hide();
+    $newSlide.addClass('active').show();
+    return false;
+  }; // close moveSlide
 
   // ************ dynamically creating the geoJson objects to render multiple markers and images in each popup **************
 
-  // var marker = [];
-  // <%= an array of each marker location %>
-  // marker.push({
-  //   type: 'Feature',
-  //   "geometry": {
-  //     "type": "Point",
-  //     // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
-  //     "coordinates": <%= the coords of the marker %>
-  //   },
-  //   "properties": {
-  //     'title': 'When I... I realized...',
-  //     'icon': {
-  //       "iconUrl": <%= url of the image for the icon %>,
-  //       "iconSize": [50, 50], // size of the icon
-  //       "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
-  //       "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
-  //     },
-  //     'images': [
-  //     <%= an array of arrays that containers each image for the popu and their respective captions %>
-  //     ]
-  //   }
-  // }]; // close geoJson/marker.push
-  // <%= end %>
+  // 'search_insights' click returns an array of JSON objects that represents each photo and their respective conntent
+  $('body').on('click', '#search_insights', function(){
+    $.ajax({
+      type: "POST",
+      url: '/search',
+      data: { search: $('.slideshow .image.active .caption').text() },
+      dataType: "json"
+    }).done(add_markers);
+  });
 
-  // var geoJson = {
-  //   type: 'FeatureCollection',
-  //   features: marker
-  // }
+  var marker = [];
 
-  // // delays the show of each marker (created above)
+  var add_markers = function(response) {
+    for (var i = 0; i <= json_response.length; i++)
+      marker.push({
+        type: 'Feature',
+        "geometry": {
+          "type": "Point",
+          // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
+          "coordinates": [json_response[i].long, json_response[i].lat]
+        },
+        "properties": {
+          'title': 'When I... I realized...',
+          'icon': {
+            "iconUrl": json_response[i].url[0],
+            "iconSize": [50, 50], // size of the icon
+            "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+            "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
+          },
+        'images': [
+          [json_response[i].url, json_response[i].caption]
+        ]
+      }
+    }); // close geoJson/marker.push
+  };
+
+  var geoJson = {
+    type: 'FeatureCollection',
+    features: marker
+  };
+
+  // delays the show of each marker (created above)
   // var delay = 0;
   // $.each(marker, function(k, v) {
   //   var mrkr =$(v);
@@ -90,6 +102,7 @@ $(document).ready(function() {
   //     mrkr.show();
   //   }, delay)
   // });
+
   // ******* Section that adds photos to the popups *************
 
   // Add custom popup html to each marker
