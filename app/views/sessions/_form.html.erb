@@ -1,19 +1,38 @@
-<h1>Login</h1>
-
 <%= image_tag 'modal_close.png', :id=> 'close_modal' %>
-<%= form_tag sessions_path, :method => :post do %>
-  <div class="field">
-    <%= label_tag :username %><br />
-    <%= text_field_tag :username %>
+
+<div class="modal_title">
+  <h1>Login</h1>
+</div>
+
+<div class="form_labels">
+  <div class="label">
+    <p>Username</p>
   </div>
-  <div class="field">
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
+  <div id="lgn_pswrd" class="label">
+    <p>Password</p>
   </div>
-  <div class="actions" id='login_submit'>
-    <%= submit_tag "Login" %>
-  </div>
-<% end %>
+</div>
+
+<div class="form_fields">
+  <%= form_tag sessions_path, :method => :post do %>
+    <div class="field">
+      <%= text_field_tag :username %>
+    </div>
+    <div class="field">
+      <%= password_field_tag :password %>
+    </div>
+    <div class="twitter">
+      <p><%= link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter) %></p>
+    </div>
+    <div class="actions" class='login_submit'>
+      <%= submit_tag "Login", :class => "submit_button" %>
+    </div>
+
+
+  <% end %>
+</div>
+
+
 
 <script>
   $('#close_modal, .modal_overlay').click(function() {

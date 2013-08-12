@@ -45,18 +45,6 @@ ActiveRecord::Schema.define(:version => 20130809220200) do
 
   add_index "images", ["imageable_id", "imageable_type"], :name => "index_images_on_imageable_id_and_imageable_type"
 
-  create_table "some_tests", :force => true do |t|
-    t.integer  "i"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "tests", :force => true do |t|
-    t.integer  "i"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "users", :force => true do |t|
     t.string   "username",                     :null => false
     t.string   "crypted_password"
@@ -67,13 +55,8 @@ ActiveRecord::Schema.define(:version => 20130809220200) do
     t.datetime "updated_at",                   :null => false
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
-    t.datetime "last_login_at"
-    t.datetime "last_logout_at"
-    t.datetime "last_activity_at"
-    t.string   "last_login_from_ip_address"
   end
 
-  add_index "users", ["last_logout_at", "last_activity_at"], :name => "index_users_on_last_logout_at_and_last_activity_at"
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
 
 end

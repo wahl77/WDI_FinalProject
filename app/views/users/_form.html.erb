@@ -1,21 +1,41 @@
 <%= image_tag 'modal_close.png', :id=> 'close_modal' %>
-<%= form_for @user, :remote => true do |f| %>
-  <div class="field">
-    <%= f.label :username %><br/>
-    <%= f.text_field :username %>
+
+<div class="modal_title">
+  <h1>Sign Up</h1>
+</div>
+
+<div id="submit_form_label" class="form_labels">
+  <div class="label">
+    <p class="submit_labels">Username</p>
   </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
+  <div class="label">
+    <p class="submit_labels">Password</p>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+  <div class="label">
+    <p class="submit_labels">Password Confirmation</p>
   </div>
-  <div class="actions" id='signup_submit'>
-    <%= submit_tag "Submit"%>
-  </div>
-<% end %>
+</div>
+
+<div class="form_fields">
+  <%= form_for @user, :remote => true do |f| %>
+    <div class="field">
+      <%= f.text_field :username %>
+    </div>
+    <div class="field">
+      <%= f.password_field :password %>
+    </div>
+    <div class="field">
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <div id="submit_twitter" class="twitter">
+      <p><%= link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter) %></p>
+    </div>
+    <div class="actions" id='signup_submit'>
+      <%= submit_tag "Submit", :class=>"submit_button" %>
+    </div>
+  <% end %>
+</div>
+
 
 <script>
   $('#close_modal, .modal_overlay').click(function() {
