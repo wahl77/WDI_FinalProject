@@ -30,18 +30,26 @@
 </div>
 
 
-<% @everyone_images.each do |image| %>
-  <div class="everyone_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<%= image.lat %>" data-long="<%= image.long %>"></div>
-<% end %>
-
 <% if current_user %>
+
+  <div id="current_user"></div>
 
   <% @you_images.each do |image| %>
     <div class="you_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<%= image.lat %>" data-long="<%= image.long %>"></div>
   <% end %>
 
   <% @friends_images.each do |image| %>
-    <div class="friends_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<% image.lat %>" data-long="<% image.long %>"></div>
+    <div class="friends_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<%= image.lat %>" data-long="<%= image.long %>"></div>
+  <% end %>
+
+  <% @everyone_images.each do |image| %>
+    <div class="everyone_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<%= image.lat %>" data-long="<%= image.long %>"></div>
+  <% end %>
+
+<% else %>
+
+  <% @everyone_images.each do |image| %>
+    <div class="everyone_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<%= image.lat %>" data-long="<%= image.long %>"></div>
   <% end %>
 
 <% end %>

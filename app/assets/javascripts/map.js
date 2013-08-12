@@ -1,22 +1,12 @@
 $(document).ready(function() {
 
-  // friends_button.click(function() {
-  //   filter_buttons.removeClass('active');
-  //   friends_button.addClass('active');
-  // });
-
-  // everyone_button.click(function() {
-  //   filter_buttons.removeClass('active');
-  //   everyone_button.addClass('active');
-  // });
-
   var moveSlide;
 
   // defines the map and the 'type' of map.  Here is where we can change the look of the map
   var map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false });
 
   // sets the map to this lat/long, with a zoom as the third argument
-  map.setView([37.7572, -122.3999], 13);
+  map.setView([53.000, 9.000], 5);
 
   // moves the zoom controls the right side; defaults to 'topleft' if this line is left off.
   new L.Control.Zoom({ position: 'topright' }).addTo(map);
@@ -44,22 +34,67 @@ $(document).ready(function() {
     return false;
   }; // close moveSlide
 
-  var j = [];
 
+
+
+  // map filter logic starts here
+
+  // these are the map filter buttons
   var you_button = $('#you');
   var friends_button = $('#friends');
   var everyone_button = $('#everyone');
   var filter_buttons = $('.filter_buttons');
 
-  // geoJson is the content of the marker icon and the images inside.  This is where we'll dynamically interact with them.
+  // these are the divs on the homepage that dynamically pull data from the database
+  var you_image = $('.you_image');
+  var friends_image = $('.friends_image');
+  var everyone_image = $('.everyone_image');
+  var j = [];
+
+  // adds class active to css for you(if user logged in) and everyone (if no one is logged in)
+  // creates markers for each scenario
+  if ($('#current_user').length === 1) {
+    you_button.addClass('active');
+    createMarkers(you_image);
+    createMarkersCont();
+  }
+  else {
+    everyone_button.addClass('active');
+    createMarkers(everyone_image);
+  }
+
+
+  // Depending on which button you click, the following logic keeps the checkboxes gray when you click on them, empties out the markers that were there before, and creates new markers.
+
+  friends_button.click(function() {
+    filter_buttons.removeClass('active');
+    friends_button.addClass('active');
+    j = [];
+    createMarkers(friends_image);
+    createMarkersCont();
+  });
+
+  everyone_button.click(function() {
+    filter_buttons.removeClass('active');
+    everyone_button.addClass('active');
+    j = [];
+    createMarkers(everyone_image);
+    createMarkersCont();
+  });
+
   you_button.click(function() {
     filter_buttons.removeClass('active');
     you_button.addClass('active');
+    j = [];
+    createMarkers(you_image);
+    createMarkersCont();
+  });
 
-    $('.you_image').each(function() {
-      // var caption = $(this)[index]['dataset']['caption'];
-      // var image_url = $(this)[index]['dataset']['image'];
-      // var longitude = $(this)[index]['dataset']['long'];
+
+  // creates markers after accepting the argument of which divs from the index page to pull data from (you, friends, or everyone)
+
+  function createMarkers(div) {
+    div.each(function() {
       j.push({
         type: 'Feature',
         "geometry": {
@@ -83,58 +118,65 @@ $(document).ready(function() {
         }, //close properties
       }); // close push
     }); //close you_images function
-  }); //close you button click function
-
-  var geoJson = {
-    type: 'FeatureCollection',
-    features: j
-  };
-  // Add custom popup html to each marker
-  // And sets the custom marker for each marker based on the feature properties
-  map.markerLayer.on('layeradd', function(e) {
-    var marker = e.layer;
-      feature = marker.feature;
-
-    marker.setIcon(L.icon(feature.properties.icon));
-
-    var images = feature.properties.images;
-    var slideshowContent = '';
+  } // end of markers function
 
 
-    for(var i = 0; i < images.length; i++) {
-      var img = images[i];
+  // geoJson is the content of the marker icon and the images inside.  This is where we'll dynamically interact with them.
 
-      slideshowContent +=
-        '<div class="image' + (i === 0 ? ' active' : '') + '">' +
-          '<img src="' + img[0] + '" />' +
-          '<div class="caption">' + img[1] + '</div>' +
+  function createMarkersCont() {
+    var geoJson = {
+      type: 'FeatureCollection',
+      features: j
+    };
+
+    // Add custom popup html to each marker
+    // And sets the custom marker for each marker based on the feature properties
+    map.markerLayer.on('layeradd', function(e) {
+      var marker = e.layer;
+        feature = marker.feature;
+
+      marker.setIcon(L.icon(feature.properties.icon));
+
+      var images = feature.properties.images;
+      var slideshowContent = '';
+
+
+      for(var i = 0; i < images.length; i++) {
+        var img = images[i];
+
+        slideshowContent +=
+          '<div class="image' + (i === 0 ? ' active' : '') + '">' +
+            '<img src="' + img[0] + '" />' +
+            '<div class="caption">' + img[1] + '</div>' +
+          '</div>';
+      }
+
+      // Create custom popup content
+      var popupContent =
+        '<div id="' + feature.properties.id + '" class="popup">' +
+          '<h2>' + feature.properties.title + '</h2>' +
+          '<div class="slideshow">' + slideshowContent + '</div>' +
+          '<div class="cycle">' +
+            '<a href="#" class="prev" >&laquo; Previous</a>' +
+            '<a href="#" class="next" >Next &raquo;</a>' +
+          '</div>' +
         '</div>';
-    }
 
-    // Create custom popup content
-    var popupContent =
-      '<div id="' + feature.properties.id + '" class="popup">' +
-        '<h2>' + feature.properties.title + '</h2>' +
-        '<div class="slideshow">' + slideshowContent + '</div>' +
-        '<div class="cycle">' +
-          '<a href="#" class="prev" >&laquo; Previous</a>' +
-          '<a href="#" class="next" >Next &raquo;</a>' +
-        '</div>' +
-      '</div>';
-
-    // http://leafletjs.com/reference.html#popup
-    marker.bindPopup(popupContent,{
-      closeButton: false,
-      minWidth: 320
+      // http://leafletjs.com/reference.html#popup
+      marker.bindPopup(popupContent,{
+        closeButton: false,
+        minWidth: 320
+      });
     });
-  });
 
-  // Add features to the map
-  map.markerLayer.setGeoJSON(geoJson);
+    // Add features to the map
+    map.markerLayer.setGeoJSON(geoJson);
 
-  // because 'prev' & 'next'/popup do not exist in the DOM yet, moveSlide doesn't work without a call on the body afterward.
-  $('body').on('click', '.prev', moveSlide);
-  $('body').on('click', '.next', moveSlide);
+    // because 'prev' & 'next'/popup do not exist in the DOM yet, moveSlide doesn't work without a call on the body afterward.
+    $('body').on('click', '.prev', moveSlide);
+    $('body').on('click', '.next', moveSlide);
+
+  }
 
   geolocate();
 
