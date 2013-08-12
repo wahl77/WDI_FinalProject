@@ -1,6 +1,9 @@
 class StaticPagesController < ApplicationController
   skip_before_filter :require_login, only:[:index, :about]
   def index
+    @everyone_images = Image.all
+    @user = current_user
+    @you_images = current_user.images
   end
 
   def about
@@ -9,16 +12,10 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def you
-    binding.pry
-    @user = current_user
-  end
+  # def find_images
 
-#   def friends
-#     @images = @user.
-#   end
 
-#   def everyone
-#     @images = Image.all
-#   end
+  #   # @friends_images = current_user.follows
+  #   redirect_to root_path
+  # end
 end

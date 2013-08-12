@@ -4,19 +4,25 @@
 
   <div id='map_filter_container'>
     <div class="filter_containers">
-      <a href='/static_pages/you'><div id='you' class="filter_buttons"></div></a>
+      <a href='/static_pages/find_images'>
+        <div id='you' class="filter_buttons"></div>
+      </a>
       <div class="filter_texts">
         <p>You</p>
       </div>
     </div><!-- 1 -->
     <div class="filter_containers">
-      <div id='friends' class="filter_buttons"></div>
+      <a href='/static_pages/find_images'>
+        <div id='friends' class="filter_buttons"></div>
+      </a>
       <div class="filter_texts">
         <p>Friends</p>
       </div>
     </div> <!-- 2 -->
     <div class="filter_containers">
-      <div id='everyone' class="filter_buttons"></div>
+      <a href='/static_pages/find_images'>
+        <div id='everyone' class="filter_buttons"></div>
+      </a>
       <div class="filter_texts">
         <p>Everyone</p>
       </div>
@@ -28,3 +34,16 @@
   </div> <!-- #map_container -->
 
 </div>
+
+
+<% @everyone_images.each do |image| %>
+  <div class="everyone_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<% image.lat %>" data-long="<% image.long %>"></div>
+<% end %>
+
+<% if current_user %>
+
+  <% @you_images.each do |image| %>
+    <div class="you_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<% image.lat %>" data-long="<% image.long %>"></div>
+  <% end %>
+
+<% end %>

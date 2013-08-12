@@ -5,20 +5,15 @@ $(document).ready(function() {
   var everyone_button = $('#everyone');
   var filter_buttons = $('.filter_buttons');
 
-  you_button.click(function() {
-    filter_buttons.removeClass('active');
-    you_button.addClass('active');
-  });
+  // friends_button.click(function() {
+  //   filter_buttons.removeClass('active');
+  //   friends_button.addClass('active');
+  // });
 
-  friends_button.click(function() {
-    filter_buttons.removeClass('active');
-    friends_button.addClass('active');
-  });
-
-  everyone_button.click(function() {
-    filter_buttons.removeClass('active');
-    everyone_button.addClass('active');
-  });
+  // everyone_button.click(function() {
+  //   filter_buttons.removeClass('active');
+  //   everyone_button.addClass('active');
+  // });
 
   var moveSlide;
 
@@ -54,34 +49,44 @@ $(document).ready(function() {
     return false;
   }; // close moveSlide
 
+  var j = [];
+
 
   // geoJson is the content of the marker icon and the images inside.  This is where we'll dynamically interact with them.
-  var geoJson = [{
+  // you_button.click(function() {
+  //   filter_buttons.removeClass('active');
+  //   you_button.addClass('active');
+
+  $('.you_image').each(function() {
+    j.push({
       type: 'Feature',
       "geometry": {
         "type": "Point",
         // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
-        "coordinates": [-122.3999, 37.7572]
-      },
+        "coordinates": [-22, -27.9]
+        //[$(this).data('data-long'), $(this).data('data-lat')]
+      }, // close geometry
       // This is for a custom marker on the map
       "properties": {
-        'title': 'This is where I learned . . .',
-        'icon': {
-          "iconUrl": "http://placekitten.com/50/50",
+        "title": "This is where I realized . . .",
+        "icon": {
+          "iconUrl": $(this).data('data-image'),
           "iconSize": [50, 50], // size of the icon
           "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
           "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
         },
         // These are the images for the photo display
         // Store the image url and caption in an array
-        'images': [
-          ['http://i.imgur.com/O6QEpBs.jpg','The U.S. Capitol after the burning of Washington during the War of 1812'],
-          ['http://i.imgur.com/xND1MND.jpg','Ford\'s Theatre in the 19th century, site of the 1865 assassination of President Lincoln'],
-          ['http://i.imgur.com/EKJmqui.jpg','The National Cherry Blossom Festival is celebrated around the city each spring.']
-        ]
-      }
-  }]; // close geoJson
+        "images": [$(this).data('data-image'), $(this).data('data-caption')]
+      }, //close properties
+    }); // close push
+  }); //close you_images function
+  // }); //close you button click function
 
+  var geoJson = {
+    type: 'FeatureCollection',
+    features: j
+  };
   // Add custom popup html to each marker
   // And sets the custom marker for each marker based on the feature properties
   map.markerLayer.on('layeradd', function(e) {
@@ -133,7 +138,6 @@ $(document).ready(function() {
 
   function geolocate() {
     if (navigator.geolocation) {
-      console.log(navigator.geolocation);
       map.locate();
     };
   };
@@ -162,5 +166,7 @@ $(document).ready(function() {
 
 
 });
+
+
 
 
