@@ -12,10 +12,4 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  # def find_images
-
-
-  #   # @friends_images = current_user.follows
-  #   redirect_to root_path
-  # end
 end

@@ -1,10 +1,5 @@
 $(document).ready(function() {
 
-  var you_button = $('#you');
-  var friends_button = $('#friends');
-  var everyone_button = $('#everyone');
-  var filter_buttons = $('.filter_buttons');
-
   // friends_button.click(function() {
   //   filter_buttons.removeClass('active');
   //   friends_button.addClass('active');
@@ -51,37 +46,44 @@ $(document).ready(function() {
 
   var j = [];
 
+  var you_button = $('#you');
+  var friends_button = $('#friends');
+  var everyone_button = $('#everyone');
+  var filter_buttons = $('.filter_buttons');
 
   // geoJson is the content of the marker icon and the images inside.  This is where we'll dynamically interact with them.
-  // you_button.click(function() {
-  //   filter_buttons.removeClass('active');
-  //   you_button.addClass('active');
+  you_button.click(function() {
+    filter_buttons.removeClass('active');
+    you_button.addClass('active');
 
-  $('.you_image').each(function() {
-    j.push({
-      type: 'Feature',
-      "geometry": {
-        "type": "Point",
-        // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
-        "coordinates": [-22, -27.9]
-        //[$(this).data('data-long'), $(this).data('data-lat')]
-      }, // close geometry
-      // This is for a custom marker on the map
-      "properties": {
-        "title": "This is where I realized . . .",
-        "icon": {
-          "iconUrl": $(this).data('data-image'),
-          "iconSize": [50, 50], // size of the icon
-          "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
-          "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
-        },
-        // These are the images for the photo display
-        // Store the image url and caption in an array
-        "images": [$(this).data('data-image'), $(this).data('data-caption')]
-      }, //close properties
-    }); // close push
-  }); //close you_images function
-  // }); //close you button click function
+    $('.you_image').each(function() {
+      // var caption = $(this)[index]['dataset']['caption'];
+      // var image_url = $(this)[index]['dataset']['image'];
+      // var longitude = $(this)[index]['dataset']['long'];
+      j.push({
+        type: 'Feature',
+        "geometry": {
+          "type": "Point",
+          // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
+          "coordinates": [this['dataset']['long'], this['dataset']['lat']]
+          //[$(this).data('data-long'), $(this).data('data-lat')]
+        }, // close geometry
+        // This is for a custom marker on the map
+        "properties": {
+          "title": "This is where I realized . . .",
+          "icon": {
+            "iconUrl": this['dataset']['image'],
+            "iconSize": [50, 50], // size of the icon
+            "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+            "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
+          },
+          // These are the images for the photo display
+          // Store the image url and caption in an array
+          "images": [this['dataset']['image'], this['dataset']['caption']]
+        }, //close properties
+      }); // close push
+    }); //close you_images function
+  }); //close you button click function
 
   var geoJson = {
     type: 'FeatureCollection',
