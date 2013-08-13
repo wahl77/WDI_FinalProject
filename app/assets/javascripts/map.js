@@ -30,64 +30,6 @@ $(document).ready(function(){
   }
 
 
-
-  // Make sure you call this once the map set and displays on screen
-  // var map_set = function(){
-  //   // moves the zoom controls the right side; defaults to 'topleft' if this line is left off.
-  //   new L.Control.Zoom({ position: 'topright' }).addTo(map);
-  //   // ******* Section that adds photos to the popups *************
-
-  //   // Add custom popup html to each marker
-  //   // And sets the custom marker for each marker based on the feature properties
-  //   map.markerLayer.on('layeradd', function(e) {
-  //     var marker = e.layer;
-  //     feature = marker.feature;
-
-  //     marker.setIcon(L.icon(feature.properties.icon));
-
-  //     var images = feature.properties.images;
-  //     var slideshowContent = '';
-
-
-  //     for(var i = 0; i < images.length; i++) {
-  //       var img = images[i];
-
-  //       slideshowContent +=
-  //       '<div class="image' + (i === 0 ? ' active' : '') + '">' +
-  //       '<img src="' + img[0] + '" />' +
-  //       '<div class="caption">' + img[1] + '</div>' +
-  //       '</div>';
-  //     }
-
-  //     // Create custom popup content
-  //     // Christina: attempting to set the value of the form to the caption of the picture, but not working for some reason. Form DOES submit a search properly when value is hard-coded, though.
-  //     var popupContent =
-  //       '<div id="' + feature.properties.id + '" class="popup">' +
-  //       '<h2>' + feature.properties.title + '</h2>' +
-  //       '<div id="makeMeScrollable" class="slideshow">' + slideshowContent + '</div>' +
-  //       '<div class="cycle">' +
-  //       '<a href="#" class="prev" >&laquo; Previous</a>' +
-  //       '<a href="#" class="next" >Next &raquo;</a>' +
-  //       '</div>' +
-  //       '<button id="search_insights"> Search Similar Insights </button>'
-  //       '</div>';
-
-
-
-  //     // http://leafletjs.com/reference.html#popup
-  //     marker.bindPopup(popupContent,{
-  //       closeButton: false,
-  //       minWidth: 320
-  //     });
-
-  //   });
-
-
-  //   map.markerLayer.setGeoJSON(geoJson);
-  //   map.markerLayer.setGeoJSON(geoJson2);
-  //   depress_button();
-  // };
-
   //  This example uses jQuery to make selecting items in the slideshow easier.
   //  Download it from http://jquery.com
   var moveSlide = function(direction) {
@@ -115,7 +57,7 @@ $(document).ready(function(){
 
 
 
-  // map filter logic starts here
+// map filter logic starts here
 
   // these are the map filter buttons
   var you_button = $('#you');
@@ -134,12 +76,12 @@ $(document).ready(function(){
   if ($('#current_user').length === 1) {
     you_button.addClass('active');
     createMarkers(you_image);
-    //map_set();
+    // map_set();
   }
   else {
     everyone_button.addClass('active');
     createMarkers(everyone_image);
-    //map_set()
+    // map_set();
   }
 
 
@@ -197,10 +139,6 @@ $(document).ready(function(){
         }, //close properties
       }); // close push
     }); //close you_images function
-
-
-
-
   } // end of markers function
 
 
