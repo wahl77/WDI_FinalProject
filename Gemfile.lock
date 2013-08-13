@@ -237,7 +237,7 @@ DEPENDENCIES
   pry-debugger
   pry-rails
   rails (= 3.2.13)
-  rmagick
+  rmagick (= 2.13.2)
   rspec-rails
   sass-rails (~> 3.2.3)
   selenium-webdriver

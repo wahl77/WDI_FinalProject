@@ -3,7 +3,7 @@ class Image < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true
   belongs_to :user
 
-  # mount_uploader :url, ImageUploader
+  mount_uploader :url, ImageUploader
 
   # after_create :extract_exif_info
 

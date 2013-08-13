@@ -29,8 +29,9 @@ $font_weight: 100;
       border-radius: 150px;
       border: 3px solid gray;
       overflow: hidden;
+      background-color: white;
       img{
-        height: 90%;
+        // height: 90%;
       }
     }
     #username_show {
@@ -96,6 +97,12 @@ $font_weight: 100;
         font-family: $font;
         font-size: 18px;
         font-weight: $font-weight;
+        width: 90%;
+        margin: 20px auto;
+      }
+      .title_line {
+        width: 80%;
+        margin-bottom: 20px;
       }
     }
     #who_to_follow {
@@ -103,68 +110,87 @@ $font_weight: 100;
         height: 45px;
         width: 90%;
         margin: 8px auto;
+        margin-left: 10px;
       }
-      #profile_pic_follow {
-        width: 45px;
-        height: 45px;
-        border: 2px solid;
-        float: left;
-        display: inline-block;
-        img {
-          width: 45px;
-          height: 45px;
-          margin: auto;
-        }
+    }
+    .followers_container {
+      height: 45px;
+      width: 90%;
+      margin: 8px auto;
+    }
+    .profile_pic_follow {
+      width: 45px;
+      height: 45px;
+      border: 2px solid;
+      float: left;
+      display: inline-block;
+      img {
+        width: 100%;
+        height: 100%;
+        margin: auto;
       }
-      #follow_link {
-        display: inline-block;
-        margin-left: 8px;
-        width: 60%;
-        line-height: 50px;
-        p {
-          text-align: center;
-          font-family: $font;
-          font-size: 18px;
-          margin: 0;
-        }
+    }
+    .follow_link {
+      display: inline-block;
+      margin-left: 8px;
+      width: 60%;
+      line-height: 50px;
+      p {
+        text-align: center;
+        font-family: $font;
+        font-size: 18px;
+        margin: 0;
       }
     }
     #adds {
-      width: 60%;
+      width: 62%;
       height: 80%;
       margin-top: 20px;
-      border: 1px solid;
       float: right;
       overflow: hidden;
-      #add_image_form,
-      #add_image_title,
-      #add_image_field {
-        margin: auto;
-      }
+      background-color: #ecf0f1;
+      #top_of_adds {
+        height: 50%;
+        width: 100%;
+        #add_image_form,
+        #add_image_title,
+        #add_image_field {
+          margin: auto;
+        }
+        #add_image_title p{
+          font-family: $font;
+          font-size: 30px;
+          text-align: center;
+          margin: 0;
+          margin-top: 5px;
+        }
+        #add_image_title p:last-child {
+          font-size: 18px;
+        }
+        #add_image_form,
+        #add_image_field {
+          margin-top: 20px;
+          display: inline-block;
 
-    }
+        }
+        #add_image_form{
+          width: 50%;
+          float: left;
+          margin-left: 50px;
+        }
+      }
+      #user_images_container {
+        height: 50%;
+        width: 100%;
+        #user_images {
+          width: 90%;
+          height: 75%;
+          border: 1px solid;
+          margin: 10px auto;
+          background-color: white;
+        }
+      }
+    } // #adds
   } // right_column
 }
-
-
-// #bottom_links{
-//   clear: all;
-//   text-align: center;
-//   margin-left: -205px;
-//   margin-top: 100px;
-// }
-
-
-#add_an_image{
-  width: 450px;
-/*  border: 1px solid;
-*/  margin-left: -150px;
-  margin-top: 40px;
-}
-
-form#new_image input:last-child{
-  margin-left: 50px;
-  margin-top: 5px;
-}
-
 
