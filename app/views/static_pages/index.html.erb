@@ -4,21 +4,21 @@
 
   <div id='map_filter_container'>
     <div class="filter_containers">
-      <div class="filter_buttons"></div>
+      <div id='you' class="filter_buttons"></div>
       <div class="filter_texts">
-        <p>Show Friends</p>
+        <p>You</p>
       </div>
     </div><!-- 1 -->
     <div class="filter_containers">
-      <div class="filter_buttons"></div>
+      <div id='friends' class="filter_buttons"></div>
       <div class="filter_texts">
-        <p>Show Yours</p>
+        <p>Friends</p>
       </div>
     </div> <!-- 2 -->
     <div class="filter_containers">
-      <div class="filter_buttons"></div>
+      <div id='everyone' class="filter_buttons"></div>
       <div class="filter_texts">
-        <p>Show All</p>
+        <p>Everyone</p>
       </div>
     </div> <!-- 3 -->
 
@@ -28,3 +28,28 @@
   </div> <!-- #map_container -->
 
 </div>
+
+
+<% if current_user %>
+
+  <div id="current_user"></div>
+
+  <% @you_images.each do |image| %>
+    <div class="you_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<%= image.lat %>" data-long="<%= image.long %>"></div>
+  <% end %>
+
+  <% @friends_images.each do |image| %>
+    <div class="friends_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<%= image.lat %>" data-long="<%= image.long %>"></div>
+  <% end %>
+
+  <% @everyone_images.each do |image| %>
+    <div class="everyone_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<%= image.lat %>" data-long="<%= image.long %>"></div>
+  <% end %>
+
+<% else %>
+
+  <% @everyone_images.each do |image| %>
+    <div class="everyone_image" data-caption="<%= image.caption %>" data-image="<%= image.url %>" data-lat="<%= image.lat %>" data-long="<%= image.long %>"></div>
+  <% end %>
+
+<% end %>

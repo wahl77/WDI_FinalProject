@@ -21,4 +21,5 @@ RailsProject::Application.routes.draw do
   get "follow/:id" => 'users#add_follower', :as => "follow"
 
   post '/search' => 'images#search', as: :search
+  match 'static_pages/find_images' => 'static_pages#find_images', as: :static_pages_find_images
 end

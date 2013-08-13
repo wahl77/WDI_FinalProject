@@ -59,4 +59,9 @@ $font_weight: 100;
       font-weight: $font_weight;
     }
   }
+
+  .active {
+    background-color: rgba(189, 195, 199,1.0);
+    border: 5px solid rgba(149, 165, 166,1.0);
+  }
 }

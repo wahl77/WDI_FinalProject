@@ -3,7 +3,8 @@ class Image < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true
   belongs_to :user
 
-  mount_uploader :url, ImageUploader
+  # commented out to run rake db:seed
+  # mount_uploader :url, ImageUploader
 
   # after_create :extract_exif_info
 
@@ -11,9 +12,11 @@ class Image < ActiveRecord::Base
   # Define what in a picture is searchable. For the time being,
   # only caption is searchable. Future versions may want to include
   # a range of some sort.
-  searchable do
-    text :caption
-  end
+
+  # commented this out because it was giving me an error message
+  # searchable do
+  #   text :caption
+  # end
 
   # This methods allows to search for other photos with a similar caption.
   def self.caption_search(query)
@@ -26,7 +29,11 @@ class Image < ActiveRecord::Base
   # The following method gets the GPS data from the picture if any and stores it alongside
   # the picture for any furter usage. This happens only after the picture saved as not
   # all pictures contain the information.
+
+  # commented out to run rake db:seed
   # def extract_exif_info
+
+  #   commented this out to run the seed file
   #   img = Magick::Image.read(File.join(Rails.root, "public", self.url.url))[0]
 
   #   return unless img
