@@ -21,4 +21,8 @@ RailsProject::Application.routes.draw do
   get "follow/:id" => 'users#add_follower', :as => "follow"
 
   post '/search' => 'images#search', as: :search
+
+  get '/choose_location/:id' => 'static_pages#index', :as => "choose_location"
+
+  post '/save_location' => 'images#save_location'
 end

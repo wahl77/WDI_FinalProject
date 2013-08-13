@@ -62,7 +62,7 @@ $(document).ready(function() {
         // These are the images for the photo display
         // Store the image url and caption in an array
         'images': [
-          ['http://i.imgur.com/O6QEpBs.jpg','Baby The U.S. Capitol after the burning of Washington during the War of 1812'],
+          ['http://i.imgur.com/O6QEpBs.jpg','Baby christina U.S. Capitol after the burning of Washington during the War of 1812'],
           ['http://i.imgur.com/xND1MND.jpg','Ford\'s Theatre in the 19th century, site of the 1865 assassination of President Lincoln'],
           ['http://i.imgur.com/EKJmqui.jpg','The National Cherry Blossom Festival is celebrated around the city each spring.']
         ]
@@ -92,7 +92,6 @@ $(document).ready(function() {
     }
 
     // Create custom popup content
-    // Christina: attempting to set the value of the form to the caption of the picture, but not working for some reason. Form DOES submit a search properly when value is hard-coded, though.
     var popupContent =
       '<div id="' + feature.properties.id + '" class="popup">' +
         '<h2>' + feature.properties.title + '</h2>' +
@@ -132,6 +131,81 @@ $(document).ready(function() {
   };
   depress_button();
 
+  // christina's code:
+
+  $('body').on('click', '#search_insights', function(){
+     $.ajax({
+       type: "POST",
+       url: '/search',
+       data: { search: $('.slideshow .image.active .caption').text() },
+       dataType: "json"
+     }).done(add_markers);
+  });
+
+  var add_markers = function(response) {
+    markers = []
+
+    for (var i = 0; i < response.length; ++i){
+      var longitude = response[i].long;
+      var lat = response[i].lat;
+      markers.push(
+      {
+        type: 'Feature',
+        "geometry": {
+          "type": "Point",
+          // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
+          "coordinates": [longitude, lat]
+        },
+        // This is for a custom marker on the map
+        "properties": {
+          'title': 'When I...',
+          'icon': {
+            "iconUrl": response[i].url.url,
+            "iconSize": [50, 50], // size of the icon
+            "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+            "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
+          },
+          // These are the images for the photo display
+          // Store the image url and caption in an array
+          'images': [
+            [response[i].url.url, response[i].caption],
+          ]
+        }
+      }) // End marker object
+    }
+    map.markerLayer.setGeoJSON(markers);
+
+  };
+
+  if(window.location.href.indexOf("location") > -1) {
+    map.on('locationfound', function(e) {
+        map.fitBounds(e.bounds);
+        map.setView([e.latlng.lat, e.latlng.lng], 12);
+        var marker = L.marker(new L.LatLng(e.latlng.lat, e.latlng.lng), {
+          icon: L.mapbox.marker.icon({'marker-color': 'CC0033', }),
+          draggable: true
+        });
+        marker.bindPopup('<button> Save Your Location </button>')
+        marker.addTo(map);
+        $('body').on('click', '.leaflet-popup-content-wrapper', function(){
+          $.ajax({
+            type: "POST",
+            url: '/save_location',
+            data: { lat: marker._latlng.lat, lng: marker._latlng.lng, url: window.location.href },
+          }).done(notify_saved);
+        });
+        var notify_saved = function() {
+          $('.leaflet-popup-content').text('Location Saved!')
+        };
+    });
+
+  }
+
 });
 
+// 1) set location in routes
+// 2) set controller action
+// 3) splice by "/"
+// 4) find image id and save lat and long
+// 5) redirect to home
 

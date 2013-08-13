@@ -4,20 +4,6 @@
 
 $(document).ready(function() {
 
- $('body').on('click', '#search_insights', function(){
-      $.ajax({
-        type: "POST",
-        url: '/search',
-        data: { search: $('.slideshow .image.active .caption').text() },
-        dataType: "json"
-      }).done(add_markers);
-  });
-
-  var add_markers = function(response) {
-    console.log(response.length)
-    for (var i = 0; i <= response.length; i++) {
-      console.log(response[i][0].caption)
-    };
-  };
 
 });
+

@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#editing_insight.hidden{
+  display: none
+}
+
 #main_user_profile_div{
   margin-top: 30px;
   margin-left: auto;

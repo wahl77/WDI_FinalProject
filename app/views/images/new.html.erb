@@ -1,24 +1,38 @@
 <div id= "background">
 
-  <div id= "editing_image">
+  <div id= "editing_image" data= "<%= @image.id %>">
     <%= image_tag @image.url %>
   </div>
 
+<!--   <a href="#" onclick="return launchEditor('#editing_image>img',
+      'http://example.com/public/images/goat.jpg');">Edit!</a>
+ -->
 
-  **Figure out how to update edited image** </br>
-
+<!--  Tom puts logic for user to select location on map. And whatever the user selects gets submitted as a hidden_field_tag with the lat and long of the photo. Need to either make sure the lat and long is mandatory or tell the user that if they dont put it in, their photo wont show up on the map. aka they are a loser.
+ -->
 
   <div class ="photo_editing_text">
-    <%= form_tag(update_image_url) do |f| %>
+    When I...<span id= "display_caption">
+      <%= @image.caption if !@image.caption.nil? %>
+    </span>
+    <%= form_tag(update_image_url, :remote => true ) do |f| %>
       <%= hidden_field_tag :image_id, @image.id %>
-      <%= label_tag "This is where" %> I realized...
       <%= text_field_tag :caption %>
-      <%= submit_tag "Save Your Contribution" %>
+      <%= submit_tag "Save Your Insight" %>
     <% end %>
+    <button id= "editing_insight" class= "hidden"> Edit Your Insight </button>
     </br>
 
-    LOCATION: Option to select where on the map it was taken IF Franky's doesnt work.
+    Where was this photo taken?
+    <%= link_to "Choose Location", choose_location_url(@image.id) %>
   </div>
 
 </div>
 
+<script>
+  $('#editing_insight').on('click', function(){
+    $('.photo_editing_text form').show();
+    $(this).addClass('hidden');
+  });
+
+</script>
