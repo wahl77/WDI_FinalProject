@@ -294,8 +294,9 @@ $(document).ready(function(){
 
   };
 
-  if(window.location.href.indexOf("location") > -1) {
+  if(window.location.href.indexOf("map_location") > -1) {
     map.on('locationfound', function(e) {
+        console.log("HEY");
         map.fitBounds(e.bounds);
         map.setView([e.latlng.lat, e.latlng.lng], 12);
         var marker = L.marker(new L.LatLng(e.latlng.lat, e.latlng.lng), {
@@ -315,7 +316,6 @@ $(document).ready(function(){
           $('.leaflet-popup-content').text('Location Saved!')
         };
     });
-
   }
 
 

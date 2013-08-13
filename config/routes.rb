@@ -22,7 +22,9 @@ RailsProject::Application.routes.draw do
 
   post '/search' => 'images#search', as: :search
 
-  get '/choose_location/:id' => 'static_pages#index', :as => "choose_location"
+  get '/choose_location/:id' => 'images#choose_image_location', :as => "choose_location"
+
+  get '/map_location/:id' => 'static_pages#index', :as => "map_location"
 
   post '/save_location' => 'images#save_location'
 
