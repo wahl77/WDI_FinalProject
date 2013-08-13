@@ -142,42 +142,6 @@ $(document).ready(function(){
   } // end of markers function
 
 
-  // // geoJson is the content of the marker icon and the images inside.  This is where we'll dynamically interact with them.
-  // // 'search_insights' click returns an array of JSON objects that represents each photo and their respective conntent
-  // $('body').on('click', '#search_insights', function(){
-  //   $.ajax({
-  //     type: "POST",
-  //     url: '/search',
-  //     data: { search: $('.slideshow .image.active .caption').text() },
-  //     dataType: "json"
-  //   }).done(add_markers);
-  // });
-
-  // var marker = [];
-
-  // var add_markers = function(response) {
-  //   for (var i = 0; i <= json_response.length; i++)
-  //     marker.push({
-  //       type: 'Feature',
-  //       "geometry": {
-  //         "type": "Point",
-  //       // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
-  //       "coordinates": [json_response[i].long, json_response[i].lat]
-  //       },
-  //       "properties": {
-  //         'title': 'When I... I realized...',
-  //       'icon': {
-  //         "iconUrl": json_response[i].url[0],
-  //       "iconSize": [50, 50], // size of the icon
-  //       "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
-  //       "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
-  //       },
-  //       'images': [
-  //       [json_response[i].url, json_response[i].caption]
-  //       ]
-  //       }
-  //     }); // close geoJson/marker.push
-  // };
 
   function map_set() {
     var geoJson = {
@@ -219,6 +183,7 @@ $(document).ready(function(){
             // '<a href="#" class="prev" >&laquo; Previous</a>' +
             // '<a href="#" class="next" >Next &raquo;</a>' +
           '</div>' +
+          '<button id="search_insights"> Search Similar Insights </button>'
         '</div>';
 
       // http://leafletjs.com/reference.html#popup
@@ -239,4 +204,48 @@ $(document).ready(function(){
     $('body').on('click', '.next', moveSlide);
 
   make_map();
+
+  $('body').on('click', '#search_insights', function(){
+       $.ajax({
+         type: "POST",
+         url: '/search',
+         data: { search: $('.slideshow .image.active .caption').text() },
+         dataType: "json"
+       }).done(add_markers);
+    });
+
+    var add_markers = function(response) {
+      markers = []
+
+      for (var i = 0; i < response.length; ++i){
+        var longitude = response[i].long;
+        var lat = response[i].lat;
+        markers.push(
+        {
+          type: 'Feature',
+          "geometry": {
+            "type": "Point",
+            // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
+            "coordinates": [longitude, lat]
+          },
+          // This is for a custom marker on the map
+          "properties": {
+            'title': 'When I...',
+            'icon': {
+              "iconUrl": response[i].url.url,
+              "iconSize": [50, 50], // size of the icon
+              "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+              "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
+            },
+            // These are the images for the photo display
+            // Store the image url and caption in an array
+            'images': [
+              [response[i].url.url, response[i].caption],
+            ]
+          }
+        }) // End marker object
+      }
+      map.markerLayer.setGeoJSON(markers);
+
+    };
 });
