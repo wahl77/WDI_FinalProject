@@ -1,11 +1,16 @@
+<!--   **Figure out how to update edited image** </br> -->
+
+
 <div id= "background">
 
   <div id= "editing_image">
     <%= image_tag @image.url %>
   </div>
 
+  <!-- *pass in ID!!!* -->
 
-  **Figure out how to update edited image** </br>
+ <!--  <a href="#" onclick="return launchEditor('#editing_image>img',
+      'http://example.com/public/images/goat.jpg');">Edit!</a> -->
 
 
   <div class ="photo_editing_text">
@@ -13,11 +18,15 @@
       <%= hidden_field_tag :image_id, @image.id %>
       <%= label_tag "This is where" %> I realized...
       <%= text_field_tag :caption %>
+      <% if @image.lat.nil? %>
+        <%= label_tag "Where was this taken?" %>
+        <p> Tom puts logic for user to select location on map. And whatever the user selects gets submitted as a hidden_field_tag with the lat and long of the photo. Need to either make sure the lat and long is mandatory or tell the user that if they dont put it in, their photo wont show up on the map. aka they are a loser.</p>
+      <% end %>
       <%= submit_tag "Save Your Contribution" %>
     <% end %>
     </br>
 
-    LOCATION: Option to select where on the map it was taken IF Franky's doesnt work.
+
   </div>
 
 </div>

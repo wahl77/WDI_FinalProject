@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
     respond_to do |format|
       format.html {
         if user
-          redirect_to root_path, notice: "Logged in"
+          redirect_to root_path #, notice: "Logged in"
         else
-          redirect_to root_path, alert: "Email or password invalid"
+          redirect_to root_path #, alert: "Email or password invalid"
         end
       }
       format.js { render layout: false }
