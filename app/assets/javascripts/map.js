@@ -8,7 +8,6 @@ $(document).ready(function(){
       map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false }).setView([position.coords.latitude, position.coords.longitude], 12);
       new L.Control.Zoom({ position: 'topright' }).addTo(map);
       map.addLayer(L.tileLayer('http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg'));
-      L.imageOverlay('.jpg').addTo(map);
 
 
       // Wait for callback to be finshed
@@ -215,47 +214,47 @@ $(document).ready(function(){
 
   make_map();
 
-  $('body').on('click', '#search_insights', function(){
-       $.ajax({
-         type: "POST",
-         url: '/search',
-         data: { search: $('.slideshow .image.active .caption').text() },
-         dataType: "json"
-       }).done(add_markers);
-    });
+  // $('body').on('click', '#search_insights', function(){
+  //      $.ajax({
+  //        type: "POST",
+  //        url: '/search',
+  //        data: { search: $('.slideshow .image.active .caption').text() },
+  //        dataType: "json"
+  //      }).done(add_markers);
+  //   });
 
-    var add_markers = function(response) {
-      markers = []
+  //   var add_markers = function(response) {
+  //     markers = []
 
-      for (var i = 0; i < response.length; ++i){
-        var longitude = response[i].long;
-        var lat = response[i].lat;
-        markers.push(
-        {
-          type: 'Feature',
-          "geometry": {
-            "type": "Point",
-            // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
-            "coordinates": [longitude, lat]
-          },
-          // This is for a custom marker on the map
-          "properties": {
-            'title': 'When I...',
-            'icon': {
-              "iconUrl": response[i].url.url,
-              "iconSize": [50, 50], // size of the icon
-              "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
-              "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
-            },
-            // These are the images for the photo display
-            // Store the image url and caption in an array
-            'images': [
-              [response[i].url.url, response[i].caption],
-            ]
-          }
-        }) // End marker object
-      }
-      map.markerLayer.setGeoJSON(markers);
+  //     for (var i = 0; i < response.length; ++i){
+  //       var longitude = response[i].long;
+  //       var lat = response[i].lat;
+  //       markers.push(
+  //       {
+  //         type: 'Feature',
+  //         "geometry": {
+  //           "type": "Point",
+  //           // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
+  //           "coordinates": [longitude, lat]
+  //         },
+  //         // This is for a custom marker on the map
+  //         "properties": {
+  //           'title': 'When I...',
+  //           'icon': {
+  //             "iconUrl": response[i].url.url,
+  //             "iconSize": [50, 50], // size of the icon
+  //             "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+  //             "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
+  //           },
+  //           // These are the images for the photo display
+  //           // Store the image url and caption in an array
+  //           'images': [
+  //             [response[i].url.url, response[i].caption],
+  //           ]
+  //         }
+  //       }) // End marker object
+  //     }
+  //     map.markerLayer.setGeoJSON(markers);
 
-    };
+  //   };
 });
