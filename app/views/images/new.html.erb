@@ -1,15 +1,12 @@
+<!--   **Figure out how to update edited image** </br> -->
+
+
 <div id= "background">
 
   <div id= "editing_image" data= "<%= @image.id %>">
     <%= image_tag @image.url %>
   </div>
 
-<!--   <a href="#" onclick="return launchEditor('#editing_image>img',
-      'http://example.com/public/images/goat.jpg');">Edit!</a>
- -->
-
-<!--  Tom puts logic for user to select location on map. And whatever the user selects gets submitted as a hidden_field_tag with the lat and long of the photo. Need to either make sure the lat and long is mandatory or tell the user that if they dont put it in, their photo wont show up on the map. aka they are a loser.
- -->
 
   <div class ="photo_editing_text">
     When I...<span id= "display_caption">
@@ -18,7 +15,11 @@
     <%= form_tag(update_image_url, :remote => true ) do |f| %>
       <%= hidden_field_tag :image_id, @image.id %>
       <%= text_field_tag :caption %>
-      <%= submit_tag "Save Your Insight" %>
+      <% if @image.lat.nil? %>
+        <%= label_tag "Where was this taken?" %>
+        <p> Tom puts logic for user to select location on map. And whatever the user selects gets submitted as a hidden_field_tag with the lat and long of the photo. Need to either make sure the lat and long is mandatory or tell the user that if they dont put it in, their photo wont show up on the map. aka they are a loser.</p>
+      <% end %>
+      <%= submit_tag "Save Your Contribution" %>
     <% end %>
     <button id= "editing_insight" class= "hidden"> Edit Your Insight </button>
     </br>

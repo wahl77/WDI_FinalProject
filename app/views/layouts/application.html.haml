@@ -25,7 +25,7 @@
       #nav_logout
         %p=link_to 'Logout', :logout
       #nav_as
-        %p=link_to "Logged in as #{current_user.username}", user_path(current_user)
+        %p=link_to "#{current_user.username}'s profile", user_path(current_user)
     - else
       #nav_signup
         %p=link_to 'Sign Up', new_user_path, :remote => true
@@ -38,14 +38,18 @@
       .vertical_offset
         .modal_box
 
+  #user_show_modal
+    .user_show_wrap
+      .user_show_modal_overlay
+      .user_show_offset
+        .user_show_modal_box
+
   = yield
 
 
   / = render "aboutmodal"
 
   %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"}
-
-
   %script{:src => "http://cdn.leafletjs.com/leaflet-0.6.3/leaflet.js"}
   %script{:src => "//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js"}
   %script{:src => "http://feather.aviary.com/js/feather.js"}

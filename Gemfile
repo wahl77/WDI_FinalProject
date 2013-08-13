@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'haml-rails'
-gem 'rmagick'
+gem 'rmagick', '2.13.2'
 gem 'carrierwave'
 gem 'sorcery'
 gem 'sunspot_rails'

@@ -1,38 +1,108 @@
-$(document).ready(function() {
+$(document).ready(function(){
 
-  function geolocate() {
-    if (navigator.geolocation) {
-      console.log(navigator.geolocation);
-      map.locate();
+  var map;
+
+  function make_map() {
+    var show_pos = function(position){
+      console.log(position);
+      map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false }).setView([position.coords.latitude, position.coords.longitude], 12);
+      // Wait for callback to be finshed
+      map_set();
     };
-  };
 
-  // defines the map and the 'type' of map.  Here is where we can change the look of the map
-  var map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false });
+    var show_error = function(){
+      map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false });
+      // Wait for callback to be finshed
+      map_set();
+    };
 
-  // moves the zoom controls the right side; defaults to 'topleft' if this line is left off.
-  new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
-  map.on('locationfound', function(e) {
-      map.fitBounds(e.bounds);
-      map.setView([e.latlng.lat, e.latlng.lng], 12);
-  });
+    // Get current location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(show_pos, show_error);
+    }
+    else {
+      map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false });
 
-  // This example uses jQuery to make selecting items in the slideshow easier.
-  // Download it from http://jquery.com
+      // Wait for callback to be finshed
+      map_set();
+    }
+  }
+
+
+
+  // Make sure you call this once the map set and displays on screen
+  // var map_set = function(){
+  //   // moves the zoom controls the right side; defaults to 'topleft' if this line is left off.
+  //   new L.Control.Zoom({ position: 'topright' }).addTo(map);
+  //   // ******* Section that adds photos to the popups *************
+
+  //   // Add custom popup html to each marker
+  //   // And sets the custom marker for each marker based on the feature properties
+  //   map.markerLayer.on('layeradd', function(e) {
+  //     var marker = e.layer;
+  //     feature = marker.feature;
+
+  //     marker.setIcon(L.icon(feature.properties.icon));
+
+  //     var images = feature.properties.images;
+  //     var slideshowContent = '';
+
+
+  //     for(var i = 0; i < images.length; i++) {
+  //       var img = images[i];
+
+  //       slideshowContent +=
+  //       '<div class="image' + (i === 0 ? ' active' : '') + '">' +
+  //       '<img src="' + img[0] + '" />' +
+  //       '<div class="caption">' + img[1] + '</div>' +
+  //       '</div>';
+  //     }
+
+  //     // Create custom popup content
+  //     // Christina: attempting to set the value of the form to the caption of the picture, but not working for some reason. Form DOES submit a search properly when value is hard-coded, though.
+  //     var popupContent =
+  //       '<div id="' + feature.properties.id + '" class="popup">' +
+  //       '<h2>' + feature.properties.title + '</h2>' +
+  //       '<div id="makeMeScrollable" class="slideshow">' + slideshowContent + '</div>' +
+  //       '<div class="cycle">' +
+  //       '<a href="#" class="prev" >&laquo; Previous</a>' +
+  //       '<a href="#" class="next" >Next &raquo;</a>' +
+  //       '</div>' +
+  //       '<button id="search_insights"> Search Similar Insights </button>'
+  //       '</div>';
+
+
+
+  //     // http://leafletjs.com/reference.html#popup
+  //     marker.bindPopup(popupContent,{
+  //       closeButton: false,
+  //       minWidth: 320
+  //     });
+
+  //   });
+
+
+  //   map.markerLayer.setGeoJSON(geoJson);
+  //   map.markerLayer.setGeoJSON(geoJson2);
+  //   depress_button();
+  // };
+
+  //  This example uses jQuery to make selecting items in the slideshow easier.
+  //  Download it from http://jquery.com
   var moveSlide = function(direction) {
     var $slideshow = $('.slideshow'),
-      totalSlides = $slideshow.children().length;
+        totalSlides = $slideshow.children().length;
 
     if (direction === 'prev') {
       var $newSlide = $slideshow.find('.active').prev();
       if ($newSlide.index() < 0) {
-          $newSlide = $('.image').last();
+        $newSlide = $('.image').last();
       }
     } else {
       var $newSlide = $slideshow.find('.active').next();
       if ($newSlide.index() < 0) {
-          $newSlide = $('.image').first();
+        $newSlide = $('.image').first();
       }
     }
 
@@ -41,6 +111,7 @@ $(document).ready(function() {
     return false;
   }; // close moveSlide
 
+  // ************ dynamically creating the geoJson objects to render multiple markers and images in each popup **************
 
   // geoJson is the content of the marker icon and the images inside.  This is where we'll dynamically interact with them.
   var geoJson = [{
@@ -69,67 +140,200 @@ $(document).ready(function() {
       }
   }]; // close geoJson
 
-  // Add custom popup html to each marker
-  // And sets the custom marker for each marker based on the feature properties
-  map.markerLayer.on('layeradd', function(e) {
-    var marker = e.layer;
-      feature = marker.feature;
 
-    marker.setIcon(L.icon(feature.properties.icon));
+  // map filter logic starts here
 
-    var images = feature.properties.images;
-    var slideshowContent = '';
+  // these are the map filter buttons
+  var you_button = $('#you');
+  var friends_button = $('#friends');
+  var everyone_button = $('#everyone');
+  var filter_buttons = $('.filter_buttons');
 
+  // these are the divs on the homepage that dynamically pull data from the database
+  var you_image = $('.you_image');
+  var friends_image = $('.friends_image');
+  var everyone_image = $('.everyone_image');
+  var j = [];
 
-    for(var i = 0; i < images.length; i++) {
-      var img = images[i];
-
-      slideshowContent +=
-        '<div class="image' + (i === 0 ? ' active' : '') + '">' +
-          '<img src="' + img[0] + '" />' +
-          '<div class="caption">' + img[1] + '</div>' +
-        '</div>';
-    }
-
-    // Create custom popup content
-    var popupContent =
-      '<div id="' + feature.properties.id + '" class="popup">' +
-        '<h2>' + feature.properties.title + '</h2>' +
-        '<div id="makeMeScrollable" class="slideshow">' + slideshowContent + '</div>' +
-        '<div class="cycle">' +
-          '<a href="#" class="prev" >&laquo; Previous</a>' +
-          '<a href="#" class="next" >Next &raquo;</a>' +
-        '</div>' +
-        '<button id="search_insights"> Search Similar Insights </button>'
-      '</div>';
+  // adds class active to css for you(if user logged in) and everyone (if no one is logged in)
+  // creates markers for each scenario
+  if ($('#current_user').length === 1) {
+    you_button.addClass('active');
+    createMarkers(you_image);
+    //map_set();
+  }
+  else {
+    everyone_button.addClass('active');
+    createMarkers(everyone_image);
+    //map_set()
+  }
 
 
+//    // Create custom popup content
+//    var popupContent =
+//      '<div id="' + feature.properties.id + '" class="popup">' +
+//        '<h2>' + feature.properties.title + '</h2>' +
+//        '<div id="makeMeScrollable" class="slideshow">' + slideshowContent + '</div>' +
+//        '<div class="cycle">' +
+//          '<a href="#" class="prev" >&laquo; Previous</a>' +
+//          '<a href="#" class="next" >Next &raquo;</a>' +
+//        '</div>' +
+//        '<button id="search_insights"> Search Similar Insights </button>'
+//      '</div>';
+//
+//
+//
+//    // http://leafletjs.com/reference.html#popup
+//    marker.bindPopup(popupContent,{
+//      closeButton: false,
+//      minWidth: 320
+//    });
+//
+  // Depending on which button you click, the following logic keeps the checkboxes gray when you click on them, empties out the markers that were there before, and creates new markers.
 
-    // http://leafletjs.com/reference.html#popup
-    marker.bindPopup(popupContent,{
-      closeButton: false,
-      minWidth: 320
-    });
+  friends_button.click(function() {
+    filter_buttons.removeClass('active');
+    friends_button.addClass('active');
+    j = [];
+    createMarkers(friends_image);
+    map_set();
+  });
 
+  everyone_button.click(function() {
+    filter_buttons.removeClass('active');
+    everyone_button.addClass('active');
+    j = [];
+    createMarkers(everyone_image);
+    map_set();
+  });
+
+  you_button.click(function() {
+    filter_buttons.removeClass('active');
+    you_button.addClass('active');
+    j = [];
+    createMarkers(you_image);
+    map_set();
   });
 
 
-  // Add features to the map
-  map.markerLayer.setGeoJSON(geoJson);
+  // creates markers after accepting the argument of which divs from the index page to pull data from (you, friends, or everyone)
 
-  // because 'prev' & 'next'/popup do not exist in the DOM yet, moveSlide doesn't work without a call on the body afterward.
-  $('body').on('click', '.prev', moveSlide);
-  $('body').on('click', '.next', moveSlide);
+  function createMarkers(div) {
+    div.each(function() {
+      j.push({
+        type: 'Feature',
+        "geometry": {
+          "type": "Point",
+          // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
+          "coordinates": [this['dataset']['long'], this['dataset']['lat']]
+          //[$(this).data('data-long'), $(this).data('data-lat')]
+        }, // close geometry
+        // This is for a custom marker on the map
+        "properties": {
+          "title": "This is where I realized . . .",
+          "icon": {
+            "iconUrl": this['dataset']['image'],
+            "iconSize": [50, 50], // size of the icon
+            "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+            "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
+          },
+          // These are the images for the photo display
+          // Store the image url and caption in an array
+          "images": [this['dataset']['image'], this['dataset']['caption']]
+        }, //close properties
+      }); // close push
+    }); //close you_images function
 
-  geolocate();
 
-  // toggles the class on the filter buttons so that when they are clicked they look 'depressed', similarly when they are unclicked
-  var depress_button = function() {
-    $('.filter_buttons').click(function() {
-      $(this).toggleClass('clicked');
+
+
+  } // end of markers function
+
+
+  // // geoJson is the content of the marker icon and the images inside.  This is where we'll dynamically interact with them.
+  // // 'search_insights' click returns an array of JSON objects that represents each photo and their respective conntent
+  // $('body').on('click', '#search_insights', function(){
+  //   $.ajax({
+  //     type: "POST",
+  //     url: '/search',
+  //     data: { search: $('.slideshow .image.active .caption').text() },
+  //     dataType: "json"
+  //   }).done(add_markers);
+  // });
+
+  // var marker = [];
+
+  // var add_markers = function(response) {
+  //   for (var i = 0; i <= json_response.length; i++)
+  //     marker.push({
+  //       type: 'Feature',
+  //       "geometry": {
+  //         "type": "Point",
+  //       // of note:  for some reason that lat/long need to be reversed here such that it is long/lat
+  //       "coordinates": [json_response[i].long, json_response[i].lat]
+  //       },
+  //       "properties": {
+  //         'title': 'When I... I realized...',
+  //       'icon': {
+  //         "iconUrl": json_response[i].url[0],
+  //       "iconSize": [50, 50], // size of the icon
+  //       "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+  //       "popupAnchor": [0, -25]  // point from which the popup should open relative to the iconAnchor
+  //       },
+  //       'images': [
+  //       [json_response[i].url, json_response[i].caption]
+  //       ]
+  //       }
+  //     }); // close geoJson/marker.push
+  // };
+
+  function map_set() {
+    var geoJson = {
+      type: 'FeatureCollection',
+      features: j
+    };
+
+    // Add custom popup html to each marker
+    // And sets the custom marker for each marker based on the feature properties
+    map.markerLayer.on('layeradd', function(e) {
+      var marker = e.layer;
+      feature = marker.feature;
+
+      marker.setIcon(L.icon(feature.properties.icon));
+
+      var images = feature.properties.images;
+      var slideshowContent = '';
+      // ********* All of our function calls: ***********
+
+      // Add features to the map and sets each geoJson object
+
+      for(var i = 0; i < images.length; i++) {
+        var img = images[i];
+
+        slideshowContent +=
+          '<div class="image' + (i === 0 ? ' active' : '') + '">' +
+            '<img src="' + img[0] + '" />' +
+            '<div class="caption">' + img[1] + '</div>' +
+          '</div>';
+      }
+
+      // Create custom popup content
+      var popupContent =
+        '<div id="' + feature.properties.id + '" class="popup">' +
+          '<h2>' + feature.properties.title + '</h2>' +
+          '<div class="slideshow">' + slideshowContent + '</div>' +
+          '<div class="cycle">' +
+            '<a href="#" class="prev" >&laquo; Previous</a>' +
+            '<a href="#" class="next" >Next &raquo;</a>' +
+          '</div>' +
+        '</div>';
+
+      // http://leafletjs.com/reference.html#popup
+      marker.bindPopup(popupContent,{
+        closeButton: false,
+        minWidth: 320
+      });
     });
-  };
-  depress_button();
 
   // christina's code:
 
@@ -201,7 +405,6 @@ $(document).ready(function() {
 
   }
 
-});
 
 // 1) set location in routes
 // 2) set controller action
@@ -209,3 +412,13 @@ $(document).ready(function() {
 // 4) find image id and save lat and long
 // 5) redirect to home
 
+    // Add features to the map
+    map.markerLayer.setGeoJSON(geoJson);
+  }
+
+    // because 'prev' & 'next'/popup do not exist in the DOM yet, moveSlide doesn't work without a call on the body afterward.
+    $('body').on('click', '.prev', moveSlide);
+    $('body').on('click', '.next', moveSlide);
+
+  make_map();
+});
