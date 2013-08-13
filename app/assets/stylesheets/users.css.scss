@@ -3,6 +3,10 @@ $font: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
 $font_size: 60px;
 $font_weight: 100;
 
+#editing_insight.hidden{
+  display: none
+}
+
 #main_user_profile_div{
   margin: 30px auto;
   width: 90%;

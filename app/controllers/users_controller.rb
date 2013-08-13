@@ -17,8 +17,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @image = Image.new
     @users = User.all
-    # @users.delete(current_user.followingUsers)
-    # @users.delete(current_user)
 
     respond_to do |format|
       format.html # show.html.erb

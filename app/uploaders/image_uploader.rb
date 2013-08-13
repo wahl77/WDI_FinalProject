@@ -10,16 +10,15 @@ class ImageUploader < FileUploader
   # end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
   #
-  # def scale(width, height)
+  def scale(width, height)
   #   # do something
-  # end
+  end
 
   # Create different versions of your uploaded files:
-  version :thumb do
+   version :thumb do
     process :scale => [50, 50]
-  end
+   end
 
   version :profile_pic do
     process :resize_to_limit => [310, 310]
