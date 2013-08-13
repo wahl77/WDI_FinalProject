@@ -6,12 +6,20 @@ $(document).ready(function(){
     var show_pos = function(position){
       console.log(position);
       map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false }).setView([position.coords.latitude, position.coords.longitude], 12);
+      new L.Control.Zoom({ position: 'topright' }).addTo(map);
+      map.addLayer(L.tileLayer('http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg'));
+      L.imageOverlay('.jpg').addTo(map);
+
+
       // Wait for callback to be finshed
       map_set();
     };
 
     var show_error = function(){
       map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false });
+      new L.Control.Zoom({ position: 'topright' }).addTo(map);
+      map.addLayer(L.tileLayer('http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg'));
+
       // Wait for callback to be finshed
       map_set();
     };
@@ -23,6 +31,8 @@ $(document).ready(function(){
     }
     else {
       map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false });
+      new L.Control.Zoom({ position: 'topright' }).addTo(map);
+      map.addLayer(L.tileLayer('http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg'));
 
       // Wait for callback to be finshed
       map_set();

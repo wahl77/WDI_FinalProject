@@ -8,6 +8,8 @@ $font_weight: 100;
   bottom:0;
   width:100%;
   z-index: -1;
+  -webkit-filter: hue-rotate(340deg);
+  -webkit-filter: contrast(1.4);
 }
 
 #map_filter_container {
