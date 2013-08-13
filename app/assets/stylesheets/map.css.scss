@@ -1,4 +1,4 @@
-$navbar_color: gray;
+$navbar_color: #5C3317;
 $font: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
 $font_weight: 100;
 
@@ -48,8 +48,8 @@ $font_weight: 100;
 
   .clicked,
   .filter_buttons:hover {
-    background-color: #7f8c8d;
-    border: 3px solid #2c3e50;
+    background-color: #D98719;
+    border: 3px solid #5C3317;
   }
   .filter_texts {
     height: 49px;
@@ -63,7 +63,7 @@ $font_weight: 100;
   }
 
   .active {
-    background-color: rgba(189, 195, 199,1.0);
-    border: 5px solid rgba(149, 165, 166,1.0);
+    background-color: #D98719;
+    border: 5px solid #5C3317;
   }
 }
