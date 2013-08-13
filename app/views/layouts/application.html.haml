@@ -25,7 +25,7 @@
       #nav_logout
         %p=link_to 'Logout', :logout
       #nav_as
-        %p=link_to "#{current_user.username}'s profile", user_path(current_user)
+        %p=link_to "#{current_user.username}'s profile", user_path(current_user), :remote => true
     - else
       #nav_signup
         %p=link_to 'Sign Up', new_user_path, :remote => true

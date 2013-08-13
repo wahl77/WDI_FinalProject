@@ -4,7 +4,7 @@ class Image < ActiveRecord::Base
   belongs_to :user
 
   # commented out to run rake db:seed
-  # mount_uploader :url, ImageUploader
+  mount_uploader :url, ImageUploader
 
   # after_create :extract_exif_info
 

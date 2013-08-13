@@ -80,4 +80,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  # def get_image_cover_photo
+  #   if cover_photo
+  #     return cover_photo.image_url(:cover).to_s
+  #   else
+  #     return "/assets/cover2-resized.jpg"
+  #   end
+  # end
+
 end

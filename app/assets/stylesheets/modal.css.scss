@@ -2,16 +2,22 @@ $font: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
 $font_weight: 100;
 
 // shows/hides
-.modal_wrap {
+.modal_wrap,
+.user_show_wrap {
   display:none; /* starts out hidden */
-  z-index:40001;
+  z-index:2000;
   position: absolute;
   left:50%;
   margin-left:-350px;
 }
+.user_show_wrap {
+  margin-left: 30px;
+  left: 0;
+}
 
 // Shades out background when selector is active
-.modal_overlay {
+.modal_overlay,
+.user_show_modal_overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -22,14 +28,20 @@ $font_weight: 100;
   z-index: 10;
 }
 
-.vertical-offset {
+.vertical-offset,
+.user_show_offset {
   position: fixed;
   top: 10%;
   width: 100%;
-  z-index: 40002;
+  z-index: 2002;
 }
 
-.modal_box {
+.user_show_offset {
+  top: 5%;
+  left: 0;
+}
+.modal_box,
+.user_show_modal_box {
   width: 600px;
   height: 400px;
   position: relative;
@@ -53,14 +65,30 @@ $font_weight: 100;
       font-weight: $font_weight;
     }
   }
-
+}
+.user_show_modal_box {
+  width: 90%;
+  height: 575px;
+  padding: 0;
+  margin-top: -20px;
+  margin-left: -20px;
+  margin: 0 auto;
+  // overflow: hidden;
+  border: 3px solid white;
 }
 
 #close_modal {
   position: absolute;
   top: -12px;
   right: -12px;
-  z-index: 50;
+  z-index: 2500;
+}
+
+#close_modal_big {
+  position: absolute;
+  top: -15px;
+  right: -12px;
+  z-index: 2500;
 }
 
 .form_labels {

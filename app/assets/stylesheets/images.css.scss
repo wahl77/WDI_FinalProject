@@ -1,22 +1,115 @@
-// Place all the styles related to the images controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$font_color: white;
+$font: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
+$font_weight: 100;
 
-#editing_image>img{
-  width: 40%;
-  margin-left: 15%;
-  border: 6px solid #4A4A4A;
-  margin-top: 5%;
+#edit_image_main {
+  width: 100%;
+  height: 100%;
+  #edit_image_arrow_div {
+    width: 80px;
+    height: 100%;
+    float: left;
+    display: inline-block;
+    img {
+      margin-top: 225px;
+      margin-left: 20px;
+      opacity: 0.8;
+    }
+    img:hover {
+      opacity: 0.4;
+    }
+  }
+  #edit_image_left {
+    width: 400px;
+    height: 100%;
+    display: inline-block;
+    margin-left: 30px;
+    float: left;
+    border: 1px solid red;
+    #showing_image {
+      height: 350px;
+      width: 400px;
+      margin: 35px 0 35px 0;
+      overflow:hidden;
+      border: 1px solid;
+      img{
+        width: 90%;
+        margin: 25px;
+        border: 6px solid #4A4A4A;
+      }
+    }
+    #add_image_forms {
+      height: 160px;
+      width: 100%;
+      #add_image_forms_title {
+        width: 100%;
+        height: 30%;
+        p {
+          margin-top: 5px;
+          text-align: center;
+          font-family: $font;
+          font-size: 30px;
+          font-weight: $font-weight;
+        }
+      }
+      #add_image_field {
+        margin: 25px;
+        #add_image_form,
+        #add_image_button {
+          text-align: center;
+          margin: 10px auto;
+          display: block;
+        }
+        #add_image_form {
+          margin-left: 100px;
+        }
+      }
+    }
+  }
+  #edit_image_right {
+    width: 650px;
+    height: 100%;
+    margin-right: 35px;
+    float: right;
+    border: 1px solid red;
+    #right_title {
+      width: 100%;
+      margin: 20px 0 0 0;
+      p {
+        text-align: center;
+        font-family: $font;
+        font-weight: bold;
+        font-size: 80px;
+        margin: 20px auto;
+        border: 1px solid red;
+      }
+    }
+    #photo_editing_text {
+      width: 100%;
+      height: 400px;
+      background-color: #ecf0f1;
+      padding-top: 20px;
+      margin-top: -10px;
+      p {
+        font-family: $font;
+        font-weight: $font-weight;
+        font-size: 30px;
+        margin: 0 0 20px 50px;
+      }
+      #caption {
+        width: 500px;
+        height: 90px;
+        margin-left: 75px;
+      }
+    }
+  }
+
+
 }
 
-.photo_editing_text {
-  float: right;
-  width: 300px;
-  margin-top: -40px;
-  margin-right: 10%;
-}
-
-#background {
-  background-color: #F0F0F0;
-  height: 650px;
-}
+// .photo_editing_text {
+//   float: right;
+//   width: 300px;
+//   margin-top: -40px;
+//   margin-right: 10%;
+// }

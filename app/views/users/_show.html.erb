@@ -1,0 +1,130 @@
+<%= image_tag 'modal_close.png', :id=> 'close_modal_big' %>
+
+<div id="main_user_profile_div">
+
+  <div id="user_cover_pic">
+    <!-- <#%= image_tag current_user.get_image_cover_photo %> -->
+  </div>
+
+  <div id="left_column">
+    <div id = "user_profile_pic">
+      <%= image_tag current_user.get_image_profile_pic %>
+    </div>
+    <div id="username_show">
+      <p> <%= current_user.username.upcase %> </p>
+    </div>
+  </div>
+
+  <div id = "right_column">
+
+    <div id="edit_buttons">
+      <div id="edit_cover_pic">
+        <p>Edit Cover Photo</p>
+      </div>
+      <div id="edit_profile_pic">
+        <p>Edit Profile Photo</p>
+      </div>
+    </div>
+
+    <div id="following">
+      <% if current_user.followerUsers.count > 0 %>
+        <div id = "user_following">
+          <p class="following_title">Your Followers:</p><hr class="title_line">
+
+          <% @user.followerUsers.each do |follower| %>
+            <div class="followers_container">
+              <div class="profile_pic_follow">
+
+                <%= image_tag follower.get_image_thumb %>
+              </div>
+              <div class="follow_link">
+                <p><%= link_to follower.username , follow_url(follower.id), :remote => true  %></p>
+              </div>
+            </div>
+          <% end %>
+
+        </div> <!--user_following-->
+      <% end %>
+
+      <% if current_user.followingUsers.count > 0 %>
+        <div id="user_followers">
+          <p class="following_title">You are Following: </p><hr class="title_line">
+          <% @user.followingUsers.each do |following| %>
+          <div class="followers_container">
+            <div class="profile_pic_follow">
+              <%= image_tag following.get_image_thumb %>
+            </div>
+            <div class="follow_link">
+              <p><%= link_to following.username, follow_url(following.id), :remote => true  %></p>
+            </div>
+          </div>
+          <% end %>
+        </div> <!-- user_followers-->
+      <% end %>
+
+      <div id= "who_to_follow">
+        <p class="following_title">Suggested People to Follow:</p><hr class="title_line">
+        <% @users.each do |user| %>
+          <div id= "suggested_follow_names">
+            <div class="person_to_follow" id="<%= user.id %>">
+              <div class="profile_pic_follow">
+                <%= image_tag user.get_image_thumb %>
+              </div>
+              <div class="follow_link">
+                <p><%= link_to user.username, follow_url(user.id), :remote => true  %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div> <!-- who_to_follow-->
+
+    </div> <!--following -->
+
+    <div id="adds">
+      <div id="top_of_adds">
+
+        <div id="add_image_title">
+          <p>Add to Your Experiences</p>
+        </div>
+        <div id="move_right_arrow">
+          <%= image_tag 'arrow_right.png', :id => "arrow_right" %>
+        </div>
+      </div>
+
+      <div id="user_images_container">
+        <div id="user_images">
+          This is where all the user's images will go as a scroll...
+        </div>
+      </div>
+
+    </div> <!--adds-->
+
+  </div> <!-- right_column -->
+
+ <!--  <div id= "bottom_links"> Your Insights | Friends' Insights | All Insights </div> -->
+
+</div> <!-- main_user_profile_div-->
+
+<script>
+  var user_modal_box = $('.user_show_modal_box');
+  $('#close_modal_big, .user_show_modal_overlay').click(function() {
+    user_modal_box.empty();
+    $('.user_show_wrap').fadeOut('fast');
+  });
+
+  $('#arrow_right').on('click', function() {
+    user_modal_box.addClass('animated fadeOutRightBig');
+    setTimeout(function(){
+      user_modal_box.removeClass('fadeOutRightBig');
+      user_modal_box.addClass('fadeInRightBig');
+      user_modal_box.empty();
+      user_modal_box.append("<%= j render '/users/image' %>");
+    },700);
+  });
+</script>
+
+
+
+
+
+
