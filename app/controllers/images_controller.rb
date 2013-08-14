@@ -30,8 +30,9 @@ class ImagesController < ApplicationController
   end
 
   def choose_image_location
-    image = params[:image]
-    redirect_to root_url {render json: image}
+    @image = Image.find(params[:id])
+    @image.update_attributes(:lat => 35, :long => 102)
+    redirect_to map_location_url(@image.id)
   end
 
   def save_location

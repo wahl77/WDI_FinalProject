@@ -1,9 +1,15 @@
 // css for custom markers
 
-  .leaflet-marker-icon {
+  .leaflet-marker-pane>.leaflet-zoom-animated {
     border-radius: 10px;
-    // padding: 4px;
-    // // creates a gradient for the marker border
+    padding: 4px;
+    // creates a gradient for the marker border
+    background-color: #D98719;
+    opacity: .7;
+
+
+
+
     // background-image: linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
     // background-image: -o-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
     // background-image: -moz-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
@@ -18,6 +24,10 @@
     //   color-stop(0.7, rgb(195,198,201))
     // );
   }
+
+#unstyled {
+  background-color: rgba(255, 255, 255, 0.0);
+}
 
 // css for slideshow on markers
 .popup {

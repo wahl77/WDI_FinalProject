@@ -4,11 +4,29 @@ $(document).ready(function(){
 
   function make_map() {
     var show_pos = function(position){
-      console.log(position);
       map = L.mapbox.map('map_container', 'examples.map-uci7ul8p', { zoomControl: false }).setView([position.coords.latitude, position.coords.longitude], 12);
       new L.Control.Zoom({ position: 'topright' }).addTo(map);
       map.addLayer(L.tileLayer('http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg'));
 
+      if(window.location.href.indexOf("map_location") > -1){
+        var marker = L.marker(new L.LatLng(position.coords.latitude, position.coords.longitude), {
+                        icon: L.mapbox.marker.icon({'marker-color': 'CC0033','marker-symbol': 'star-stroked',}),
+                        draggable: true
+                    });
+        marker.bindPopup('<button> Save Your Location </button>');
+        marker.addTo(map);
+        $('body').find('img').css('src', "http://a.tiles.mapbox.com/v3/marker/pin-m-star-stroked+CC0033.png").attr('id', 'unstyled');
+        $('body').on('click', '.leaflet-popup-content-wrapper', function(){
+          $.ajax({
+            type: "POST",
+            url: '/save_location',
+            data: { lat: marker._latlng.lat, lng: marker._latlng.lng, url: window.location.href },
+          }).done(notify_saved);
+        });
+        var notify_saved = function() {
+          $('.leaflet-popup-content').text('Location Saved!');
+        };
+      }
 
       // Wait for callback to be finshed
       map_set();
@@ -294,29 +312,7 @@ $(document).ready(function(){
 
   };
 
-  if(window.location.href.indexOf("location") > -1) {
-    map.on('locationfound', function(e) {
-        map.fitBounds(e.bounds);
-        map.setView([e.latlng.lat, e.latlng.lng], 12);
-        var marker = L.marker(new L.LatLng(e.latlng.lat, e.latlng.lng), {
-          icon: L.mapbox.marker.icon({'marker-color': 'CC0033', }),
-          draggable: true
-        });
-        marker.bindPopup('<button> Save Your Location </button>')
-        marker.addTo(map);
-        $('body').on('click', '.leaflet-popup-content-wrapper', function(){
-          $.ajax({
-            type: "POST",
-            url: '/save_location',
-            data: { lat: marker._latlng.lat, lng: marker._latlng.lng, url: window.location.href },
-          }).done(notify_saved);
-        });
-        var notify_saved = function() {
-          $('.leaflet-popup-content').text('Location Saved!')
-        };
-    });
 
-  }
 
 
 // 1) set location in routes
