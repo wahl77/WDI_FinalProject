@@ -10,11 +10,12 @@ $(document).ready(function(){
 
       if(window.location.href.indexOf("map_location") > -1){
         var marker = L.marker(new L.LatLng(position.coords.latitude, position.coords.longitude), {
-                        icon: L.mapbox.marker.icon({'marker-color': 'CC0033'}),
+                        icon: L.mapbox.marker.icon({'marker-color': 'CC0033','marker-symbol': 'star-stroked',}),
                         draggable: true
                     });
         marker.bindPopup('<button> Save Your Location </button>');
         marker.addTo(map);
+        $('body').find('img').css('src', "http://a.tiles.mapbox.com/v3/marker/pin-m-star-stroked+CC0033.png").attr('id', 'unstyled');
         $('body').on('click', '.leaflet-popup-content-wrapper', function(){
           $.ajax({
             type: "GET",
