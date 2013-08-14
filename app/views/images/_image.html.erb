@@ -38,12 +38,13 @@
       <% end %>
     </div> <!-- photo_editing_text -->
 
-    <div>
-      <% if @image.lat.nil? %> <!-- check if image is saved -->
+    <div id= "choosing_location">
+      <% if @image && @image.lat.nil? %> <!-- check if image is saved and it has no location-->
         Where was this photo taken?
         <%= link_to "Choose Location", choose_location_url(@image.id) %>
       <% end %>
     </div>
+
   </div> <!-- edit_image_right -->
 
 </div> <!-- edit_image_main -->
