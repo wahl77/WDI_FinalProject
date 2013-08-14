@@ -10,23 +10,26 @@ class ImageUploader < FileUploader
   # end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
   #
-  # def scale(width, height)
+  def scale(width, height)
   #   # do something
-  # end
+  end
 
   # Create different versions of your uploaded files:
-  version :thumb do
+   version :thumb do
     process :resize_to_limit => [50, 50]
-  end
+   end
 
   version :profile_pic do
     process :resize_to_limit => [310, 310]
   end
 
   version :cover do
-    process :resize_to_limit => [1200, 300]
+    process :resize_to_limit => [1200, 210]
+  end
+
+  version :banner do
+    process :resize_to_limit => [125, 125]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
