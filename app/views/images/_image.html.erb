@@ -3,9 +3,9 @@
 <div id="edit_image_main">
 
   <div id="edit_image_arrow_div">
-    <%= link_to image_tag('arrow_left.png', :id => "arrow_left"), profile_path(current_user), :remote => true %>
-
-
+    <a href="profile/<%= current_user.id %>?from=modal" data-remote="true">
+      <%= image_tag("arrow_left.png", :id => "arrow_left") %>
+    </a>
   </div>
 
   <div id="edit_image_left">
@@ -21,19 +21,7 @@
       <div id="add_image_button">
         <p>add image</p>
       </div>
-
-      <div id="add_image_field">
-<!--           <div id="add_image_form">
-            <%#= form_for(@image, :url => new_image_url, :html_options => {:multipart => true}) do |f| %>
-              <%#= f.file_field :url %>
-          </div>
-          <div id="add_image_button">
-              <#= f.submit "Add Your Image" %>
-          <#% end %> -->
-<!--       </div> -->
-      </div>
-    </div>
-
+    </div> <!-- add_image_forms -->
   </div> <!-- edit_image_left -->
 
   <div id="edit_image_right">
