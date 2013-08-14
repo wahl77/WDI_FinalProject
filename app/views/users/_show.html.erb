@@ -55,28 +55,30 @@
               <%= image_tag following.get_image_thumb %>
             </div>
             <div class="follow_link">
-              <p><%= link_to following.username, follow_url(following.id), :remote => true  %></p>
+              <p><%= following.username %></p>
             </div>
           </div>
           <% end %>
         </div> <!-- user_followers-->
       <% end %>
 
-      <div id= "who_to_follow">
-        <p class="following_title">Suggested People to Follow:</p><hr class="title_line">
-        <% @users.each do |user| %>
-          <div id= "suggested_follow_names">
-            <div class="person_to_follow" id="<%= user.id %>">
-              <div class="profile_pic_follow">
-                <%= image_tag user.get_image_thumb %>
-              </div>
-              <div class="follow_link">
-                <p><%= link_to user.username, follow_url(user.id), :remote => true  %></p>
+      <% if @users.count > 0 %>
+         <div id= "who_to_follow">
+          <p class="following_title">Suggested People to Follow:</p><hr class="title_line">
+          <% @users.each do |user| %>
+            <div id= "suggested_follow_names">
+              <div class="person_to_follow" id="<%= user.id %>">
+                <div class="profile_pic_follow">
+                  <%= image_tag user.get_image_thumb %>
+                </div>
+                <div class="follow_link">
+                  <p><%= link_to user.username, follow_url(user.id), :remote => true  %></p>
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
-      </div> <!-- who_to_follow-->
+          <% end %>
+        </div> <!-- who_to_follow -->
+      <% end %>
 
     </div> <!--following -->
 

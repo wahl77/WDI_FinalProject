@@ -10,17 +10,15 @@
 
   <div id="edit_image_left">
     <div id= "showing_image">
-      <%#= image_tag @image.url %>
+      <img id="img_prev" src="#" alt="your image" />
     </div>
     <div id="add_image_forms">
 
       <div id="add_image_forms_title">
         <p>to an Image</p>
+        <input type='file' onchange="readURL(this);" id="add_image_button"/>
       </div>
 
-      <div id="add_image_button">
-        <p>add image</p>
-      </div>
     </div> <!-- add_image_forms -->
   </div> <!-- edit_image_left -->
 
@@ -48,7 +46,21 @@
 
 </div> <!-- edit_image_main -->
 
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
+    reader.onload = function (e) {
+      $('#img_prev').attr('src', e.target.result)
+        .width(400)
+        .height(400);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
 
 
 
