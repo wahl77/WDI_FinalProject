@@ -5,6 +5,11 @@ class ImagesController < ApplicationController
     @image = Image.new(params[:image])
     @image.user = current_user
     @image.save
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.js
+    end
   end
 
   def update

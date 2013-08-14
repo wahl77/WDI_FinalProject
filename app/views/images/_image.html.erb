@@ -1,0 +1,71 @@
+<%= image_tag 'modal_close.png', :id=> 'close_modal_big' %>
+
+<div id="edit_image_main">
+
+  <div id="edit_image_arrow_div">
+    <%= link_to image_tag('arrow_left.png', :id => "arrow_left"), profile_path(current_user), :remote => true %>
+
+
+  </div>
+
+  <div id="edit_image_left">
+    <div id= "showing_image">
+      <%#= image_tag @image.url %>
+    </div>
+    <div id="add_image_forms">
+
+      <div id="add_image_forms_title">
+        <p>to an Image</p>
+      </div>
+
+      <div id="add_image_button">
+        <p>add image</p>
+      </div>
+
+      <div id="add_image_field">
+<!--           <div id="add_image_form">
+            <%#= form_for(@image, :url => new_image_url, :html_options => {:multipart => true}) do |f| %>
+              <%#= f.file_field :url %>
+          </div>
+          <div id="add_image_button">
+              <#= f.submit "Add Your Image" %>
+          <#% end %> -->
+<!--       </div> -->
+      </div>
+    </div>
+
+  </div> <!-- edit_image_left -->
+
+  <div id="edit_image_right">
+
+    <div id="right_title">
+      <p>Connect</p>
+    </div>
+
+    <div id="photo_editing_text">
+      <p>an Experience...<p>
+      <%= form_tag(update_image_url) do |f| %>
+        <% hidden_field_tag :image_id, @image.id %>
+
+        <%= text_area_tag :caption  %>
+        <%# if @image.lat.nil? %>
+          <%#= label_tag "Where was this taken?" %>
+
+        <%# end %>
+        <%= submit_tag "Save Your Contribution", :id => "photo_submit" %>
+      <% end %>
+    </div> <!-- photo_editing_text -->
+
+  </div> <!-- edit_image_right -->
+
+</div> <!-- edit_image_main -->
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+var user_modal_box = $('.user_show_modal_box');
+
+$('.user_show_wrap').fadeIn('fast');
+user_profile_window = $(".user_show_modal_box");
+user_profile_window.append("<%= j render 'show' %>");
+
+
+$('#close_modal_big, .user_show_modal_overlay').click(function() {
+  user_modal_box.empty();
+  $('.user_show_wrap').fadeOut('fast');
+});
+
+$('#arrow_right').on('click', function() {
+  user_modal_box.addClass('animated fadeOutRightBig');
+  setTimeout(function(){
+
+    /// whatever you're about to do with ajax...
+    /// i'm gonna mess with
+  },100);
+});
