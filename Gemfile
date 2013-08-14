@@ -11,6 +11,7 @@ gem 'rmagick', '2.13.2'
 gem 'carrierwave'
 gem 'sorcery'
 gem 'sunspot_rails'
+gem 'fog'
 
 # Gems used only for assets and not required
 # in production environments by default.
