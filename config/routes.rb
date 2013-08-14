@@ -27,7 +27,7 @@ RailsProject::Application.routes.draw do
 
   get '/map_location/:id' => 'static_pages#index', :as => "map_location"
 
-  post '/save_location' => 'images#save_location'
+  get '/save_location' => 'images#save_location'
 
   match 'static_pages/find_images' => 'static_pages#find_images', as: :static_pages_find_images
 end
