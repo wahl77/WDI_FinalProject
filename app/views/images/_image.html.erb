@@ -12,7 +12,7 @@
   <div id="edit_image_left">
     <div id= "showing_image">
       <!-- hrere is the preview -->
-      <img id="img_prev" src="#" alt="preview" />
+      <div id="img_prev" ></div>
     </div>
     <div id="add_file_field">
       <div><p>Choose a Photo:</p></div>
@@ -55,7 +55,7 @@
     var reader = new FileReader();
 
     reader.onload = function (e) {
-      $('#img_prev').attr('src', e.target.result)
+      $('#img_prev').css('background-image', 'url(' + e.target.result + ')')
       // this needs to be fixed so that renders in proper proportion
 
         .width(400)

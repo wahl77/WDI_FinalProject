@@ -54,31 +54,6 @@ $font_weight: 100;
     width: 65%;
     margin-top: -10px;
     margin-right: 20px;
-    #edit_buttons {
-      height: 50px;
-      width: 100%;
-      div {
-        border: 3px solid #2c3e50;
-        height: 70%;
-        float: right;
-        margin-top: 10px;
-        border-radius: 5px;
-        background-color: #95a5a6;
-        p {
-          font-size: 15px;
-          font-family: $font;
-          margin: 10px;
-          color: #ecf0f1;
-        }
-      }
-      #edit_profile_pic {
-        margin-right: 20px;
-      }
-      div:hover {
-        border: 3px solid #95a5a6;
-        background-color: #bdc3c7;
-      }
-    }
     #following {
       float: left;
       margin-top: 30px;
@@ -90,15 +65,16 @@ $font_weight: 100;
         height: 20%;
         width: 85%;
         margin: 10px auto;
-        border-bottom: 1px solid;
+
       }
       .following_title {
         text-align: center;
         font-family: $font;
         font-size: 18px;
         font-weight: $font-weight;
-        width: 90%;
+        width: 100%;
         margin: 20px auto;
+        display: inline-block;
       }
       .title_line {
         width: 80%;
