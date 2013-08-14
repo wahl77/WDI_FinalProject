@@ -15,7 +15,8 @@
       <img id="img_prev" src="#" alt="preview" />
     </div>
     <div id="add_file_field">
-      <div><p>Choose a Photo:</p></div>
+<!--       Tom changes "What you saw" to look better
+ -->      <div><p id = "what_you_saw"> What You Saw </p> <p>Choose a Photo:</p></div>
       <div><%= f.file_field :url, :id => "add_image_file_field", onchange: "readURL(this);" %>
       </div>
     </div>
@@ -24,7 +25,7 @@
   <div id="add_image_right">
 
     <div id="add_image_forms_title">
-      <p>Add Photo...</p>
+      <p>What You Thought:</p>
     </div> <!-- title -->
 
     <div id="add_image_forms">
@@ -39,7 +40,7 @@
       </div>
 
       <div id="add_button">
-        <%= f.submit "Save", :id => "photo_submit" %>
+        <%= f.submit "Save Your Insight.", :id => "photo_submit" %>
       </div>
 
       <% end %>
