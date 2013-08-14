@@ -20,7 +20,7 @@
     <button id= "editing_insight" class= "hidden"> Edit Your Insight </button>
     </br>
 
-    <% if @image.lat.nil? %>
+    <% if @image.lat.nil? %> <!-- check if image is saved -->
       Where was this photo taken?
       <%= link_to "Choose Location", choose_location_url(@image.id) %>
     <% end %>

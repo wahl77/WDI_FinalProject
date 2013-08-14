@@ -15,7 +15,7 @@ $(document).ready(function(){
                     });
         marker.bindPopup('<button> Save Your Location </button>');
         marker.addTo(map);
-        $('body').find('img').css('src', "http://a.tiles.mapbox.com/v3/marker/pin-m-star-stroked+CC0033.png").attr('id', 'unstyled');
+        $('body').find('img').css('src', "http://a.tiles.mapbox.com/v3/marker/pin-m-star-stroked+CC0033.png").attr('id', 'christina_unstyled');
         $('body').on('click', '.leaflet-popup-content-wrapper', function(){
           $.ajax({
             type: "POST",
@@ -25,6 +25,9 @@ $(document).ready(function(){
         });
         var notify_saved = function() {
           $('.leaflet-popup-content').text('Location Saved!');
+          // map.removeLayer(marker);
+          window.location = "/";
+          // $('body').find('img').css('src', "http://a.tiles.mapbox.com/v3/marker/pin-m-star-stroked+CC0033.png").hide();
         };
       }
 

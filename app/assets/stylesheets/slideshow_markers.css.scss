@@ -25,13 +25,14 @@
     // );
   }
 
-#unstyled {
+#christina_unstyled {
   background-color: rgba(255, 255, 255, 0.0);
 }
 
 // css for slideshow on markers
 .popup {
   text-align: center;
+  font-family: 'Elsie', cursive;
 }
 .popup .slideshow {
   width: 100%;
@@ -42,6 +43,11 @@
 .popup .slideshow .active {
   display: block;
 }
+
+.popup .slideshow .active > .caption {
+  font-size: 20px;
+}
+
 .popup .slideshow img {
   width: 100%;
 }

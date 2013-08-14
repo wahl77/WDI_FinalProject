@@ -15,6 +15,7 @@ RailsProject::Application.routes.draw do
   match 'login' => 'sessions#new', :as => :login
   match 'logout' => 'sessions#destroy', :as => :logout
 
+  get '/map' => 'static_pages#index'
 
   get "profile/:id" => 'users#show', :as => "profile"
 
