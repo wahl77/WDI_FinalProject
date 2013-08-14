@@ -20,9 +20,10 @@ class Image < ActiveRecord::Base
 
   # This methods allows to search for other photos with a similar caption.
   def self.caption_search(query)
-    self.search do
-      fulltext query
-    end
+    #self.search do
+    #  fulltext query
+    #end
+    Image.where("caption @@ :q",  :q => "%#{query}%" )
   end
 
 

@@ -18,8 +18,10 @@ class ImagesController < ApplicationController
     @images_array = []
     new_sentence.each do |word|
       if (word != "The") && (word != "the") && (word != "for") && (word != "For") && (word != "of") && (word != "and") && (word != "And") && (word != "Of") && (word != "Or") && (word != "or") && (word != "because") && (word != "Because") && (word != "a") && (word != "A") && (word != "He") && (word != "he") && (word != "she") && (word != "She") && (word != "That") && (word != "that") && (word != "those") && (word != "Those") && (word != "either") && (word != "Either") && (word != "Your") && (word != "your")
-        @images_array.concat(Image.caption_search(word).results)
+        @images_array.concat(Image.caption_search(word))
       end
+
+      @images_array.uniq!
     end
 
     render json: @images_array.uniq
