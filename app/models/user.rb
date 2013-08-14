@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
 
   has_one :profile_pic, as: :imageable, :class_name => 'Image', dependent: :destroy
+  has_one :cover_pic, as: :imageable, :class_name => 'Image', dependent: :destroy
   accepts_nested_attributes_for :profile_pic, :authentications
   attr_accessible :profile_pic_attributes
 

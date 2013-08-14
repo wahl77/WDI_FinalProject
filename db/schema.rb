@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809220200) do
+ActiveRecord::Schema.define(:version => 20130814205612) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -35,12 +35,13 @@ ActiveRecord::Schema.define(:version => 20130809220200) do
     t.string   "url"
     t.integer  "imageable_id"
     t.string   "imageable_type"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "caption"
     t.decimal  "lat"
     t.decimal  "long"
     t.integer  "user_id"
+    t.string   "kind",           :default => "default"
   end
 
   add_index "images", ["imageable_id", "imageable_type"], :name => "index_images_on_imageable_id_and_imageable_type"
