@@ -2,6 +2,8 @@ RailsProject::Application.routes.draw do
   get "images/new" => 'images#new', :as => "new_image"
   post "image/update" => 'images#update', :as => "update_image"
 
+  resource :images
+
   match "oauth/callback" => "oauths#callback"
   match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 

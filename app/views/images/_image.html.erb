@@ -7,7 +7,7 @@
       <%= image_tag("arrow_left.png", :id => "arrow_left") %>
     </a>
   </div>
-  <%= form_for(@image, :url => new_image_url, :html_options => {:multipart => true}) do |f| %>
+  <%= form_for(@image, :html_options => {:multipart => true}) do |f| %>
 
   <div id="edit_image_left">
     <div id= "showing_image">
