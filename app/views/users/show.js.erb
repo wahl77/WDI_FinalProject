@@ -1,0 +1,34 @@
+// This page displays the user.show page on the click from teh nav bar
+
+// It also does the same thing from the click on the left. arrow from the image.new page.
+
+var user_modal_box = $('.user_show_modal_box');
+
+// this closes the modal on click of 'x' or outside modal
+
+
+
+user_modal_box.removeClass("fadeInRightBig");
+user_profile_window = $(".user_show_modal_box");
+<% if @from == "nav" %>
+$('.user_show_wrap').fadeIn('fast');
+user_profile_window.html("<%= j render 'show' %>");
+<% else %>
+user_modal_box.addClass('animated fadeOutLeftBig');
+setTimeout(function(){
+  user_profile_window.html("<%= j render 'show' %>");
+  user_modal_box.removeClass('fadeOutLeftBig')
+}, 700);
+setTimeout(function(){user_modal_box.addClass("fadeInLeftBig")}, 700);
+<% end  %>
+
+
+
+
+// $('#arrow_right').on('click', function() {
+//   user_modal_box.addClass('animated fadeOutRightBig');
+//   setTimeout(function(){
+//     user_modal_box.removeClass('fadeOutRightBig');
+
+//   },700);
+// });

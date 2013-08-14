@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  attr_accessible :url, :caption, :lat, :long
+  attr_accessible :url, :caption, :lat, :long, :kind
   belongs_to :imageable, polymorphic: true
   belongs_to :user
 

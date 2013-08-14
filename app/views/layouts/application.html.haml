@@ -26,7 +26,8 @@
       #nav_logout
         %p=link_to 'Logout', :logout
       #nav_as
-        %p=link_to "#{current_user.username}'s profile", user_path(current_user)
+        %p
+          %a{href:"profile/#{current_user.id}?from=nav", :data => {:remote => "true"}}= "#{current_user.username}'s profile"
     - else
       #nav_signup
         %p=link_to 'Sign Up', new_user_path, :remote => true
@@ -50,7 +51,6 @@
 
   / = render "aboutmodal"
 
-  %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"}
   %script{:src => "http://cdn.leafletjs.com/leaflet-0.6.3/leaflet.js"}
   %script{:src => "//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js"}
   %script{:src => "http://feather.aviary.com/js/feather.js"}

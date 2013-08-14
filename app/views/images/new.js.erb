@@ -1,0 +1,32 @@
+// This page displays the image.new page on the click from the right.arrow on the user.show page.
+
+var user_modal_box = $('.user_show_modal_box');
+
+// this closes the modal on click of 'x' or outside modal
+
+
+// 1. render image partial
+// 2. remove class fadeOutRightBig
+// 3.  add class fadeInRightBig
+user_modal_box.removeClass("fadeInLeftBig");
+user_modal_box.addClass('animated fadeOutRightBig');
+setTimeout(function(){
+  user_profile_window.html("<%= j render 'images/image' %>");
+  user_modal_box.removeClass('fadeOutRightBig')
+}, 700);
+setTimeout(function(){user_modal_box.addClass("fadeInRightBig")}, 700);
+
+
+
+// user_modal_box.addClass('fadeInRightBig');
+
+
+
+// $('#arrow_left').on('click', function() {
+//   // user_modal_box.addClass('animated fadeOutLeftBig');
+//   setTimeout(function(){
+//     // user_modal_box.removeClass('fadeOutLeftBig');
+//     // user_modal_box.addClass('fadeInLeftBig');
+//     // user_modal_box.empty();
+//   },700);
+// });

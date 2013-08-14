@@ -1,51 +1,51 @@
 <%= image_tag 'modal_close.png', :id=> 'close_modal_big' %>
 
-<div id="edit_image_main">
+<div id="add_image_main">
 
   <div id="edit_image_arrow_div">
     <a href="profile/<%= current_user.id %>?from=modal" data-remote="true">
       <%= image_tag("arrow_left.png", :id => "arrow_left") %>
     </a>
   </div>
+  <%= form_for(@image, :html_options => {:multipart => true}) do |f| %>
 
   <div id="edit_image_left">
     <div id= "showing_image">
-      <img id="img_prev" src="#" alt="your image" />
+      <!-- hrere is the preview -->
+      <img id="img_prev" src="#" alt="preview" />
     </div>
-    <div id="add_image_forms">
-
-      <div id="add_image_forms_title">
-        <p>What You Saw</p>
-        <input type='file' onchange="readURL(this);" id="add_image_button"/>
+    <div id="add_file_field">
+      <div><p>Choose a Photo:</p></div>
+      <div><%= f.file_field :url, :id => "add_image_file_field", onchange: "readURL(this);" %>
       </div>
-
-    </div> <!-- add_image_forms -->
+    </div>
   </div> <!-- edit_image_left -->
 
-  <div id="edit_image_right">
+  <div id="add_image_right">
 
-    <div id="photo_editing_text">
-      <p>What You Thought<p>
-      <%= form_tag(update_image_url) do |f| %>
-        <% hidden_field_tag :image_id, @image.id %>
+    <div id="add_image_forms_title">
+      <p>Add Photo...</p>
+    </div> <!-- title -->
 
-        <%= text_area_tag :caption  %>
-        <%# if @image.lat.nil? %>
-          <%#= label_tag "Where was this taken?" %>
+    <div id="add_image_forms">
 
-        <%# end %>
-        <%= submit_tag "Add Your Insight", :id => "photo_submit" %>
+        <%= f.text_area :caption %>
+      <!-- radio buttons here. -->
+      <div id="add_image_radios">
+        <%= f.label "kind" %>
+        <%= f.radio_button :kind, "profile_pic" %> Profile
+        <%= f.radio_button :kind, "cover_pic" %> Cover Photo
+        <%= f.radio_button :kind, "default" %> Default Photo
+      </div>
+
+      <div id="add_button">
+        <%= f.submit "Save & Add a Location", :id => "photo_submit" %>
+      </div>
+
       <% end %>
-    </div> <!-- photo_editing_text -->
+    </div> <!-- add_image_forms -->
 
-    <div id= "choosing_location">
-      <% if @image && @image.lat.nil? %> <!-- check if image is saved and it has no location-->
-        Where was this photo taken?
-        <%= link_to "Choose Location", choose_location_url(@image.id) %>
-      <% end %>
-    </div>
-
-  </div> <!-- edit_image_right -->
+  </div> <!-- add_image_right -->
 
 </div> <!-- edit_image_main -->
 
@@ -56,6 +56,8 @@
 
     reader.onload = function (e) {
       $('#img_prev').attr('src', e.target.result)
+      // this needs to be fixed so that renders in proper proportion
+
         .width(400)
         .height(400);
     };
@@ -63,6 +65,8 @@
     reader.readAsDataURL(input.files[0]);
     }
   }
+
+  // $("#add_image_button").on('change', readURL(this));
 </script>
 
 

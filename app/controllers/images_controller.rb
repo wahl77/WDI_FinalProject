@@ -2,9 +2,22 @@ class ImagesController < ApplicationController
   skip_before_filter :require_login
 
   def new
-    @image = Image.new(params[:image])
+    @image = Image.new
+    respond_to do |format|
+      format.html # show.html.erb
+      format.js
+    end
+  end
+
+
+  def create
+    @image = Image.create(params[:image])
     @image.user = current_user
-    @image.save
+    if @image.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def update

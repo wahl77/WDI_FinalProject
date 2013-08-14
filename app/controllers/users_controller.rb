@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :require_login, :only => [:index, :new, :create]
 
-  # GET /users.json
   def index
     @users = User.all
 
@@ -11,36 +10,32 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
+    # do not ever get rid of this @from!!!!!!!!!!!!!!!FFFFFUUUUUUUUCCCCCCCKKKKKKKKKKK
+    # it is important.
+    @from = params[:from]
     @user = User.find(params[:id])
     @image = Image.new
     @users = User.all
 
+    @images = current_user.images
+    @users.reject!{ |user| current_user.following.map{|x| x.following}.include?(user)}
+    @users.delete(current_user)
+
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @user }
+      format.js
     end
   end
 
-  # GET /users/new
-  # GET /users/new.json
   def new
     @user = User.new
-
-    # respond_to do |format|
-    #   format.js
-    # end
   end
 
-  # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
     respond_to do |format|
@@ -48,14 +43,13 @@ class UsersController < ApplicationController
         format.html { redirect_to(:root, :notice => 'User was successfully created.') }
         format.js
       else
-        # binding.pry
         format.html { render action: "new" }
         format.js
       end
     end
   end
 
-  # PUT /users/1.json
+
   def update
     @user = User.find(params[:id])
 
@@ -70,7 +64,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
     @user.destroy
