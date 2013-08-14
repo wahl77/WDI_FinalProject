@@ -65,6 +65,30 @@ Percent:
       $("#longitude").text longitude
 
 
+      options = {
+        url: "/get_local_images" 
+        type: "get"
+        dataType: "json"
+        data: {
+          "latitude": latitude
+          "longitude": longitude
+        }
+        complete: (response) -> 
+          images = $.parseJSON(response.responseText)
+          for image in images
+            image_bearing = (Math.abs(image.lat * image.long)) % 360
+            new_element = $("<div class='box' data-bearing=" + image_bearing + ">")
+            new_element.css("background", 'url(\"'+image.url.thumb.url+'\")')
+            new_element.css("background-size", "cover")
+          
+            $("#canvas").prepend(new_element)
+      }
+
+      $.ajax(options); 
+
+      
+
+
     # Show error still empty for the time being
     show_error = ->
       alert "Sorry, no HTML5 Geolocation for you"
@@ -85,7 +109,6 @@ Percent:
 
         # Find their bearing
         bearing = e.webkitCompassHeading
-        #bearing = 10;
 
         # Append it to the text
         $("#bearing").text bearing
@@ -141,6 +164,3 @@ Percent:
     ), false
     
 #canvas
-  .box{"data-bearing"=>"191"}
-  .box{"data-bearing"=>"10", style:"background: green"}
-  .box{"data-bearing"=>"350", style:"background: blue"}

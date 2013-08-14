@@ -41,4 +41,11 @@ class ImagesController < ApplicationController
     redirect_to root_url
   end
 
+  def local_images
+    @images = Image.near(params[:latitude].to_f, params[:longitude].to_f)
+    respond_to do |format|
+      format.json { render json: @images }  
+    end
+  end
+
 end

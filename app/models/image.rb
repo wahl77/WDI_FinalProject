@@ -65,4 +65,10 @@ class Image < ActiveRecord::Base
     numerator/denominator
   end
 
+
+  def self.near(latitude, longitude)
+    constant = 2
+    Image.where("lat < ? AND lat > ? AND long < ? AND long > ?", latitude + constant, latitude - constant, longitude + constant, longitude - constant);
+  end
+
 end
