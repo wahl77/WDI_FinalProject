@@ -26,7 +26,7 @@
             <div class="followers_container">
               <div class="profile_pic_follow">
 
-                <%= image_tag follower.get_image_thumb %>
+                <%= image_tag follower.get_image_profile_pic  %>
               </div>
               <div class="follow_link">
                 <p><%= link_to follower.username , follow_url(follower.id), :remote => true  %></p>
@@ -43,7 +43,7 @@
           <% @user.followingUsers.each do |following| %>
           <div class="followers_container">
             <div class="profile_pic_follow">
-              <%= image_tag following.get_image_thumb %>
+              <%= image_tag following.get_image_profile_pic  %>
             </div>
             <div class="follow_link">
               <p><%= following.username %></p>
@@ -60,7 +60,7 @@
             <div id= "suggested_follow_names">
               <div class="person_to_follow" id="<%= user.id %>">
                 <div class="profile_pic_follow">
-                  <%= image_tag user.get_image_thumb %>
+                  <%= image_tag user.get_image_profile_pic %>
                 </div>
                 <div class="follow_link">
                   <p><%= link_to user.username, follow_url(user.id), :remote => true  %></p>

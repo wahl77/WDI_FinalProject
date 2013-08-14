@@ -66,20 +66,23 @@ class User < ActiveRecord::Base
 
   # This return their profile picture. Or a default in none are set.
   def get_image_profile_pic
-    if profile_pic
-      return profile_pic.image_url(:profile_pic).to_s
-    else
+    last_pic = images.where("kind = ?", "profile_pic").last
+
+    if last_pic.nil?
       return "/assets/octacat-resized.png"
+    else
+      last_pic.url
     end
   end
 
-  def get_image_thumb
-    if profile_pic
-      return profile_pic.image_url(:thumb).to_s
-    else
-      return "/assets/octacat-resized.png"
-    end
-  end
+  # def get_image_thumb
+  #   last_pic =
+  #   if profile_pic
+  #     return profile_pic.image_url(:thumb).to_s
+  #   else
+  #     return "/assets/octacat-resized.png"
+    # end
+  # end
 
   # def get_image_cover_photo
   #   if cover_photo

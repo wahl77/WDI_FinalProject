@@ -13,7 +13,6 @@ class ImagesController < ApplicationController
   def create
     @image = Image.create(params[:image])
     @image.user = current_user
-    binding.pry
     if @image.save
       redirect_to root_path
     else
