@@ -17,7 +17,7 @@ $(document).ready(function(){
         marker.addTo(map);
         $('body').on('click', '.leaflet-popup-content-wrapper', function(){
           $.ajax({
-            type: "POST",
+            type: "GET",
             url: '/save_location',
             data: { lat: marker._latlng.lat, lng: marker._latlng.lng, url: window.location.href },
           }).done(notify_saved);
