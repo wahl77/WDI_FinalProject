@@ -23,7 +23,29 @@ class Image < ActiveRecord::Base
     #self.search do
     #  fulltext query
     #end
-    Image.where("caption @@ :q",  :q => "%#{query}%" )
+    #Image.where("caption @@ :q",  :q => "%#{query}%" )
+
+    sql = "SELECT * FROM Images WHERE"
+
+    condition = []
+    query.split(" ").to_a.each do |word|
+      if (word != "The") && (word != "the") && (word != "for") && (word != "For") && (word != "of") && (word != "and") && (word != "And") && (word != "Of") && (word != "Or") && (word != "or") && (word != "because") && (word != "Because") && (word != "a") && (word != "A") && (word != "He") && (word != "he") && (word != "she") && (word != "She") && (word != "That") && (word != "that") && (word != "those") && (word != "Those") && (word != "either") && (word != "Either") && (word != "Your") && (word != "your")
+        #if sql === "SELECT * FROM Images WHERE"
+        #  sql += " caption ILIKE '%#{word}%'"
+        #else 
+        #  sql += " OR caption ILIKE '%#{word}%'"
+        #end
+        if condition.length == 0
+          condition << "caption ~* ?"
+          condition << word
+        else 
+          condition[0] += " OR caption ~* ?"
+          condition << word
+        end
+      end
+    end
+
+    Image.find(:all, :conditions => condition)
   end
 
 
