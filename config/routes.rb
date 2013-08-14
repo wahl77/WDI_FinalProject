@@ -33,4 +33,5 @@ RailsProject::Application.routes.draw do
   get '/save_location' => 'images#save_location'
 
   match 'static_pages/find_images' => 'static_pages#find_images', as: :static_pages_find_images
+  get "/get_local_images" => 'images#local_images'
 end
