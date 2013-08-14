@@ -1,0 +1,20 @@
+var user_modal_box = $('.user_show_modal_box');
+
+// user_modal_box.removeClass('fadeInRightBig');
+user_modal_box.html("<%= j render '/images/image' %>");
+// user_modal_box.addClass('fadeInRightBig');
+
+
+$('#close_modal_big, .user_show_modal_overlay').click(function() {
+  user_modal_box.empty();
+  $('.user_show_wrap').fadeOut('fast');
+});
+
+$('#arrow_left').on('click', function() {
+  user_modal_box.addClass('animated fadeOutLeftBig');
+  setTimeout(function(){
+    user_modal_box.removeClass('fadeOutLeftBig');
+    user_modal_box.addClass('fadeInLeftBig');
+    user_modal_box.empty();
+  },700);
+});
