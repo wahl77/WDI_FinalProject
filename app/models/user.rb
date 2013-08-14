@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
 
   has_one :profile_pic, as: :imageable, :class_name => 'Image', dependent: :destroy
+  has_one :cover_pic, as: :imageable, :class_name => 'Image', dependent: :destroy
+
   accepts_nested_attributes_for :profile_pic, :authentications
   attr_accessible :profile_pic_attributes
 
@@ -69,6 +71,15 @@ class User < ActiveRecord::Base
       return profile_pic.image_url(:profile_pic).to_s
     else
       return "/assets/octacat-resized.png"
+    end
+  end
+
+  # This return their profile picture. Or a default in none are set.
+  def get_cover
+    if cover_pic
+      return cover_pic.image_url(:cover_pic).to_s
+    else
+      return "/assets/some_default_to_be_set_in_user_model.png"
     end
   end
 
