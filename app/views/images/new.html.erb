@@ -15,17 +15,15 @@
     <%= form_tag(update_image_url, :remote => true ) do |f| %>
       <%= hidden_field_tag :image_id, @image.id %>
       <%= text_field_tag :caption %>
-      <% if @image.lat.nil? %>
-        <%= label_tag "Where was this taken?" %>
-        <p> Tom puts logic for user to select location on map. And whatever the user selects gets submitted as a hidden_field_tag with the lat and long of the photo. Need to either make sure the lat and long is mandatory or tell the user that if they dont put it in, their photo wont show up on the map. aka they are a loser.</p>
-      <% end %>
       <%= submit_tag "Save Your Contribution" %>
     <% end %>
     <button id= "editing_insight" class= "hidden"> Edit Your Insight </button>
     </br>
 
-    Where was this photo taken?
-    <%= link_to "Choose Location", choose_location_url(@image.id) %>
+    <% if @image.lat.nil? %>
+      Where was this photo taken?
+      <%= link_to "Choose Location", choose_location_url(@image.id) %>
+    <% end %>
   </div>
 
 </div>
