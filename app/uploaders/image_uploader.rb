@@ -17,12 +17,22 @@ class ImageUploader < FileUploader
 
   # Create different versions of your uploaded files:
    version :thumb do
-    process :scale => [50, 50]
+    process :resize_to_limit => [50, 50]
    end
 
   version :profile_pic do
     process :resize_to_limit => [310, 310]
   end
+
+  version :cover do
+    process :resize_to_limit => [1200, 210]
+  end
+
+  version :banner do
+    process :resize_to_limit => [125, 125]
+  end
+
+
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
