@@ -14,7 +14,11 @@ class ImagesController < ApplicationController
     @image = Image.create(params[:image])
     @image.user = current_user
     if @image.save
-      redirect_to root_path
+      if @image.lat != nil
+        redirect_to root_path
+      else
+        redirect_to choose_location_path(@image)
+      end
     else
       render :new
     end
