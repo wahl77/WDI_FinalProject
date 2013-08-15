@@ -10,14 +10,14 @@ gem 'haml-rails'
 gem 'rmagick', '2.13.2'
 gem 'carrierwave'
 gem 'sorcery'
-gem 'sunspot_rails'
+#gem 'sunspot_rails'
 gem 'fog'
+gem 'coffee-rails', '~> 3.2.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -32,7 +32,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'sunspot_solr'
+#  gem 'sunspot_solr'
   # gem 'rack-mini-profiler'
 end
 
