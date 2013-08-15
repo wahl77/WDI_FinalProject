@@ -25,11 +25,10 @@
           <% @user.followerUsers.each do |follower| %>
             <div class="followers_container">
               <div class="profile_pic_follow">
-
                 <%= image_tag follower.get_image_profile_pic  %>
               </div>
               <div class="follow_link">
-                <p><%= link_to follower.username , follow_url(follower.id), :remote => true  %></p>
+                <p><%= follower.username  %></p>
               </div>
             </div>
           <% end %>
@@ -81,12 +80,6 @@
         </div>
         <div id="move_right_arrow">
           <%= link_to image_tag('arrow_right.png', :id => "arrow_right"), new_image_path, :remote => true %>
-        </div>
-      </div>
-
-      <div id="user_images_container">
-        <div id="user_images">
-          This is where all the user's images will go as a scroll...
         </div>
       </div>
 
