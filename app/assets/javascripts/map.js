@@ -15,16 +15,19 @@ $(document).ready(function(){
                     });
         marker.bindPopup('<button> Save Your Location </button>');
         marker.addTo(map);
-        $('body').find('img').css('src', "http://a.tiles.mapbox.com/v3/marker/pin-m-star-stroked+CC0033.png").attr('id', 'unstyled');
+        $('body').find('img').css('src', "http://a.tiles.mapbox.com/v3/marker/pin-m-star-stroked+CC0033.png").attr('id', 'christina_unstyled');
         $('body').on('click', '.leaflet-popup-content-wrapper', function(){
           $.ajax({
-            type: "POST",
+            type: "GET",
             url: '/save_location',
             data: { lat: marker._latlng.lat, lng: marker._latlng.lng, url: window.location.href },
           }).done(notify_saved);
         });
         var notify_saved = function() {
           $('.leaflet-popup-content').text('Location Saved!');
+          // map.removeLayer(marker);
+          window.location = "/";
+          // $('body').find('img').css('src', "http://a.tiles.mapbox.com/v3/marker/pin-m-star-stroked+CC0033.png").hide();
         };
       }
 
@@ -199,7 +202,7 @@ $(document).ready(function(){
         }, // close geometry
         // This is for a custom marker on the map
         "properties": {
-          "title": "This is where I realized . . .",
+          "title": "Here, I realized . . .",
           "icon": {
             "iconUrl": this['dataset']['image'],
             "iconSize": [50, 50], // size of the icon
@@ -293,7 +296,7 @@ $(document).ready(function(){
         },
         // This is for a custom marker on the map
         "properties": {
-          'title': 'When I...',
+          'title': 'Here, I realized...',
           'icon': {
             "iconUrl": response[i].url.url,
             "iconSize": [50, 50], // size of the icon

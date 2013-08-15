@@ -1,0 +1,83 @@
+<%= image_tag 'modal_close.png', :id=> 'close_modal_big' %>
+
+<div id="add_image_main">
+
+  <div id="edit_image_arrow_div">
+    <a href="profile/<%= current_user.id %>?from=modal" data-remote="true">
+      <%= image_tag("arrow_left.png", :id => "arrow_left") %>
+    </a>
+  </div>
+  <%= form_for(@image, :html_options => {:multipart => true}) do |f| %>
+
+  <div id="edit_image_left">
+    <div id= "showing_image">
+      <!-- hrere is the preview -->
+      <div id="img_prev" ></div>
+    </div>
+    <div id="add_file_field">
+        <p id="what_you_saw"> What You Saw</p>
+        <div id="choose_photo">
+          <p>Choose a Photo:</p>
+        </div>
+      <div id="add">
+        <%= f.file_field :url, :id => "add_image_file_field", onchange: "readURL(this);" %>
+      </div>
+    </div>
+  </div> <!-- edit_image_left -->
+
+  <div id="add_image_right">
+
+    <div id="add_image_forms_title">
+      <p>What You Thought:</p>
+    </div> <!-- title -->
+
+    <div id="add_image_forms">
+
+        <%= f.text_area :caption %>
+
+      <div id="add_image_radios">
+        <%= f.label "What kind of photo is this?" %>
+        <br>
+        <%= f.radio_button :kind, "profile_pic" %> Profile
+        <%= f.radio_button :kind, "cover_pic" %> Cover Photo
+        <%= f.radio_button :kind, "default" %> Default Photo
+      </div>
+
+      <div id="add_button">
+        <%= f.submit "Save Your Insight.", :id => "photo_submit" %>
+      </div>
+
+      <% end %>
+    </div> <!-- add_image_forms -->
+
+  </div> <!-- add_image_right -->
+
+</div> <!-- edit_image_main -->
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#img_prev').css('background-image', 'url(' + e.target.result + ')')
+      // this needs to be fixed so that renders in proper proportion
+
+        .width(400)
+        .height(400);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // $("#add_image_button").on('change', readURL(this));
+</script>
+
+
+
+
+
+
+
+

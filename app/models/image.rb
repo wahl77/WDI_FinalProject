@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  attr_accessible :url, :caption, :lat, :long
+  attr_accessible :url, :caption, :lat, :long, :kind
   belongs_to :imageable, polymorphic: true
   belongs_to :user
 
@@ -14,15 +14,38 @@ class Image < ActiveRecord::Base
   # a range of some sort.
 
   # commented this out because it was giving me an error message
-   searchable do
-     text :caption
-   end
+  # searchable do
+  #   text :caption
+  # end
 
   # This methods allows to search for other photos with a similar caption.
   def self.caption_search(query)
-    self.search do
-      fulltext query
+    #self.search do
+    #  fulltext query
+    #end
+    #Image.where("caption @@ :q",  :q => "%#{query}%" )
+
+    sql = "SELECT * FROM Images WHERE"
+
+    condition = []
+    query.split(" ").to_a.each do |word|
+      if (word != "The") && (word != "the") && (word != "for") && (word != "For") && (word != "of") && (word != "and") && (word != "And") && (word != "Of") && (word != "Or") && (word != "or") && (word != "because") && (word != "Because") && (word != "a") && (word != "A") && (word != "He") && (word != "he") && (word != "she") && (word != "She") && (word != "That") && (word != "that") && (word != "those") && (word != "Those") && (word != "either") && (word != "Either") && (word != "Your") && (word != "your")
+        #if sql === "SELECT * FROM Images WHERE"
+        #  sql += " caption ILIKE '%#{word}%'"
+        #else 
+        #  sql += " OR caption ILIKE '%#{word}%'"
+        #end
+        if condition.length == 0
+          condition << "caption ~* ?"
+          condition << word
+        else 
+          condition[0] += " OR caption ~* ?"
+          condition << word
+        end
+      end
     end
+
+    Image.find(:all, :conditions => condition)
   end
 
 
@@ -63,6 +86,12 @@ class Image < ActiveRecord::Base
     numerator, denominator = strng.split('/').map(&:to_f)
     denominator ||= 1
     numerator/denominator
+  end
+
+
+  def self.near(latitude, longitude)
+    constant = 2
+    Image.where("lat < ? AND lat > ? AND long < ? AND long > ?", latitude + constant, latitude - constant, longitude + constant, longitude - constant);
   end
 
 end

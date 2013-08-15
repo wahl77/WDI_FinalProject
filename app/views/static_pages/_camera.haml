@@ -1,0 +1,171 @@
+/ Make sure jQuery is in
+
+
+:css
+  #canvas{
+    display: none;
+    height: 100px;
+    position:fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
+
+  @media screen and (max-width: 480px){
+    #canvas{
+      display: block;
+      z-index: 500;
+    }
+  }
+
+  .box{
+    width: 200px;
+    height: 100%;
+    position: absolute;
+  }
+
+:coffee
+  jQuery ->  
+
+    # This appends orientation
+    inform_orientation = ->
+      $("#orientation").text window.orientation
+    
+    # Get HTML5 Geolocation information
+    get_position = (event) ->
+      
+      # Try HTML5 geolocation
+      if navigator.geolocation
+        console.log navigator.geolocation
+        navigator.geolocation.getCurrentPosition show_pos, show_error
+      else
+        alert "Sorry, your browser does not suport GeoLocation"
+    
+    # This will get latitude and longitude
+    show_pos = (position) ->
+      latitude = position.coords.latitude
+      longitude = position.coords.longitude
+      $("#latitude").text latitude
+      $("#longitude").text longitude
+
+
+      options = {
+        url: "/get_local_images" 
+        type: "get"
+        dataType: "json"
+        data: {
+          "latitude": latitude
+          "longitude": longitude
+        }
+        complete: (response) -> 
+          images = $.parseJSON(response.responseText)
+          for image in images
+            # From: http://www.movable-type.co.uk/scripts/latlong.html
+            y = Math.sin(image.long) * Math.cos(image.lat)
+            x = Math.cos(latitude)*Math.sin(image.lat) - Math.sin(latitude)*Math.cos(image.lat)*Math.cos(image.long);
+            image_bearing = (360 + 180 * Math.atan2(y, x) / Math.PI) % 360
+            new_element = $("<div class='box' data-bearing=" + image_bearing + ">")
+            new_element.css("background", 'url(\"'+image.url.thumb.url+'\")')
+            new_element.css("background-size", "cover")
+          
+            $("#canvas").prepend(new_element)
+      }
+
+      $.ajax(options); 
+
+      
+
+
+    # Show error still empty for the time being
+    show_error = ->
+      alert "Sorry, no HTML5 Geolocation for you"
+
+    # Get orientation and position form start
+    inform_orientation()
+    get_position()
+
+    # This find landscape / portrait mode
+    window.addEventListener "orientationchange", inform_orientation
+
+
+    # This changes based on bearing and informs us 
+    window.addEventListener "deviceorientation", ((e) ->
+
+      # Make sure they have supprot for this
+      unless e.webkitCompassHeading is 0
+
+        # Find their bearing
+        bearing = e.webkitCompassHeading
+
+        # Append it to the text
+        $("#bearing").text bearing
+
+        # Get lens angle (based on portrait/landscape mode of an iPhone)
+        lens_angle = (if ($("#orientation").text() is 0) then 40 else 60)
+
+        # Get all boxes
+        boxes = $(".box")
+
+        # Loop through each one
+        i = 0
+        while i < boxes.length
+
+          # Select the box
+          current_box = $(boxes[i])
+
+          # Get it's bearing relative to where we stand
+          box_bearing = current_box.data("bearing")
+
+
+          # Complicated math starts here -----------
+
+          # Make sure it's in our field of vision
+          if Math.abs(box_bearing - bearing) < (lens_angle / 2) or (360 - Math.abs(box_bearing - bearing)) < (lens_angle / 2)
+      
+            # Make the box visible again
+            current_box.css "display", ""
+
+            # Find it as a percentage
+            position_from_left = 100 * (bearing - (box_bearing - (lens_angle / 2))) / lens_angle
+
+            # Got for the edge cases (overwrite the value of position left
+            if (bearing < lens_angle && box_bearing > (360 - lens_angle))
+              position_from_left = box_bearing - Math.abs(360 - bearing - lens_angle/2)
+              position_from_left = position_from_left*(100/60) # Make it a percentage
+              position_from_left += (lens_angle / 2)
+            else if (box_bearing < lens_angle && bearing > (360 - lens_angle))
+              position_from_left = bearing - Math.abs(360 - box_bearing - lens_angle/2)
+              position_from_left = position_from_left*(100/60)
+              position_from_left -= (lens_angle / 2)
+
+            current_box.css "left", 100 - position_from_left.toString() + "%"
+            $("#percent").text position_from_left.toString()
+          else
+
+            # Hide it if not in our field of vision
+            current_box.css "display", "none"
+
+          # Complicated math ends here -----------
+
+          ++i
+    ), false
+    
+#canvas
+/Bearing: 
+/%span#bearing
+/%br
+/%span#latitude
+/%br
+/%span#longitude
+/#br
+/%span#orientation
+/%br
+/Percent: 
+/%span#percent
+/
+/%br
+/%span#special_case
+/
+/%br
+ 
+%script{src:"http://code.jquery.com/jquery-1.10.1.min.js"}

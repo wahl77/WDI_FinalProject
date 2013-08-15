@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  skip_before_filter :require_login, only:[:index, :about]
+  skip_before_filter :require_login, only:[:index, :camera]
 
   def index
     @everyone_images = Image.all
@@ -21,6 +21,10 @@ class StaticPagesController < ApplicationController
     respond_to do |format|
       format.js { render layout: false }
     end
+  end
+
+  def camera
+    render layout: false
   end
 
 end
