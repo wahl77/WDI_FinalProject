@@ -1,42 +1,26 @@
 / Make sure jQuery is in
-%script{src:"http://code.jquery.com/jquery-1.10.1.min.js"}
-%h1 
-  This is the static_pages
 
-Bearing: 
-%span#bearing
-%br
-%span#latitude
-%br
-%span#longitude
-#br
-%span#orientation
-%br
-Percent: 
-%span#percent
-
-%br
-%span#special_case
-
-%br
 
 :css
-  #canvas {
-    border: 1px solid black;
-    height: 250px;
-    margin: 10px;
-    background: gray;
-    position: relative;
+  #canvas{
+    display: none;
+    height: 100px;
+    position:fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
+
+  @media screen and (max-width: 480px){
+    #canvas{
+      display: block;
+      z-index: 500;
+    }
   }
 
   .box{
     width: 200px;
     height: 100%;
-    background-color: red;
-    background-image: url('http://frankywahl.com/Images/Franky.png');
-    background-size: cover;
-    top: 0%;
-    left: 30%;
     position: absolute;
   }
 
@@ -164,3 +148,21 @@ Percent:
     ), false
     
 #canvas
+/Bearing: 
+/%span#bearing
+/%br
+/%span#latitude
+/%br
+/%span#longitude
+/#br
+/%span#orientation
+/%br
+/Percent: 
+/%span#percent
+/
+/%br
+/%span#special_case
+/
+/%br
+ 
+%script{src:"http://code.jquery.com/jquery-1.10.1.min.js"}
