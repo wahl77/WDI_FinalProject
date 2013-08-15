@@ -1,5 +1,5 @@
 $font_color: white;
-$font: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
+$font: 'Elsie', cursive;
 $font_size: 60px;
 $font_weight: 100;
 
@@ -8,16 +8,16 @@ $font_weight: 100;
 }
 
 #main_user_profile_div{
-  margin: 30px auto;
-  width: 90%;
-  border: 1px solid;
-  border-radius: 5px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
 
   #user_cover_pic {
     height: 200px;
     width: 100%;
     border-bottom: 1px solid;
+    border-top-left-radius: 6px;
+    background-image: url('red_ship_cover.png');
+
   }
   #left_column {
     width: 30%;
@@ -56,7 +56,7 @@ $font_weight: 100;
     float: right;
     height: 65%;
     width: 65%;
-    margin-top: -60px;
+    margin-top: -10px;
     margin-right: 20px;
     #edit_buttons {
       height: 50px;
@@ -85,8 +85,8 @@ $font_weight: 100;
     }
     #following {
       float: left;
-      margin-top: 20px;
-      height: 80%;
+      margin-top: 30px;
+      height: 87%;
       width: 35%;
       overflow: scroll;
       background-color: #ecf0f1;
@@ -128,6 +128,8 @@ $font_weight: 100;
       border: 2px solid;
       float: left;
       display: inline-block;
+      overflow: hidden;
+      background-color: white;
       img {
         width: 100%;
         height: 100%;
@@ -148,39 +150,32 @@ $font_weight: 100;
     }
     #adds {
       width: 62%;
-      height: 80%;
-      margin-top: 20px;
+      height: 87%;
+      margin-top: 30px;
       float: right;
       overflow: hidden;
       background-color: #ecf0f1;
       #top_of_adds {
         height: 50%;
         width: 100%;
-        #add_image_form,
-        #add_image_title,
-        #add_image_field {
-          margin: auto;
+        #add_image_title{
+          margin: 28px -5px 0 5px;
+          width: 85%;
+          float: left;
         }
         #add_image_title p{
           font-family: $font;
-          font-size: 30px;
+          font-size: 38px;
           text-align: center;
-          margin: 0;
-          margin-top: 5px;
+          letter-spacing: -2px;
         }
-        #add_image_title p:last-child {
-          font-size: 18px;
+        #arrow_right {
+          float: right;
+          margin-right: 10px;
+          margin-top: 40px;
         }
-        #add_image_form,
-        #add_image_field {
-          margin-top: 20px;
-          display: inline-block;
-
-        }
-        #add_image_form{
-          width: 50%;
-          float: left;
-          margin-left: 50px;
+        #arrow_right:hover {
+          opacity: 0.6;
         }
       }
       #user_images_container {
@@ -192,6 +187,14 @@ $font_weight: 100;
           border: 1px solid;
           margin: 10px auto;
           background-color: white;
+          overflow:hidden;
+          .user_images {
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+            float: left;
+            overflow:hidden;
+          }
         }
       }
     } // #adds

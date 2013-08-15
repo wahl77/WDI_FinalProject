@@ -1,19 +1,120 @@
-// Place all the styles related to the images controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$font_color: white;
+$font: 'Elsie', cursive;
+$font_weight: 100;
 
-#editing_image>img{
-  width: 40%;
-  margin-left: 15%;
-  border: 6px solid #4A4A4A;
-  margin-top: 5%;
-}
+#add_image_main {
+  width: 100%;
+  height: 100%;
+  #edit_image_arrow_div {
+    width: 80px;
+    height: 100%;
+    float: left;
+    display: inline-block;
+    img {
+      margin-top: 225px;
+      margin-left: 20px;
+      opacity: 0.8;
+    }
+    img:hover {
+      opacity: 0.4;
+    }
+  }
+  #edit_image_left {
+    width: 45%;
+    height: 100%;
+    display: inline-block;
+    margin-left: 30px;
+    float: left;
+    #showing_image {
+      height: 400px;
+      width: 400px;
+      margin: 55px auto;
+      overflow:hidden;
+      border: 8px solid;
+      border-radius: 7px;
+      margin-bottom: 28px;
+    }
+    div:first-child {
+      margin: 10px 0 0 95px;
+      float: left;
+      p {
+        float: left;
+        margin: 0;
+        font-family: $font;
+        font-weight: $font-weight;
+        display: inline-block;
+      }
+    }
+    div:last-child {
+      display: inline-block;
+      margin: 12px 0 0 -60px;
+    }
+    #add_file_field {
+      width: 100%;
+      height: 40px;
+      margin-top: -40px;
+      #add_image_file_field {
+        margin-left: 30%;
+        display: inline-block;
+      }
+    }
+  }
+  #add_image_right {
+    height: 100%;
+    width: 41%;
+    display: inline-block;
+    #add_image_forms_title {
+      width: 100%;
+      height: 22%;
+      margin-top: 86px;
+      padding-top: 35px;
+      background-color: #ecf0f1;
+      p {
+        text-align: center;
+        font-family: $font;
+        font-size: 38px;
+        font-weight: bold;
+      }
+    }
+    #add_image_forms {
+      width: 100%;
+      height: 200px;
+      display: inline-block;
+      background-color: #ecf0f1;
+      textarea {
+        width: 80%;
+        height: 30%;
+        margin: 0 10px 10px 45px;
+      }
+      #add_button {
+        margin: 20px 0 0 30%;
+        #photo_submit {
+          width: 55%;
+          padding: 30px;
+          border-radius: 5px;
+          color: white;
+        }
+      }
+    }
 
-.photo_editing_text {
-  float: right;
-  width: 300px;
-  margin-top: -40px;
-  margin-right: 10%;
+    // #add_image_button:hover {
+    //   -moz-box-shadow: inset 0 2px 11px -3px #000;
+    //   -webkit-box-shadow: inset 0 2px 11px -3px #000;
+    //   box-shadow: inset 0 2px 11px -3px #000;
+    // }
+    // #add_image_field {
+    //   margin: 25px;
+    //   #add_image_form,
+    //   #add_image_button {
+    //     text-align: center;
+    //     margin: 10px auto;
+    //     display: block;
+    //   }
+    //   #add_image_form {
+    //     margin-left: 100px;
+    //   }
+    // }
+  }
 }
 
 #background {
