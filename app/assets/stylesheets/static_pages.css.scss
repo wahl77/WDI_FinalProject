@@ -1,11 +1,56 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-html,body {
+html, body {
+  width:100%;
   height:100%;
-  background-image:url('ship_red_clipped_rev_1.jpg');
+  margin:0;
+  padding:0;
+}
+html {
+  background-image:url('beautiful-underwater-ocean-picturesunderwater-photos-ocean-wildlife-wallpapers-national-nb9p5kgc.jpg');
   background-size: cover;
-  z-index: 300;
+}
+
+#title p {
+ color: #D98719;
+ font-size: 140px;
+ position:absolute;
+ top: -14%;
+ left: 6%;
+ z-index: 100000;
+ -webkit-filter: drop-shadow(7px 7px 7px #222);
+ -moz-filter: drop-shadow(7px 7px 7px #222);
+ -ms-filter: drop-shadow(7px 7px 7px #222);
+ -o-filter: drop-shadow(7px 7px 7px #222);
+ filter: drop-shadow(7px 7px 7px #222);
+}
+
+#sliver {
+  position: absolute;
+  left: 93%;
+  height: 100%;
+  z-index: 50;
+  width: 7%;
+  float: right;
 }
 
 
+#shipwreck {
+  position: absolute;
+  z-index: 1;
+  width: 93%;
+  top:.6%;
+  bottom:0;
+  height: 100%;
+  margin: 0 0 0 0;
+  -webkit-filter: drop-shadow(7px 7px 7px #222);
+  -moz-filter: drop-shadow(7px 7px 7px #222);
+  -ms-filter: drop-shadow(7px 7px 7px #222);
+  -o-filter: drop-shadow(7px 7px 7px #222);
+  filter: drop-shadow(7px 7px 7px #222);
+  // border: 5px solid #5C3317;
+}
+#container {
+  overflow:hidden;
+}

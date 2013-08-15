@@ -4,11 +4,13 @@ $font_weight: 100;
 
 #map_container {
   position:absolute;
+  width: 56%;
   height: 75%;
-  width:75%;
-  top: 15%;
-  left: 12%;
+  left: 51%;
+  top: 20%;
+  margin-left: -28%;
   border-radius: 5px;
+  z-index: 50000;
   border: 5px solid $navbar_color;
   -webkit-filter: hue-rotate(340deg);
   -webkit-filter: contrast(1.4);
@@ -16,37 +18,32 @@ $font_weight: 100;
 
 #map_filter_container {
   position: absolute;
-  // top: 80px;
-  top: 20%;
-  left: 7%;
-  width: 200px;
-  height: 152px;
-  border: 1px solid;
-  border-radius: 5px;
-  background-color: white;
-  border: 3px solid $navbar_color;
-  z-index: 1;
+  top: 27%;
+  left: 86%;
+  width: 10%;
+  height: 55%;
+  z-index: 50000;
+  // border: 3px solid $navbar_color;
   .filter_containers {
-    height: 49px;
+    height: 28%;
     width: 90%;
     margin-left: 10px;
     margin-right: 10px;
   }
-  .filter_containers:first-child,
-  .filter_containers:nth-child(2) {
-    -moz-box-shadow: 0 1px 1px -1px #000;
-    -webkit-box-shadow: 0 1px 1px -1px #000;
-    box-shadow: 0 1px 1px -1px #000;
-  }
+  // .filter_containers:first-child,
+  // .filter_containers:nth-child(2) {
+  //   -moz-box-shadow: 0 1px 1px -1px #000;
+  //   -webkit-box-shadow: 0 1px 1px -1px #000;
+  //   box-shadow: 0 1px 1px -1px #000;
+  // }
   .filter_buttons {
-    width: 20px;
-    height: 20px;
+    width: 90%;
+    height: 90%;
     background-color: #ecf0f1;
     border: 3px solid $navbar_color;
     margin-top: 10px;
-    border-radius: 3px;
-    float: left;
-    display: inline-block;
+    border-radius: 5px;
+    top: 30px;
   }
 
   .clicked,
@@ -55,14 +52,25 @@ $font_weight: 100;
     border: 3px solid #5C3317;
   }
   .filter_texts {
-    height: 49px;
     display: inline-block;
-    margin: 17px;
     p {
-      margin: 0;
       font-family: $font;
-      font-weight: $font_weight;
+      font-size: 18px;
+      margin-top: 37px;
+      text-align: center;
     }
+  }
+
+  #filter_friends p {
+    margin-left: 15px;
+  }
+
+  #filter_you p {
+    margin-left: 27px;
+  }
+
+  #filter_everyone p {
+    margin-left: 7px;
   }
 
   .active {
