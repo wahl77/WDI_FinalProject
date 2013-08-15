@@ -4,12 +4,12 @@ $font_weight: 100;
 
 #map_container {
   position:absolute;
-  width: 56%;
-  height: 75%;
+  width: 57%;
+  height: 77%;
   left: 51%;
   top: 20%;
   margin-left: -28%;
-  border-radius: 5px;
+  border-radius: 10px;
   z-index: 49;
   border: 5px solid $navbar_color;
   -webkit-filter: hue-rotate(340deg);
@@ -44,6 +44,7 @@ $font_weight: 100;
     margin-top: 10px;
     border-radius: 5px;
     top: 30px;
+    text-align: center;
   }
 
   .clicked,
