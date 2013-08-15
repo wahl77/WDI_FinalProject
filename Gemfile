@@ -10,7 +10,7 @@ gem 'haml-rails'
 gem 'rmagick', '2.13.2'
 gem 'carrierwave'
 gem 'sorcery'
-gem 'sunspot_rails'
+#gem 'sunspot_rails'
 gem 'fog'
 gem 'coffee-rails', '~> 3.2.1'
 
@@ -32,7 +32,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'sunspot_solr'
+#  gem 'sunspot_solr'
   # gem 'rack-mini-profiler'
 end
 

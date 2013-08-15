@@ -14,9 +14,9 @@ class Image < ActiveRecord::Base
   # a range of some sort.
 
   # commented this out because it was giving me an error message
-   searchable do
-     text :caption
-   end
+  # searchable do
+  #   text :caption
+  # end
 
   # This methods allows to search for other photos with a similar caption.
   def self.caption_search(query)
