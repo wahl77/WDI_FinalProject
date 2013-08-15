@@ -17,11 +17,19 @@ RailsProject::Application.routes.draw do
   match 'login' => 'sessions#new', :as => :login
   match 'logout' => 'sessions#destroy', :as => :logout
 
+  get '/map' => 'static_pages#index'
 
   get "profile/:id" => 'users#show', :as => "profile"
 
   get "follow/:id" => 'users#add_follower', :as => "follow"
 
   post '/search' => 'images#search', as: :search
+
+  get '/choose_location/:id' => 'images#choose_image_location', :as => "choose_location"
+
+  get '/map_location/:id' => 'static_pages#index', :as => "map_location"
+
+  get '/save_location' => 'images#save_location'
+
   match 'static_pages/find_images' => 'static_pages#find_images', as: :static_pages_find_images
 end

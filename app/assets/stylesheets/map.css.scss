@@ -1,19 +1,24 @@
-$navbar_color: gray;
-$font: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
+$navbar_color: #5C3317;
+$font: 'Elsie', cursive;
 $font_weight: 100;
 
 #map_container {
   position:absolute;
-  top:70px;
-  bottom:0;
-  width:100%;
-  z-index: -1;
+  height: 75%;
+  width:75%;
+  top: 15%;
+  left: 12%;
+  border-radius: 5px;
+  border: 5px solid $navbar_color;
+  -webkit-filter: hue-rotate(340deg);
+  -webkit-filter: contrast(1.4);
 }
 
 #map_filter_container {
   position: absolute;
-  top: 80px;
-  left: 15px;
+  // top: 80px;
+  top: 20%;
+  left: 7%;
   width: 200px;
   height: 152px;
   border: 1px solid;
@@ -46,8 +51,8 @@ $font_weight: 100;
 
   .clicked,
   .filter_buttons:hover {
-    background-color: #7f8c8d;
-    border: 3px solid #2c3e50;
+    background-color: #D98719;
+    border: 3px solid #5C3317;
   }
   .filter_texts {
     height: 49px;
@@ -61,7 +66,7 @@ $font_weight: 100;
   }
 
   .active {
-    background-color: rgba(189, 195, 199,1.0);
-    border: 5px solid rgba(149, 165, 166,1.0);
+    background-color: #D98719;
+    border: 5px solid #5C3317;
   }
 }

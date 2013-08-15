@@ -1,5 +1,5 @@
 $font_color: white;
-$font: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
+$font: 'Elsie', cursive;
 $font_weight: 100;
 
 #add_image_main {
@@ -115,4 +115,13 @@ $font_weight: 100;
     //   }
     // }
   }
+}
+
+#background {
+  background-color: #F0F0F0;
+  height: 650px;
+}
+
+body {
+  font-family: 'Elsie', cursive;
 }

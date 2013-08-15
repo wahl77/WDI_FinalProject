@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @image = Image.new
     @users = User.all
+
     @images = current_user.images
     @users.reject!{ |user| current_user.following.map{|x| x.following}.include?(user)}
     @users.delete(current_user)

@@ -1,8 +1,8 @@
-$navbar_color: gray;
-$navbar_height: 70px;
+$navbar_color: #5C3317;
+$navbar_height: 40px;
 $navbar_font_color: white;
-$navbar_font_style: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
-$navbar_font_size: 30px;
+$navbar_font_style: "Elsie", cursive;
+$navbar_font_size: 20px;
 $font_weight: 100;
 
 #navbar {
@@ -16,7 +16,8 @@ $font_weight: 100;
     color: $navbar_font_color;
     margin: auto;
     padding: 0 30px 0 30px;
-    font-style: $navbar_font_style;
+    // font-style: $navbar_font_style;
+    font-family: 'Elsie', cursive;
     font-size: $navbar_font_size;
     font-weight: $font_weight;
 

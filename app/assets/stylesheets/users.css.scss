@@ -1,7 +1,11 @@
 $font_color: white;
-$font: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
+$font: 'Elsie', cursive;
 $font_size: 60px;
 $font_weight: 100;
+
+#editing_insight.hidden{
+  display: none
+}
 
 #main_user_profile_div{
   width: 100%;

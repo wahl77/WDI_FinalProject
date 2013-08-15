@@ -1,27 +1,38 @@
 // css for custom markers
 
-  .leaflet-marker-icon {
-    border-radius: 30px;
+  .leaflet-marker-pane>.leaflet-zoom-animated {
+    border-radius: 10px;
     padding: 4px;
     // creates a gradient for the marker border
-    background-image: linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
-    background-image: -o-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
-    background-image: -moz-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
-    background-image: -webkit-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
-    background-image: -ms-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
+    background-color: #D98719;
+    opacity: .7;
 
-    background-image: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      color-stop(0.23, rgb(77,81,87)),
-      color-stop(0.7, rgb(195,198,201))
-    );
+
+
+
+    // background-image: linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
+    // background-image: -o-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
+    // background-image: -moz-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
+    // background-image: -webkit-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
+    // background-image: -ms-linear-gradient(bottom, rgb(77,81,87) 23%, rgb(195,198,201) 70%);
+
+    // background-image: -webkit-gradient(
+    //   linear,
+    //   left bottom,
+    //   left top,
+    //   color-stop(0.23, rgb(77,81,87)),
+    //   color-stop(0.7, rgb(195,198,201))
+    // );
   }
+
+#christina_unstyled {
+  background-color: rgba(255, 255, 255, 0.0);
+}
 
 // css for slideshow on markers
 .popup {
   text-align: center;
+  font-family: 'Elsie', cursive;
 }
 .popup .slideshow {
   width: 100%;
@@ -32,6 +43,11 @@
 .popup .slideshow .active {
   display: block;
 }
+
+.popup .slideshow .active > .caption {
+  font-size: 20px;
+}
+
 .popup .slideshow img {
   width: 100%;
 }

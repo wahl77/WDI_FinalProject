@@ -1,0 +1,37 @@
+<!--   **Figure out how to update edited image** </br> -->
+
+
+<div id= "background">
+
+  <div id= "editing_image" data= "<%= @image.id %>">
+    <%= image_tag @image.url %>
+  </div>
+
+
+  <div class ="photo_editing_text">
+    When I...<span id= "display_caption">
+      <%= @image.caption if !@image.caption.nil? %>
+    </span>
+    <%= form_tag(update_image_url, :remote => true ) do |f| %>
+      <%= hidden_field_tag :image_id, @image.id %>
+      <%= text_field_tag :caption %>
+      <%= submit_tag "Save Your Contribution" %>
+    <% end %>
+    <button id= "editing_insight" class= "hidden"> Edit Your Insight </button>
+    </br>
+
+    <% if @image.lat.nil? %> <!-- check if image is saved -->
+      Where was this photo taken?
+      <%= link_to "Choose Location", choose_location_url(@image.id) %>
+    <% end %>
+  </div>
+
+</div>
+
+<script>
+  $('#editing_insight').on('click', function(){
+    $('.photo_editing_text form').show();
+    $(this).addClass('hidden');
+  });
+
+</script>
