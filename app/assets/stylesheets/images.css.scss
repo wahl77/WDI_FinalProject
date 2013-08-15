@@ -33,6 +33,11 @@ $font_weight: 100;
       border: 8px solid;
       border-radius: 7px;
       margin-bottom: 28px;
+      #img_prev {
+        height: 350px;
+        width: 400px;
+        background-size: cover;
+      }
     }
     #what_you_saw {
       font-size: 35px;
