@@ -5,7 +5,13 @@ $navbar_font_style: "Elsie", cursive;
 $navbar_font_size: 20px;
 $font_weight: 100;
 
+
+
 #navbar {
+  position:absolute;
+  width: 100%;
+  z-index: 400;
+  border-radius: 5px;
   height: $navbar_height;
   line-height: $navbar_height;
   background-color: $navbar_color;
