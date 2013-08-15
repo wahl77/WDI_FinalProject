@@ -26,7 +26,7 @@ $font_weight: 100;
     margin-left: 30px;
     float: left;
     #showing_image {
-      height: 400px;
+      height: 350px;
       width: 400px;
       margin: 55px auto;
       overflow:hidden;
@@ -34,18 +34,24 @@ $font_weight: 100;
       border-radius: 7px;
       margin-bottom: 28px;
     }
-    div:first-child {
-      margin: 10px 0 0 95px;
+    #what_you_saw {
+      font-size: 35px;
+      text-align: center;
+      margin-bottom: 5px;
+      padding-top: 15px;
+    }
+    #choose_photo{
       float: left;
+      margin-left: 25%;
+      margin-top: -4px;
       p {
         float: left;
-        margin: 0;
         font-family: $font;
         font-weight: $font-weight;
         display: inline-block;
       }
     }
-    div:last-child {
+    #add {
       display: inline-block;
       margin: 12px 0 0 -60px;
     }
@@ -61,7 +67,8 @@ $font_weight: 100;
   }
   #add_image_right {
     height: 100%;
-    width: 41%;
+    width: 45%;
+    margin-left: -30px;
     display: inline-block;
     #add_image_forms_title {
       width: 100%;
@@ -78,13 +85,17 @@ $font_weight: 100;
     }
     #add_image_forms {
       width: 100%;
-      height: 200px;
+      height: 270px;
       display: inline-block;
       background-color: #ecf0f1;
       textarea {
         width: 80%;
         height: 30%;
         margin: 0 10px 10px 45px;
+      }
+      #add_image_radios {
+        margin: 10px 0 0 15px;
+        text-align: center;
       }
       #add_button {
         margin: 20px 0 0 30%;

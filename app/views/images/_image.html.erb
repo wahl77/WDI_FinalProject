@@ -15,9 +15,12 @@
       <div id="img_prev" ></div>
     </div>
     <div id="add_file_field">
-<!--       Tom changes "What you saw" to look better
- -->      <div><p id = "what_you_saw"> What You Saw </p> <p>Choose a Photo:</p></div>
-      <div><%= f.file_field :url, :id => "add_image_file_field", onchange: "readURL(this);" %>
+        <p id="what_you_saw"> What You Saw</p>
+        <div id="choose_photo">
+          <p>Choose a Photo:</p>
+        </div>
+      <div id="add">
+        <%= f.file_field :url, :id => "add_image_file_field", onchange: "readURL(this);" %>
       </div>
     </div>
   </div> <!-- edit_image_left -->
@@ -33,7 +36,8 @@
         <%= f.text_area :caption %>
       <!-- radio buttons here. -->
       <div id="add_image_radios">
-        <%= f.label "kind" %>
+        <%= f.label "What kind of photo is this?" %>
+        <br>
         <%= f.radio_button :kind, "profile_pic" %> Profile
         <%= f.radio_button :kind, "cover_pic" %> Cover Photo
         <%= f.radio_button :kind, "default" %> Default Photo
