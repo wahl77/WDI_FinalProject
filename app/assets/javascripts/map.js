@@ -202,7 +202,7 @@ $(document).ready(function(){
         }, // close geometry
         // This is for a custom marker on the map
         "properties": {
-          "title": "This is where I realized . . .",
+          "title": "Here, I realized . . .",
           "icon": {
             "iconUrl": this['dataset']['image'],
             "iconSize": [50, 50], // size of the icon
