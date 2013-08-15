@@ -296,7 +296,7 @@ $(document).ready(function(){
         },
         // This is for a custom marker on the map
         "properties": {
-          'title': 'When I...',
+          'title': 'Here, I realized...',
           'icon': {
             "iconUrl": response[i].url.url,
             "iconSize": [50, 50], // size of the icon

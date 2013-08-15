@@ -1,6 +1,14 @@
 $font: 'Elsie', cursive;
 $font_weight: 100;
 
+.about_content {
+  font-size: 17px;
+}
+
+.about_content>h3{
+  text-align: center;
+}
+
 // shows/hides
 .modal_wrap,
 .user_show_wrap {
