@@ -15,8 +15,9 @@ $font_weight: 100;
   display:none; /* starts out hidden */
   z-index:2000;
   position: absolute;
+  top: 10%;
   left:50%;
-  margin-left:-350px;
+  margin-left:-300px;
 }
 .user_show_wrap {
   margin-left: 30px;

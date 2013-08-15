@@ -10,7 +10,7 @@ $font_weight: 100;
   top: 20%;
   margin-left: -28%;
   border-radius: 5px;
-  z-index: 50000;
+  z-index: 49;
   border: 5px solid $navbar_color;
   -webkit-filter: hue-rotate(340deg);
   -webkit-filter: contrast(1.4);
@@ -22,7 +22,7 @@ $font_weight: 100;
   left: 86%;
   width: 10%;
   height: 55%;
-  z-index: 50000;
+  z-index: 50;
   // border: 3px solid $navbar_color;
   .filter_containers {
     height: 28%;
@@ -56,21 +56,22 @@ $font_weight: 100;
     p {
       font-family: $font;
       font-size: 18px;
-      margin-top: 37px;
-      text-align: center;
+      position: absolute;
+      left: 50%;
     }
   }
 
   #filter_friends p {
-    margin-left: 15px;
+    margin-left: -23%;
   }
 
   #filter_you p {
-    margin-left: 27px;
+    margin-left: -13%;
   }
 
   #filter_everyone p {
-    margin-left: 7px;
+    margin-left: -27%;
+
   }
 
   .active {
