@@ -60,7 +60,10 @@
         complete: (response) -> 
           images = $.parseJSON(response.responseText)
           for image in images
-            image_bearing = (Math.abs(image.lat * image.long)) % 360
+            # From: http://www.movable-type.co.uk/scripts/latlong.html
+            y = Math.sin(image.long) * Math.cos(image.lat)
+            x = Math.cos(latitude)*Math.sin(image.lat) - Math.sin(latitude)*Math.cos(image.lat)*Math.cos(image.long);
+            image_bearing = (360 + 180 * Math.atan2(y, x) / Math.PI) % 360
             new_element = $("<div class='box' data-bearing=" + image_bearing + ">")
             new_element.css("background", 'url(\"'+image.url.thumb.url+'\")')
             new_element.css("background-size", "cover")
