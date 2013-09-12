@@ -8,7 +8,6 @@ html, body {
   padding:0;
 }
 html {
-  background-image:url('Screen Shot 2013-08-15 at 12.32.58 PM.png');
   background-size: cover;
 }
 
@@ -27,30 +26,91 @@ html {
 }
 
 #sliver {
-  position: absolute;
-  left: 93%;
+  top: 0%;
+  left: 90%;
   height: 100%;
   z-index: 50;
-  width: 7%;
-  float: right;
+  width: 10%;
 }
 
 
-#shipwreck {
+// #shipwreck {
+//   position: absolute;
+//   z-index: 1;
+//   width: 93%;
+//   top:.6%;
+//   bottom:0;
+//   height: 100%;
+//   margin: 0 0 0 0;
+//   -webkit-filter: drop-shadow(7px 7px 7px #222);
+//   -moz-filter: drop-shadow(7px 7px 7px #222);
+//   -ms-filter: drop-shadow(7px 7px 7px #222);
+//   -o-filter: drop-shadow(7px 7px 7px #222);
+//   filter: drop-shadow(7px 7px 7px #222);
+//   // border: 5px solid #5C3317;
+// }
+
+.shipwrecks {
   position: absolute;
   z-index: 1;
-  width: 93%;
-  top:.6%;
-  bottom:0;
-  height: 100%;
-  margin: 0 0 0 0;
-  -webkit-filter: drop-shadow(7px 7px 7px #222);
-  -moz-filter: drop-shadow(7px 7px 7px #222);
-  -ms-filter: drop-shadow(7px 7px 7px #222);
-  -o-filter: drop-shadow(7px 7px 7px #222);
-  filter: drop-shadow(7px 7px 7px #222);
-  // border: 5px solid #5C3317;
 }
+
+#shipwreck1 {
+  top: 0%;
+  left: 0%;
+  width: 90.4%;
+  height: 17%;
+}
+
+#shipwreck2 {
+  top: 17%;
+  left: 0%;
+  width: 24%;
+  height: 76%;
+}
+
+#shipwreck3 {
+  top: 17%;
+  left: 24%;
+  width: 51.9%;
+  height: 8.8%;
+}
+
+#shipwreck4 {
+  top: 25.7%;
+  left: 24%;
+  width: 6.9%;
+  height: 8.2%;
+}
+
+#shipwreck5 {
+  top: 25.7%;
+  right: 21%;
+  width: 12.6%;
+  height: 18.7%;
+}
+
+#shipwreck6 {
+  bottom: 7%;
+  right: 21%;
+  width: 13%;
+  height: 16.4%;
+}
+
+#shipwreck7 {
+  left: 0%;
+  bottom: 0%;
+  width: 90.4%;
+  height: 7%;
+}
+
+#shipwreck8 {
+  top: 17%;
+  left: 79%;
+  width: 11.7%;
+  height: 76%;
+}
+
 #container {
   overflow:hidden;
 }
