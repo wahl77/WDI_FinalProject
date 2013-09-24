@@ -6,8 +6,8 @@ $font_weight: 100;
   position:absolute;
   width: 78%;
   height: 85%;
-  left: 29.4%;
-  top: 13.5%;
+  left: 29%;
+  top: 14.4%;
   margin-left: -28%;
   border-radius: 10px;
   border: 5px solid $navbar_color;
@@ -15,67 +15,99 @@ $font_weight: 100;
   -webkit-filter: contrast(1.4);
 }
 
+.portholes {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  margin-top: -100px;
+  left: 50%;
+  margin-left: -100px;
+  width: 200px;
+  height: 200px;
+}
+
 #map_filter_container {
   position: absolute;
-  top: 27%;
-  left: 86%;
-  width: 10%;
-  height: 55%;
-  z-index: 50;
-  // border: 3px solid $navbar_color;
+  top: 10%;
+  left: 83%;
+  width: 200px;
+  height: 600px;
+  z-index: 5;
   .filter_containers {
-    height: 28%;
-    width: 90%;
-    margin-left: 10px;
-    margin-right: 10px;
+    height: 200px;
+    width: 200px;
   }
-  // .filter_containers:first-child,
-  // .filter_containers:nth-child(2) {
-  //   -moz-box-shadow: 0 1px 1px -1px #000;
-  //   -webkit-box-shadow: 0 1px 1px -1px #000;
-  //   box-shadow: 0 1px 1px -1px #000;
-  // }
+
+  #filter_cont_1 {
+    position:absolute;
+    top: 0px;
+  }
+
+  #filter_cont_2 {
+    position:absolute;
+    top: 200px;
+  }
+
+  #filter_cont_3 {
+    position:absolute;
+    top: 400px;
+  }
+
+  .button_map {
+    position: absolute;
+    left: 50%;
+    margin-left: -90px;
+    top: 50%;
+    margin-top: -90px;
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+  }
+
   .filter_buttons {
-    width: 90%;
-    height: 90%;
-    background-color: #ecf0f1;
-    border: 3px solid $navbar_color;
-    margin-top: 10px;
-    border-radius: 5px;
-    top: 30px;
+    top: 50%;
+    margin-top: -70px;
+    left: 50%;
+    margin-left: -70px;
+    width: 140px;
+    height: 140px;
+    z-index: 5;
+    position: absolute;
+    background-color:rgba(217, 135, 25, 0.25);
+    border-radius: 50%;
     text-align: center;
   }
 
   .clicked,
   .filter_buttons:hover {
     background-color: #D98719;
-    border: 3px solid #5C3317;
   }
   .filter_texts {
     display: inline-block;
     p {
       font-family: $font;
-      font-size: 18px;
+      font-size: 30px;
       position: absolute;
+      top: 50%;
+      margin-top: -17px;
       left: 50%;
     }
   }
 
   #filter_friends p {
-    margin-left: -23%;
+    margin-left: -51px;
   }
 
   #filter_you p {
-    margin-left: -13%;
+    margin-left: -26px;
   }
 
   #filter_everyone p {
-    margin-left: -27%;
+    margin-left: -62px;
 
   }
 
   .active {
     background-color: #D98719;
-    border: 5px solid #5C3317;
   }
 }

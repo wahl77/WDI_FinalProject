@@ -13,10 +13,10 @@ html {
 
 #title p {
  color: #D98719;
- font-size: 140px;
+ font-size: 160px;
  position:absolute;
- top: -14%;
- left: 6%;
+ top: -17%;
+ left: 2%;
  z-index: 50;
  -webkit-filter: drop-shadow(7px 7px 7px #222);
  -moz-filter: drop-shadow(7px 7px 7px #222);
@@ -29,7 +29,7 @@ html {
   top: 0%;
   left: 90%;
   height: 100%;
-  z-index: 50;
+  z-index: 2;
   width: 10%;
 }
 
@@ -60,6 +60,11 @@ html {
   left: 0%;
   width: 90.4%;
   height: 17%;
+  -webkit-filter: drop-shadow(7px 7px 7px #222);
+  -moz-filter: drop-shadow(7px 7px 7px #222);
+  -ms-filter: drop-shadow(7px 7px 7px #222);
+  -o-filter: drop-shadow(7px 7px 7px #222);
+  filter: drop-shadow(7px 7px 7px #222);
 }
 
 #shipwreck2 {
@@ -67,6 +72,11 @@ html {
   left: 0%;
   width: 24%;
   height: 76%;
+  -webkit-filter: drop-shadow(7px 7px 7px #222);
+  -moz-filter: drop-shadow(7px 7px 7px #222);
+  -ms-filter: drop-shadow(7px 7px 7px #222);
+  -o-filter: drop-shadow(7px 7px 7px #222);
+  filter: drop-shadow(7px 7px 7px #222);
 }
 
 #shipwreck3 {
@@ -74,6 +84,11 @@ html {
   left: 24%;
   width: 51.9%;
   height: 8.8%;
+  -webkit-filter: drop-shadow(7px 7px 7px #222);
+  -moz-filter: drop-shadow(7px 7px 7px #222);
+  -ms-filter: drop-shadow(7px 7px 7px #222);
+  -o-filter: drop-shadow(7px 7px 7px #222);
+  filter: drop-shadow(7px 7px 7px #222);
 }
 
 #shipwreck4 {
@@ -81,20 +96,35 @@ html {
   left: 24%;
   width: 6.9%;
   height: 8.2%;
+  -webkit-filter: drop-shadow(7px 7px 7px #222);
+  -moz-filter: drop-shadow(7px 7px 7px #222);
+  -ms-filter: drop-shadow(7px 7px 7px #222);
+  -o-filter: drop-shadow(7px 7px 7px #222);
+  filter: drop-shadow(7px 7px 7px #222);
 }
 
 #shipwreck5 {
   top: 25.7%;
-  right: 21%;
-  width: 12.6%;
+  right: 20.9%;
+  width: 12.7%;
   height: 18.7%;
+  -webkit-filter: drop-shadow(7px 7px 7px #222);
+  -moz-filter: drop-shadow(7px 7px 7px #222);
+  -ms-filter: drop-shadow(7px 7px 7px #222);
+  -o-filter: drop-shadow(7px 7px 7px #222);
+  filter: drop-shadow(7px 7px 7px #222);
 }
 
 #shipwreck6 {
   bottom: 7%;
-  right: 21%;
-  width: 13%;
+  right: 20.9%;
+  width: 13.2%;
   height: 16.4%;
+  -webkit-filter: drop-shadow(7px 7px 7px #222);
+  -moz-filter: drop-shadow(7px 7px 7px #222);
+  -ms-filter: drop-shadow(7px 7px 7px #222);
+  -o-filter: drop-shadow(7px 7px 7px #222);
+  filter: drop-shadow(7px 7px 7px #222);
 }
 
 #shipwreck7 {
@@ -102,6 +132,11 @@ html {
   bottom: 0%;
   width: 90.4%;
   height: 7%;
+  -webkit-filter: drop-shadow(7px 7px 7px #222);
+  -moz-filter: drop-shadow(7px 7px 7px #222);
+  -ms-filter: drop-shadow(7px 7px 7px #222);
+  -o-filter: drop-shadow(7px 7px 7px #222);
+  filter: drop-shadow(7px 7px 7px #222);
 }
 
 #shipwreck8 {
@@ -110,6 +145,8 @@ html {
   width: 11.7%;
   height: 76%;
 }
+
+
 
 #container {
   overflow:hidden;
